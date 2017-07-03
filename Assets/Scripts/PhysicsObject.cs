@@ -9,6 +9,8 @@ public class PhysicsObject : MonoBehaviour {
     public float gravityModifier = 1f;
 
     protected bool grounded;
+	protected Vector2 groundNormal;
+	
     protected Rigidbody2D rb2d;
     protected Vector2 velocity;
     protected ContactFilter2D contactFilter;
@@ -72,14 +74,27 @@ public class PhysicsObject : MonoBehaviour {
                     grounded = true;
                     if (axis == 'y')
                     {
-
+						groundNormal = currentNormal;
+						currentNormal.x = 0;
                     }
                 }
-            }
+
+				float projection = Vector2.Dot(velocity, currentNormal);
+				if (projection < 0)
+				{
+					velocity -= projection * currentNormal;
+				}
+
+				float modifiedDistance = hitBufferList[i].distance - shellRadius;
+				if (modifiedDistance < distance)
+				{
+					distance = modifiedDistance;
+				}
+			}
 
         }
 
-        rb2d.position += move;
+        rb2d.position += move.normalized * distance;
     }
 
 }
