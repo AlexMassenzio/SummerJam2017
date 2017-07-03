@@ -10,7 +10,7 @@ public class PhysicsObject : MonoBehaviour {
 
     protected bool grounded;
 	protected Vector2 groundNormal;
-
+	
     protected Rigidbody2D rb2d;
     protected Vector2 velocity;
     protected ContactFilter2D contactFilter;
