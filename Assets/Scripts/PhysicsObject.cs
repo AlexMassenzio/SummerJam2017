@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PhysicsObject : MonoBehaviour {
+    private float timestamp;
 
     // TODO change this to something nice
     public float minGroundNormalY = 0.65f;
     public float gravityModifier = 1f;
 
     protected bool grounded;
-	protected Vector2 groundNormal;
-	
+    protected Vector2 groundNormal;
+    protected Vector2 targetVelocity;
     protected Rigidbody2D rb2d;
     protected Vector2 velocity;
     protected ContactFilter2D contactFilter;
@@ -28,6 +29,7 @@ public class PhysicsObject : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+		timestamp = 0;
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
         contactFilter.useLayerMask = true;
@@ -36,21 +38,42 @@ public class PhysicsObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
+		//targetVelocity = Vector2.zero;
+		ComputeVelocity();
+	}
+
+	protected virtual void ComputeVelocity()
+	{
+
 	}
 
     private void FixedUpdate()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+		velocity.x = targetVelocity.x;
 
         grounded = false;
 
-        Vector2 deltaPosition = velocity * Time.deltaTime;
+		Vector2 deltaPosition = velocity * Time.deltaTime;
 
-        Vector2 move = Vector2.up * deltaPosition.y;
+		Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+
+		Vector2 move = moveAlongGround * deltaPosition.x;
+
+		Movement(move, 'x');
+
+		move = Vector2.up * deltaPosition.y;
 
         Movement(move, 'y');
-    }
+
+		timestamp += Time.deltaTime;
+		if (gameObject.tag == "Player")
+		{
+			Debug.Log(gameObject.name);
+			Debug.Log(velocity);
+			Debug.Log(timestamp);
+		}
+	}
 
     void Movement(Vector2 move, char axis)
     {
