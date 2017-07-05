@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PhysicsObject : MonoBehaviour {
-	private float timestamp;
+    private float timestamp;
 
     // TODO change this to something nice
     public float minGroundNormalY = 0.65f;
     public float gravityModifier = 1f;
 
     protected bool grounded;
-	protected Vector2 groundNormal;
-
-	protected Vector2 targetVelocity;
+    protected Vector2 groundNormal;
+    protected Vector2 targetVelocity;
     protected Rigidbody2D rb2d;
     protected Vector2 velocity;
     protected ContactFilter2D contactFilter;
