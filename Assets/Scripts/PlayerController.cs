@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class PlayerController : PhysicsObject {
 
-	public float maxSpeed = 7f;
-	public float jumpTakeOffSpeed = 7f;
+	public float maxSpeed = 15f;
+	public float jumpTakeOffSpeed = 30f;
+
+	private float movetimer;
 
 	// Use this for initialization
 	void Start ()
     {
-		
+		movetimer = 0;
 	}
-	
+
 	protected override void ComputeVelocity()
 	{
 		Vector2 move = Vector2.zero;
 
-		move.x = Input.GetAxis("Horizontal");
-
+		move.x = Input.GetAxisRaw("Horizontal");
+		Debug.Log("GetAxisRaw: " + move.x);
+		
 		// TODO double jumping
 		if (Input.GetButtonDown("Jump") && grounded)
 		{

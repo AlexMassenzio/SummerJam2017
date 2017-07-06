@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PhysicsObject : MonoBehaviour {
-    private float timestamp;
-
-    // TODO change this to something nice
+	
     public float minGroundNormalY = 0.65f;
-    public float gravityModifier = 1f;
+    public float gravityModifier = 6.33f;
 
     protected bool grounded;
     protected Vector2 groundNormal;
@@ -29,7 +27,6 @@ public class PhysicsObject : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-		timestamp = 0;
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
         contactFilter.useLayerMask = true;
@@ -65,14 +62,6 @@ public class PhysicsObject : MonoBehaviour {
 		move = Vector2.up * deltaPosition.y;
 
         Movement(move, 'y');
-
-		timestamp += Time.deltaTime;
-		if (gameObject.tag == "Player")
-		{
-			Debug.Log(gameObject.name);
-			Debug.Log(velocity);
-			Debug.Log(timestamp);
-		}
 	}
 
     void Movement(Vector2 move, char axis)
