@@ -38,4 +38,10 @@ public class PlayerController : PhysicsObject {
 		targetVelocity = move * maxSpeed;
 	}
 
+	public bool isGrounded()
+	{
+		Debug.Log(grounded);
+		return grounded;
+	}
+
 }
