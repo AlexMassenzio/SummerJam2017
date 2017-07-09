@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PhysicsObject : MonoBehaviour {
-
-    // TODO change this to something nice
+	
     public float minGroundNormalY = 0.65f;
-    public float gravityModifier = 1f;
+    public float gravityModifier = 6.33f;
 
     protected bool grounded;
+    protected Vector2 groundNormal;
+    protected Vector2 targetVelocity;
     protected Rigidbody2D rb2d;
     protected Vector2 velocity;
     protected ContactFilter2D contactFilter;
@@ -34,21 +35,34 @@ public class PhysicsObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
+		//targetVelocity = Vector2.zero;
+		ComputeVelocity();
+	}
+
+	protected virtual void ComputeVelocity()
+	{
+
 	}
 
     private void FixedUpdate()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+		velocity.x = targetVelocity.x;
 
         grounded = false;
 
-        Vector2 deltaPosition = velocity * Time.deltaTime;
+		Vector2 deltaPosition = velocity * Time.deltaTime;
 
-        Vector2 move = Vector2.up * deltaPosition.y;
+		Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+
+		Vector2 move = moveAlongGround * deltaPosition.x;
+
+		Movement(move, 'x');
+
+		move = Vector2.up * deltaPosition.y;
 
         Movement(move, 'y');
-    }
+	}
 
     void Movement(Vector2 move, char axis)
     {
@@ -72,14 +86,27 @@ public class PhysicsObject : MonoBehaviour {
                     grounded = true;
                     if (axis == 'y')
                     {
-
+						groundNormal = currentNormal;
+						currentNormal.x = 0;
                     }
                 }
-            }
+
+				float projection = Vector2.Dot(velocity, currentNormal);
+				if (projection < 0)
+				{
+					velocity -= projection * currentNormal;
+				}
+
+				float modifiedDistance = hitBufferList[i].distance - shellRadius;
+				if (modifiedDistance < distance)
+				{
+					distance = modifiedDistance;
+				}
+			}
 
         }
 
-        rb2d.position += move;
+        rb2d.position += move.normalized * distance;
     }
 
 }
