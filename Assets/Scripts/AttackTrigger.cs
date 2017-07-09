@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoMoveBoi : PhysicsObject {
+public class AttackTrigger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -11,6 +11,6 @@ public class AutoMoveBoi : PhysicsObject {
 	
 	// Update is called once per frame
 	void Update () {
-		targetVelocity = Vector2.left;
+		
 	}
 }
