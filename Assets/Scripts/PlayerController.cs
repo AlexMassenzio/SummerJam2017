@@ -7,20 +7,25 @@ public class PlayerController : PhysicsObject {
 	public float maxSpeed = 15f;
 	public float jumpTakeOffSpeed = 30f;
 
-	private float movetimer;
-
-	// Use this for initialization
+    // Use this for initialization
+    /*
 	void Start ()
     {
-		movetimer = 0;
-	}
 
-	protected override void ComputeVelocity()
+	}
+    */
+
+    private void OnEnable()
+    {
+        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    protected override void ComputeVelocity()
 	{
 		Vector2 move = Vector2.zero;
 
 		move.x = Input.GetAxisRaw("Horizontal");
-		Debug.Log("GetAxisRaw: " + move.x);
+		//Debug.Log("GetAxisRaw: " + move.x);
 		
 		// TODO double jumping
 		if (Input.GetButtonDown("Jump") && grounded)
@@ -40,7 +45,7 @@ public class PlayerController : PhysicsObject {
 
 	public bool isGrounded()
 	{
-		Debug.Log(grounded);
+		//Debug.Log("Grounded: " + grounded);
 		return grounded;
 	}
 
