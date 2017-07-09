@@ -15,13 +15,12 @@ public class MackAttack : MonoBehaviour {
     public GameObject attackPos;
 
     // TODO @Alex make sure this works with our animation system
-    //private Animator anim;
+    private Animator anim;
 
     private void Awake()
     {
         // TODO @Alex make sure this works with our animation system
-        //anim = gameObject.GetComponent<Animator>();
-        //attackTrigger = GetComponent<Collider2D>();
+        anim = gameObject.GetComponent<Animator>();
         attackTrigger.enabled = false;
     }
 
