@@ -20,7 +20,7 @@ public class PlayerController : PhysicsObject {
 		Vector2 move = Vector2.zero;
 
 		move.x = Input.GetAxisRaw("Horizontal");
-		Debug.Log("GetAxisRaw: " + move.x);
+		//Debug.Log("GetAxisRaw: " + move.x);
 		
 		// TODO double jumping
 		if (Input.GetButtonDown("Jump") && grounded)
@@ -40,7 +40,6 @@ public class PlayerController : PhysicsObject {
 
 	public bool isGrounded()
 	{
-		Debug.Log(grounded);
 		return grounded;
 	}
 
