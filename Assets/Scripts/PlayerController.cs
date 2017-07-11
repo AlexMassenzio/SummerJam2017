@@ -7,15 +7,20 @@ public class PlayerController : PhysicsObject {
 	public float maxSpeed = 15f;
 	public float jumpTakeOffSpeed = 30f;
 
-	private float movetimer;
-
-	// Use this for initialization
+    // Use this for initialization
+    /*
 	void Start ()
     {
-		movetimer = 0;
-	}
 
-	protected override void ComputeVelocity()
+	}
+    */
+
+    private void OnEnable()
+    {
+        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    protected override void ComputeVelocity()
 	{
 		Vector2 move = Vector2.zero;
 
@@ -40,6 +45,10 @@ public class PlayerController : PhysicsObject {
 
 	public bool isGrounded()
 	{
+<<<<<<< HEAD
+=======
+		//Debug.Log("Grounded: " + grounded);
+>>>>>>> master
 		return grounded;
 	}
 
