@@ -45,10 +45,7 @@ public class PlayerController : PhysicsObject {
 
 	public bool isGrounded()
 	{
-<<<<<<< HEAD
-=======
 		//Debug.Log("Grounded: " + grounded);
->>>>>>> master
 		return grounded;
 	}
 
