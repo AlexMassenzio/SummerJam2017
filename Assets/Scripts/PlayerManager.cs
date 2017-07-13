@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour {
 		}
 
 		sr = player.GetComponent<SpriteRenderer>();
-		pc = player.GetComponent<PlayerController>();
+		pc = player.transform.parent.gameObject.GetComponent<PlayerController>();
 		ani = this.GetComponent<Animator>();
 	}
 	
