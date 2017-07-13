@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerController : PhysicsObject {
 
-	public float maxSpeed = 15f;
-	public float jumpTakeOffSpeed = 30f;
+	public float maxSpeed = 12f;
+    public float crouchSpeed = 5f;
+	public float jumpTakeOffSpeed = 20f;
+    public float speed;
+    public bool crouching = false;
 
     // Use this for initialization
     /*
@@ -22,13 +25,26 @@ public class PlayerController : PhysicsObject {
 
     protected override void ComputeVelocity()
 	{
+
 		Vector2 move = Vector2.zero;
 
 		move.x = Input.GetAxisRaw("Horizontal");
-		//Debug.Log("GetAxisRaw: " + move.x);
-		
-		// TODO double jumping
-		if (Input.GetButtonDown("Jump") && grounded)
+
+        // Crouching
+        if (Input.GetAxisRaw("Vertical") == -1 && grounded)
+        {
+            crouching = true;
+            speed = crouchSpeed;
+        }
+        else
+        {
+            crouching = false;
+            speed = maxSpeed;
+        }
+
+        // TODO double jumping?
+        // Jumping
+        if (Input.GetButtonDown("Jump") && grounded)
 		{
 			velocity.y = jumpTakeOffSpeed;
 		}
@@ -40,12 +56,12 @@ public class PlayerController : PhysicsObject {
 			}
 		}
 
-		targetVelocity = move * maxSpeed;
+		targetVelocity = move * speed;
+
 	}
 
 	public bool isGrounded()
 	{
-		//Debug.Log("Grounded: " + grounded);
 		return grounded;
 	}
 

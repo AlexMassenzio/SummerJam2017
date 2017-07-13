@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PhysicsObject : MonoBehaviour {
 	
-    public float minGroundNormalY = 0.65f;
-    public float gravityModifier = 6.33f;
+    // TODO make sure it's okay that this is 0
+    public float minGroundNormalY = 0f;
+    public float gravityModifier = 5f;
 
     protected bool grounded;
     protected Vector2 groundNormal;
