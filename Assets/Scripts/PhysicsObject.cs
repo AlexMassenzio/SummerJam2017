@@ -7,9 +7,16 @@ public class PhysicsObject : MonoBehaviour {
     public float minGroundNormalY = 0.65f;
     public float gravityModifier = 6.33f;
 
+
+
     protected bool grounded;
     protected Vector2 groundNormal;
-    protected Vector2 targetVelocity;
+	protected float velocityX;
+	protected float velocityY
+	{
+		get { return velocity.y; }
+		set { velocity.y = value; }
+	}
     protected Rigidbody2D rb2d;
     protected Vector2 velocity;
     protected ContactFilter2D contactFilter;
@@ -47,7 +54,7 @@ public class PhysicsObject : MonoBehaviour {
     private void FixedUpdate()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-		velocity.x = targetVelocity.x;
+		velocity.x = velocityX;
 
         grounded = false;
 

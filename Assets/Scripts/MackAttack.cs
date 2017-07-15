@@ -11,7 +11,6 @@ public class MackAttack : MonoBehaviour {
     public float attackCooldown = 0.3f;
 
     public Collider2D attackTrigger;
-
     public GameObject attackPos;
 
     // TODO @Alex make sure this works with our animation system

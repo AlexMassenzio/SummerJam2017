@@ -14,16 +14,22 @@ using UnityEngine;
 
 public class NPC : PhysicsObject {
 
-	[SerializeField]
 	private GameObject target;
 
+	protected int health;
 	protected bool actionable; //Will the npc attack it's target if in range.
 
+	protected DamageInfo myDamageInfo;
+
+	void OnEnable()
+	{
+		rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
+	}
 
 	// Use this for initialization
 	void Start ()
 	{
-		Debug.Log("init npc");
+
 	}
 	
 	// Update is called once per frame
@@ -35,6 +41,16 @@ public class NPC : PhysicsObject {
 		{
 			Action();
 		}
+	}
+
+	public void Damage(int damage)
+	{
+		health -= damage;
+	}
+
+	public void GetDamageInfo(PlayerController pc)
+	{
+		pc.Injure(myDamageInfo);
 	}
 
 	/// <summary>
@@ -55,5 +71,8 @@ public class NPC : PhysicsObject {
 	/// Changes the object in which the NPC applies its AI to.
 	/// </summary>
 	/// <param name="target">The object that will be targeted</param>
-	protected void ChangeTarget(GameObject target) {}
+	protected void SetTarget(GameObject target)
+	{
+		this.target = target;
+	}
 }
