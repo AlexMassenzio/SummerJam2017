@@ -29,7 +29,7 @@ public class PhysicsObject : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
     }
     
-    void Start ()
+    protected virtual void Start ()
     {
         // Ignore any contacts involving trigger colliders
         contactFilter.useTriggers = false;
@@ -86,7 +86,6 @@ public class PhysicsObject : MonoBehaviour {
             {
                 // Vector perpendicular to the RayCast which detected collision and with what it collided
                 Vector2 currentNormal = hitBufferList[i].normal;
-                Debug.Log(gameObject.name + " currentNormal: " + currentNormal);
 
                 // If what we collided with is flat enough to be considered ground
                 if (currentNormal.y > minGroundNormalY)
@@ -100,7 +99,6 @@ public class PhysicsObject : MonoBehaviour {
 						currentNormal.x = 0;
                     }
                 }
-                Debug.Log(gameObject.name + " grounded: " + grounded);
 
 				float projection = Vector2.Dot(velocity, currentNormal);
 				if (projection < 0)

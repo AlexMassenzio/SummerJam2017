@@ -17,17 +17,15 @@ public class NPC : PhysicsObject {
 	private GameObject target;
 
 	protected int health;
-	protected bool actionable; //Will the npc attack it's target if in range.
-
-	protected DamageInfo myDamageInfo;
+	protected bool actionable; // Will the npc attack it's target if in range.
 
 	void OnEnable()
 	{
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 	}
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    protected override void Start ()
 	{
 
 	}
@@ -41,16 +39,6 @@ public class NPC : PhysicsObject {
 		{
 			Action();
 		}
-	}
-
-	public void Damage(int damage)
-	{
-		health -= damage;
-	}
-
-	public void GetDamageInfo(PlayerController pc)
-	{
-		pc.Injure(myDamageInfo);
 	}
 
 	/// <summary>

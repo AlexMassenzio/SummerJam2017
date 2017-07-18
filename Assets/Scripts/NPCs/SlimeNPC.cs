@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SlimeNPC : NPC {
 
-	//public Collider2D attackTrigger;
-	public GameObject attackPos;
+    private CharacterStats cs;
 
 	private const int SLIME_MAX_HEALTH = 1;
 
@@ -13,20 +12,23 @@ public class SlimeNPC : NPC {
 	private float cooldown = 5;
 
 	// Use this for initialization
-	void Start ()
+	protected override void Start ()
 	{
-		health = SLIME_MAX_HEALTH;
-		SetTarget(GameObject.FindGameObjectWithTag("Player"));
-		myDamageInfo = new DamageInfo(5);
+        base.Start();
+
+        cs = gameObject.GetComponent<CharacterStats>();
+        cs.health = SLIME_MAX_HEALTH;
+        cs.myDamageInfo = new DamageInfo(5);
+        //cs.maxSpeed = maxSpeed;
+        //cs.crouchSpeed = crouchSpeed;
+        //cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
+
+        SetTarget(GameObject.FindGameObjectWithTag("Player"));
 	}
 
 	protected override void Update()
 	{
 		base.Update();
-
-		// Because of the rising glitch, we have to track position manually
-		//attackTrigger.transform.position = attackPos.transform.position;
-
 	}
 
 	protected override void Action()
@@ -38,13 +40,5 @@ public class SlimeNPC : NPC {
 	{
 		
 	}
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("Its a hit!");
-        }
-    }
 
 }

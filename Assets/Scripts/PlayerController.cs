@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : PhysicsObject {
-    
+
+    private CharacterStats cs;
+    public int health = 100;
 	public float maxSpeed = 12f;
     public float crouchSpeed = 5f;
 	public float jumpTakeOffSpeed = 20f;
     public float speed;
     public bool crouching = false;
-	private float health = 100;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        cs = gameObject.GetComponentInChildren<CharacterStats>();
+        cs.myDamageInfo = new DamageInfo(5);
+        cs.health = health;
+        cs.maxSpeed = maxSpeed;
+        cs.crouchSpeed = crouchSpeed;
+        cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
+    }
 
     private void OnEnable()
     {
@@ -27,19 +40,19 @@ public class PlayerController : PhysicsObject {
         if (Input.GetAxisRaw("Vertical") == -1 && grounded)
         {
             crouching = true;
-            speed = crouchSpeed;
+            speed = cs.crouchSpeed;
         }
         else
         {
             crouching = false;
-            speed = maxSpeed;
+            speed = cs.maxSpeed;
         }
 
         // TODO double jumping?
         // Jumping
         if (Input.GetButtonDown("Jump") && grounded)
 		{
-			velocityY = jumpTakeOffSpeed;
+			velocityY = cs.jumpTakeOffSpeed;
 		}
 		else if (Input.GetButtonUp("Jump"))
 		{
@@ -49,21 +62,12 @@ public class PlayerController : PhysicsObject {
 			}
 		}
 
-		velocityX = move.x * maxSpeed;
+		velocityX = move.x * cs.maxSpeed;
 	}
 
 	public bool isGrounded()
 	{
 		return grounded;
-	}
-
-	public void Injure(DamageInfo di)
-	{
-		Debug.Log("INJURE");
-		Debug.Log("Mack Health: " + health);
-		health -= di.damageModifier;
-		Debug.Log("GET UNNECESSARILY FUCKING BACKBOOSTED");
-		Debug.Log("Mack Health: " + health);
 	}
 
 }

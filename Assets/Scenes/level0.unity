@@ -118,11 +118,12 @@ GameObject:
   m_Component:
   - component: {fileID: 417588358}
   - component: {fileID: 417588355}
-  - component: {fileID: 417588357}
   - component: {fileID: 417588356}
+  - component: {fileID: 417588359}
+  - component: {fileID: 417588357}
   m_Layer: 0
   m_Name: MackAttack
-  m_TagString: Untagged
+  m_TagString: MackAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,16 +178,17 @@ Rigidbody2D:
 --- !u!114 &417588357
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114836316161626098, guid: bd33d4b4aa2ce1543a3c7d5e93bdb2a8,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 417588354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d730f8406218ce4c8b51d50b7d11c22, type: 3}
+  m_Script: {fileID: 11500000, guid: ee238cad0819a4f439ec4d428ba7173d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 20
+  character: {fileID: 1149573094}
+  xOffset: 2.058
+  yOffset: 0.227
 --- !u!4 &417588358
 Transform:
   m_ObjectHideFlags: 0
@@ -201,6 +203,17 @@ Transform:
   m_Father: {fileID: 2042698861}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &417588359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 417588354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff8c6b5b4218544eb1807c37cbfd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &601501349
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +420,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1882685030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.87, y: 5.48, z: 0}
+  m_LocalPosition: {x: 17.1, y: 5.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -522,6 +535,7 @@ GameObject:
   - component: {fileID: 1149573099}
   - component: {fileID: 1149573098}
   - component: {fileID: 1149573097}
+  - component: {fileID: 1149573102}
   - component: {fileID: 1149573095}
   m_Layer: 0
   m_Name: Character
@@ -538,7 +552,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1149573094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0d7c8a60bc41074cb029def84afa1b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ff8c6b5b4218544eb1807c37cbfd890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1149573096
@@ -663,6 +677,21 @@ SpriteRenderer:
   m_Size: {x: 3.3, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &1149573102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1149573094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a75e6ffe8b2fd24497fd9e7ee85a742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxSpeed: 0
+  crouchSpeed: 0
+  jumpTakeOffSpeed: 0
 --- !u!1 &1352223387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,6 +1034,8 @@ GameObject:
   - component: {fileID: 1882685034}
   - component: {fileID: 1882685033}
   - component: {fileID: 1882685032}
+  - component: {fileID: 1882685035}
+  - component: {fileID: 1882685036}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -1026,7 +1057,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 6.33
-  attackPos: {fileID: 0}
 --- !u!61 &1882685032
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1112,6 +1142,32 @@ SpriteRenderer:
   m_Size: {x: 6, y: 6.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &1882685035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1882685030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a75e6ffe8b2fd24497fd9e7ee85a742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  maxSpeed: 0
+  crouchSpeed: 0
+  jumpTakeOffSpeed: 0
+--- !u!114 &1882685036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1882685030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff8c6b5b4218544eb1807c37cbfd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2042698858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,7 +1179,6 @@ GameObject:
   - component: {fileID: 2042698861}
   - component: {fileID: 2042698860}
   - component: {fileID: 2042698859}
-  - component: {fileID: 2042698862}
   m_Layer: 0
   m_Name: Mack
   m_TagString: Player
@@ -1160,6 +1215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 6.33
+  health: 100
   maxSpeed: 15
   crouchSpeed: 5
   jumpTakeOffSpeed: 30
@@ -1173,7 +1229,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2042698858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.41, y: 4.9, z: 0}
+  m_LocalPosition: {x: 14.37, y: 3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1149573096}
@@ -1181,17 +1237,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2042698862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2042698858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0d7c8a60bc41074cb029def84afa1b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2129550097
 GameObject:
   m_ObjectHideFlags: 0

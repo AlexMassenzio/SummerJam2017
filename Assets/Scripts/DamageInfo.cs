@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DamageInfo {
 
-	public float damageModifier;
+	public int damageModifier;
 
-	public DamageInfo(float damageModifier)
+	public DamageInfo(int damageModifier)
 	{
 		this.damageModifier = damageModifier;
 	}
