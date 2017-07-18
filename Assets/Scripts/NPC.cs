@@ -23,7 +23,7 @@ public class NPC : PhysicsObject {
 
 	void OnEnable()
 	{
-		rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
+		rb2d = gameObject.GetComponent<Rigidbody2D>();
 	}
 
 	// Use this for initialization
