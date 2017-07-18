@@ -3,20 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : PhysicsObject {
-
+    
 	public float maxSpeed = 12f;
     public float crouchSpeed = 5f;
 	public float jumpTakeOffSpeed = 20f;
     public float speed;
     public bool crouching = false;
-
-    // Use this for initialization
-    /*
-	void Start ()
-    {
-
-	}
-    */
+	private float health = 100;
 
     private void OnEnable()
     {
@@ -46,23 +39,31 @@ public class PlayerController : PhysicsObject {
         // Jumping
         if (Input.GetButtonDown("Jump") && grounded)
 		{
-			velocity.y = jumpTakeOffSpeed;
+			velocityY = jumpTakeOffSpeed;
 		}
 		else if (Input.GetButtonUp("Jump"))
 		{
-			if (velocity.y > 0)
+			if (velocityY > 0)
 			{
-				velocity.y = velocity.y * 0.5f;
+				velocityY = velocity.y * 0.5f;
 			}
 		}
 
-		targetVelocity = move * speed;
-
+		velocityX = move.x * maxSpeed;
 	}
 
 	public bool isGrounded()
 	{
 		return grounded;
+	}
+
+	public void Injure(DamageInfo di)
+	{
+		Debug.Log("INJURE");
+		Debug.Log("Mack Health: " + health);
+		health -= di.damageModifier;
+		Debug.Log("GET UNNECESSARILY FUCKING BACKBOOSTED");
+		Debug.Log("Mack Health: " + health);
 	}
 
 }
