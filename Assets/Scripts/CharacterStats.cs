@@ -10,6 +10,17 @@ public class CharacterStats : MonoBehaviour
     public float maxSpeed;
     public float crouchSpeed;
     public float jumpTakeOffSpeed;
+    public float cooldown;
+
+    public CharacterStats(int health, DamageInfo myDI, float maxSpeed, float crouchSpeed, float jumpTakeOffSpeed, float cooldown)
+    {
+        this.myDamageInfo = myDI;
+        this.health = health;
+        this.maxSpeed = maxSpeed;
+        this.crouchSpeed = crouchSpeed;
+        this.jumpTakeOffSpeed = jumpTakeOffSpeed;
+        this.cooldown = cooldown;
+    }
 
     public void GetDamageInfo(CharacterStats cs)
     {
