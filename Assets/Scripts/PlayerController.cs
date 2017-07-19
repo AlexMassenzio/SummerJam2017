@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class PlayerController : PhysicsObject {
 
+    private CharacterStats cs;
+    public int health = 100;
 	public float maxSpeed = 12f;
     public float crouchSpeed = 5f;
 	public float jumpTakeOffSpeed = 20f;
     public float speed;
     public bool crouching = false;
 
-    // Use this for initialization
-    /*
-	void Start ()
+    protected override void Start()
     {
+        base.Start();
 
-	}
-    */
+        cs = gameObject.GetComponentInChildren<CharacterStats>();
+        cs.myDamageInfo = new DamageInfo(5);
+        cs.health = health;
+        cs.maxSpeed = maxSpeed;
+        cs.crouchSpeed = crouchSpeed;
+        cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
+    }
 
     private void OnEnable()
     {
@@ -34,30 +40,29 @@ public class PlayerController : PhysicsObject {
         if (Input.GetAxisRaw("Vertical") == -1 && grounded)
         {
             crouching = true;
-            speed = crouchSpeed;
+            speed = cs.crouchSpeed;
         }
         else
         {
             crouching = false;
-            speed = maxSpeed;
+            speed = cs.maxSpeed;
         }
 
         // TODO double jumping?
         // Jumping
         if (Input.GetButtonDown("Jump") && grounded)
 		{
-			velocity.y = jumpTakeOffSpeed;
+			velocityY = cs.jumpTakeOffSpeed;
 		}
 		else if (Input.GetButtonUp("Jump"))
 		{
-			if (velocity.y > 0)
+			if (velocityY > 0)
 			{
-				velocity.y = velocity.y * 0.5f;
+				velocityY = velocity.y * 0.5f;
 			}
 		}
 
-		targetVelocity = move * speed;
-
+		velocityX = move.x * cs.maxSpeed;
 	}
 
 	public bool isGrounded()

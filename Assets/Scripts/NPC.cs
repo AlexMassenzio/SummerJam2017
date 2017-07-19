@@ -14,16 +14,28 @@ using UnityEngine;
 
 public class NPC : PhysicsObject {
 
-	[SerializeField]
 	private GameObject target;
+	private CharacterStats cs;
 
-	protected bool actionable; //Will the npc attack it's target if in range.
+	private DamageInfo di;
+	public int damage = 0;
+	public int health = 0;
+	public float maxSpeed = 0;
+	public float crouchSpeed = 0;
+	public float jumpTakeOffSpeed = 0;
+	public float cooldown = 0;
+	protected bool actionable; // Will the npc attack it's target if in range.
 
-
-	// Use this for initialization
-	void Start ()
+	void OnEnable()
 	{
-		Debug.Log("init npc");
+		rb2d = gameObject.GetComponent<Rigidbody2D>();
+	}
+
+    	// Use this for initialization
+    	protected override void Start ()
+	{
+		di = new DamageInfo(damage);
+		cs = new CharacterStats(health, di, maxSpeed, crouchSpeed, jumpTakeOffSpeed, cooldown); 
 	}
 	
 	// Update is called once per frame
@@ -55,5 +67,8 @@ public class NPC : PhysicsObject {
 	/// Changes the object in which the NPC applies its AI to.
 	/// </summary>
 	/// <param name="target">The object that will be targeted</param>
-	protected void ChangeTarget(GameObject target) {}
+	protected void SetTarget(GameObject target)
+	{
+		this.target = target;
+	}
 }

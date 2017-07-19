@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PhysicsObject : MonoBehaviour {
 	
-    // TODO make sure it's okay that this is 0
-    public float minGroundNormalY = 0f;
+    public float minGroundNormalY = 0.65f;
     public float gravityModifier = 5f;
 
     protected bool grounded;
     protected Vector2 groundNormal;
-    protected Vector2 targetVelocity;
+	protected float velocityX;
+	protected float velocityY
+	{
+		get { return velocity.y; }
+		set { velocity.y = value; }
+	}
     protected Rigidbody2D rb2d;
     protected Vector2 velocity;
     protected ContactFilter2D contactFilter;
@@ -24,21 +28,18 @@ public class PhysicsObject : MonoBehaviour {
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
-
-    // Use this for initialization
-    void Start ()
+    
+    protected virtual void Start ()
     {
+        // Ignore any contacts involving trigger colliders
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
-        contactFilter.useLayerMask = true;
 	}
 	
-	// Update is called once per frame
 	protected virtual void Update ()
     {
-		//targetVelocity = Vector2.zero;
 		ComputeVelocity();
-	}
+    }
 
 	protected virtual void ComputeVelocity()
 	{
@@ -48,31 +49,33 @@ public class PhysicsObject : MonoBehaviour {
     private void FixedUpdate()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-		velocity.x = targetVelocity.x;
+        velocity.x = velocityX;
 
         grounded = false;
 
 		Vector2 deltaPosition = velocity * Time.deltaTime;
 
-		Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+        Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
 
 		Vector2 move = moveAlongGround * deltaPosition.x;
+        
+        Movement(move, 'x');
 
-		Movement(move, 'x');
-
-		move = Vector2.up * deltaPosition.y;
+        move = Vector2.up * deltaPosition.y;
 
         Movement(move, 'y');
-	}
+    }
 
     void Movement(Vector2 move, char axis)
     {
+        // Distance that object is going to move
         float distance = move.magnitude;
 
-        // only check for collision if we are trying to move a certain distance
+        // Only check for collision if we are trying to move
         if (distance > minMoveDistance)
         {
             int count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
+
             hitBufferList.Clear();
             for (int i = 0; i < count; i++)
             {
@@ -81,10 +84,15 @@ public class PhysicsObject : MonoBehaviour {
 
             for (int i = 0; i < hitBufferList.Count; i++)
             {
+                // Vector perpendicular to the RayCast which detected collision and with what it collided
                 Vector2 currentNormal = hitBufferList[i].normal;
+
+                // If what we collided with is flat enough to be considered ground
                 if (currentNormal.y > minGroundNormalY)
                 {
+                    // Set grounded equal to true
                     grounded = true;
+                    // If we are modifying the object's y coordinate
                     if (axis == 'y')
                     {
 						groundNormal = currentNormal;
