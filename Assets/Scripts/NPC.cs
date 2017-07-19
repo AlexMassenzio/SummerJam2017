@@ -15,8 +15,15 @@ using UnityEngine;
 public class NPC : PhysicsObject {
 
 	private GameObject target;
+	private CharacterStats cs;
 
-	protected int health;
+	private DamageInfo di;
+	public int damage = 0;
+	public int health = 0;
+	public float maxSpeed = 0;
+	public float crouchSpeed = 0;
+	public float jumpTakeOffSpeed = 0;
+	public float cooldown = 0;
 	protected bool actionable; // Will the npc attack it's target if in range.
 
 	void OnEnable()
@@ -24,10 +31,11 @@ public class NPC : PhysicsObject {
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 	}
 
-    // Use this for initialization
-    protected override void Start ()
+    	// Use this for initialization
+    	protected override void Start ()
 	{
-
+		di = new DamageInfo(damage);
+		cs = new CharacterStats(health, di, maxSpeed, crouchSpeed, jumpTakeOffSpeed, cooldown); 
 	}
 	
 	// Update is called once per frame
