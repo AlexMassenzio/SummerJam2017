@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class SlimeNPC : NPC {
 
-    private CharacterStats cs;
-
 	private const int SLIME_MAX_HEALTH = 1;
-
-	private bool isAttacking = false;
-	private float cooldown = 5;
+	private isAttacking = false;
 
 	// Use this for initialization
 	protected override void Start ()
 	{
-        base.Start();
+        	damage = 5;
+		maxSpeed = 5f;
+		cooldown = 5;
+		
+		base.Start();
+		
+        	cs.health = SLIME_MAX_HEALTH;
 
-        cs = gameObject.GetComponent<CharacterStats>();
-        cs.health = SLIME_MAX_HEALTH;
-        cs.myDamageInfo = new DamageInfo(5);
-        //cs.maxSpeed = maxSpeed;
-        //cs.crouchSpeed = crouchSpeed;
-        //cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
-
-        SetTarget(GameObject.FindGameObjectWithTag("Player"));
+        	SetTarget(GameObject.FindGameObjectWithTag("Player"));
 	}
 
 	protected override void Update()
