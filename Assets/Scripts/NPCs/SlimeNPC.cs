@@ -11,12 +11,11 @@ public class SlimeNPC : NPC {
 	protected override void Start ()
 	{
         	damage = 5;
+		health = SLIME_MAX_HEALTH;
 		maxSpeed = 5f;
 		cooldown = 5;
 		
 		base.Start();
-		
-        	cs.health = SLIME_MAX_HEALTH;
 
         	SetTarget(GameObject.FindGameObjectWithTag("Player"));
 	}
