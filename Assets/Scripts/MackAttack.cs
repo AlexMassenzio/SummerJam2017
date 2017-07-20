@@ -11,7 +11,6 @@ public class MackAttack : MonoBehaviour {
     public float attackCooldown = 0.3f;
 
     public Collider2D attackTrigger;
-    public GameObject attackPos;
 
     // TODO @Alex make sure this works with our animation system
     private Animator anim;
@@ -25,11 +24,9 @@ public class MackAttack : MonoBehaviour {
 
     private void Update()
     {
-        // TODO set this eqaul to Mack's position +- desired offset
-        //attackTrigger.transform.position.x = .transform.position;
         // TODO agree on attack key
         // GetMouseButtonDown(0) is left click, 1 is right, and 2 is middle
-        if (Input.GetMouseButtonDown(0) && !attacking)
+        if (Input.GetMouseButtonDown(0) && !attacking && !gameObject.GetComponent<PlayerController>().crouching)
         {
             attacking = true;
             attackTimer = attackCooldown;
@@ -47,7 +44,6 @@ public class MackAttack : MonoBehaviour {
             {
                 attacking = false;
                 attackTrigger.enabled = false;
-
             }
         }
     }

@@ -8,9 +8,12 @@ public class CharacterStats : MonoBehaviour
     public DamageInfo myDamageInfo;
     public int health;
     public float maxSpeed;
+    public float currentSpeed;
     public float crouchSpeed;
     public float jumpTakeOffSpeed;
     public float cooldown;
+    // Duration of death animation
+    public float deathTimer;
 
     public CharacterStats(int health, DamageInfo myDI, float maxSpeed, float crouchSpeed, float jumpTakeOffSpeed, float cooldown)
     {
@@ -29,11 +32,13 @@ public class CharacterStats : MonoBehaviour
 
     public void Injure(DamageInfo di)
     {
-        Debug.Log("INJURE");
-        Debug.Log("Pre Health: " + health);
         health -= di.damageModifier;
-        Debug.Log("GET UNNECESSARILY FUCKING BACKBOOSTED");
-        Debug.Log("Post Health: " + health);
+
+        // Bye Bye
+        if (health <= 0)
+        {
+            Destroy(gameObject, deathTimer);
+        }
     }
 
 }

@@ -30,15 +30,20 @@ public class NPC : PhysicsObject {
 	{
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 	}
-
-    	// Use this for initialization
-    	protected override void Start ()
+    
+    protected override void Start ()
 	{
 		di = new DamageInfo(damage);
-		cs = new CharacterStats(health, di, maxSpeed, crouchSpeed, jumpTakeOffSpeed, cooldown); 
+        cs = gameObject.GetComponent<CharacterStats>();
+
+        cs.health = health;
+        cs.myDamageInfo = di;
+        cs.maxSpeed = maxSpeed;
+        cs.crouchSpeed = crouchSpeed;
+        cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
+        cs.cooldown = cooldown; 
 	}
 	
-	// Update is called once per frame
 	protected override void Update ()
 	{
 		base.Update();
