@@ -9,7 +9,6 @@ public class PlayerController : PhysicsObject {
 	public float maxSpeed = 12f;
     public float crouchSpeed = 5f;
 	public float jumpTakeOffSpeed = 20f;
-    public float speed;
     public bool crouching = false;
 
     protected override void Start()
@@ -40,12 +39,12 @@ public class PlayerController : PhysicsObject {
         if (Input.GetAxisRaw("Vertical") == -1 && grounded)
         {
             crouching = true;
-            speed = cs.crouchSpeed;
+            cs.currentSpeed = cs.crouchSpeed;
         }
         else
         {
             crouching = false;
-            speed = cs.maxSpeed;
+            cs.currentSpeed = cs.maxSpeed;
         }
 
         // TODO double jumping?
@@ -62,7 +61,7 @@ public class PlayerController : PhysicsObject {
 			}
 		}
 
-		velocityX = move.x * cs.maxSpeed;
+		velocityX = move.x * cs.currentSpeed;
 	}
 
 	public bool isGrounded()
