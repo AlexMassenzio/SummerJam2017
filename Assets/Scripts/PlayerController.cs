@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : PhysicsObject {
 
+    private MackAttack ma;
     private CharacterStats cs;
+
     public int health = 100;
 	public float maxSpeed = 12f;
     public float crouchSpeed = 5f;
@@ -14,6 +16,8 @@ public class PlayerController : PhysicsObject {
     protected override void Start()
     {
         base.Start();
+
+        ma = gameObject.GetComponent<MackAttack>();
 
         cs = gameObject.GetComponentInChildren<CharacterStats>();
         cs.myDamageInfo = new DamageInfo(5);
@@ -32,7 +36,10 @@ public class PlayerController : PhysicsObject {
 	{
         Vector2 move = Vector2.zero;
 
-		move.x = Input.GetAxisRaw("Horizontal");
+        if (!grounded || !ma.attacking)
+        {
+            move.x = Input.GetAxisRaw("Horizontal");
+        }
 
         // Crouching
         if (Input.GetAxisRaw("Vertical") == -1 && grounded)

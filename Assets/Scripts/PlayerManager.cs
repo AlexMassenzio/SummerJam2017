@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour {
 	private GameObject player;
 	private SpriteRenderer sr;
 	private PlayerController pc;
+    private MackAttack ma;
 	private Animator ani;
 
 	// Use this for initialization
@@ -26,6 +27,7 @@ public class PlayerManager : MonoBehaviour {
 
 		sr = player.GetComponent<SpriteRenderer>();
 		pc = player.transform.parent.gameObject.GetComponent<PlayerController>();
+        ma = player.transform.parent.gameObject.GetComponent<MackAttack>();
 		ani = this.GetComponent<Animator>();
 	}
 	
@@ -45,7 +47,13 @@ public class PlayerManager : MonoBehaviour {
 			moving = true;
 		}
 
+        if (ma.attacking)
+        {
+            moving = false;
+        }
+
 		ani.SetBool("grounded", pc.isGrounded());
 		ani.SetBool("moving", moving);
+        ani.SetBool("attacking", ma.attacking);
 	}
 }
