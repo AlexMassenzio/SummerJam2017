@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -688,10 +688,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a75e6ffe8b2fd24497fd9e7ee85a742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 0
   maxSpeed: 0
+  currentSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0
+  cooldown: 0
+  deathTimer: 0
 --- !u!1 &1352223387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,7 +1059,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
-  gravityModifier: 6.33
+  gravityModifier: 5
+  damage: 0
+  health: 0
+  maxSpeed: 0
+  crouchSpeed: 0
+  jumpTakeOffSpeed: 0
+  cooldown: 0
 --- !u!61 &1882685032
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1153,10 +1162,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a75e6ffe8b2fd24497fd9e7ee85a742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 0
   maxSpeed: 0
+  currentSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0
+  cooldown: 0
+  deathTimer: 0
 --- !u!114 &1882685036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,9 +1210,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84d1e9a479f3ce4f8928078a0444056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 0.3
+  attacking: 0
+  delayEnabled: 0
+  timeEnabled: 0
+  attackDelayMax: 0.325
+  attackDelayLeft: 0
+  attackTimeMax: 0.325
+  attackTimeLeft: 0
   attackTrigger: {fileID: 417588355}
-  attackPos: {fileID: 0}
 --- !u!114 &2042698860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,7 +1236,6 @@ MonoBehaviour:
   maxSpeed: 15
   crouchSpeed: 5
   jumpTakeOffSpeed: 30
-  speed: 0
   crouching: 0
 --- !u!4 &2042698861
 Transform:
