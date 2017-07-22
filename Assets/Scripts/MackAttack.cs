@@ -25,7 +25,7 @@ public class MackAttack : MonoBehaviour {
     private void Update()
     {
         // GetMouseButtonDown(0) is left click, 1 is right, and 2 is middle
-        if (Input.GetMouseButtonDown(0) && !attacking && !gameObject.GetComponent<PlayerController>().crouching)
+        if (Input.GetMouseButtonDown(0) && !attacking)
         {
             attacking = true;
             delayEnabled = true;

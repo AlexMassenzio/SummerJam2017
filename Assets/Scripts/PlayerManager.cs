@@ -52,6 +52,7 @@ public class PlayerManager : MonoBehaviour {
             moving = false;
         }
 
+        ani.SetBool("crouching", pc.crouching);
 		ani.SetBool("grounded", pc.isGrounded());
 		ani.SetBool("moving", moving);
         ani.SetBool("attacking", ma.attacking);
