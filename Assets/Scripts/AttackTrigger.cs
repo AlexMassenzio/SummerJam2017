@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class AttackTrigger : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // TODO set this to something meaningful
+    public int dmg = 20;
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag != "Player")
+        {
+            if (col.isTrigger == false && col.CompareTag("Enemy"))
+            {
+                Debug.Log("Detected collision with enemy");
+                col.SendMessageUpwards("Damage", dmg);
+            }
+
+        }
+
+    }
+
 }

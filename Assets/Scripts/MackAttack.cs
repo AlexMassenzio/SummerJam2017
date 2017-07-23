@@ -4,49 +4,64 @@ using UnityEngine;
 
 public class MackAttack : MonoBehaviour {
 
-    private bool attacking = false;
+    public bool attacking = false;
+    public bool delayEnabled = false;
+    public bool timeEnabled = false;
 
-    private float attackTimer = 0;
-    // TODO set this to something correct
-    private float attackCooldown = 0.3f;
+    public float attackDelayMax = 0.1f;
+    public float attackDelayLeft = 0;
+
+    public float attackTimeMax = 0.65f;
+    public float attackTimeLeft = 0;
 
     public Collider2D attackTrigger;
 
-    // TODO @Alex make sure this works with our animation system
-    //private Animator anim;
-
     private void Awake()
     {
-        // TODO @Alex make sure this works with our animation system
-        //anim = gameObject.GetComponent<Animator>();
+        // Default to having the hitbox disabled
         attackTrigger.enabled = false;
     }
 
     private void Update()
     {
-        // TODO agree on attack key
         // GetMouseButtonDown(0) is left click, 1 is right, and 2 is middle
         if (Input.GetMouseButtonDown(0) && !attacking)
         {
             attacking = true;
-            attackTimer = attackCooldown;
-
-            attackTrigger.enabled = true;
+            delayEnabled = true;
+            attackDelayLeft = attackDelayMax;
         }
 
         if (attacking)
         {
-            if (attackTimer > 0)
-            {
-                attackTimer -= Time.deltaTime;
-            }
-            else
-            {
-                attacking = false;
-                attackTrigger.enabled = false;
 
+            if (delayEnabled)
+            {
+                if (attackDelayLeft > 0)
+                {
+                    attackDelayLeft -= Time.deltaTime;
+                }
+                else
+                {
+                    delayEnabled = false;
+                    timeEnabled = true;
+                    attackTimeLeft = attackTimeMax;
+                    attackTrigger.enabled = true;
+                }
+            }
+            else if (timeEnabled)
+            {
+                if (attackTimeLeft > 0)
+                {
+                    attackTimeLeft -= Time.deltaTime;
+                }
+                else
+                {
+                    attacking = false;
+                    timeEnabled = false;
+                    attackTrigger.enabled = false;
+                }
             }
         }
     }
-
 }
