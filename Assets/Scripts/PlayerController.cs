@@ -8,14 +8,16 @@ public class PlayerController : PhysicsObject {
     private CharacterStats cs;
 
     public int health = 100;
-	public float maxSpeed = 12f;
-    public float crouchSpeed = 5f;
-	public float jumpTakeOffSpeed = 20f;
+	public float maxSpeed = 10f;
+    public float crouchSpeed;
+	public float jumpTakeOffSpeed = 25f;
     public bool crouching = false;
 
     protected override void Start()
     {
         base.Start();
+
+        crouchSpeed = maxSpeed / 3;
 
         ma = gameObject.GetComponent<MackAttack>();
 
