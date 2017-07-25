@@ -6,11 +6,17 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour {
 
 	private GameObject player;
+    private CapsuleCollider2D hb;
 	private SpriteRenderer sr;
 	private PlayerController pc;
     private MackAttack ma;
 	private Animator ani;
     private CharacterStats cs;
+
+    private float pillXPos;
+    private float pillYPos;
+    private float pillXSize;
+    private float pillYSize;
 
     private bool dead;
 
@@ -30,6 +36,7 @@ public class PlayerManager : MonoBehaviour {
 
         dead = false;
 
+        hb = player.GetComponent<CapsuleCollider2D>();
 		sr = player.GetComponent<SpriteRenderer>();
 		pc = player.transform.parent.gameObject.GetComponent<PlayerController>();
         ma = player.transform.parent.gameObject.GetComponent<MackAttack>();
@@ -40,21 +47,34 @@ public class PlayerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // Vector used to modify Mack's hurt and hit boxes
+        Vector2 newPos = hb.transform.position;
 		bool moving = false;
 
         if (!ma.attacking)
         {
+            // Moving to the left
             if (Input.GetAxisRaw("Horizontal") < 0)
             {
+                // Flip sprite along X axis to the left
                 sr.flipX = true;
+                // Create new vector to update Mack's hurtbox with
+                newPos = new Vector2(gameObject.transform.position.x-0.16f, gameObject.transform.position.y-0.1f);
                 moving = true;
             }
+            // Moving to the right
             else if (Input.GetAxisRaw("Horizontal") > 0)
             {
+                // Flip sprite along X axis to the right
                 sr.flipX = false;
+                // Create new vector to update Mack's hurtbox with
+                newPos = new Vector2(gameObject.transform.position.x+0.16f, gameObject.transform.position.y-0.1f);
                 moving = true;
             }
         }
+
+        // Update Mack's hurtbox
+        hb.transform.position = newPos;
 
         if (ma.attacking)
         {
