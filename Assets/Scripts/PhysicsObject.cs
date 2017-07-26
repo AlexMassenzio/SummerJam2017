@@ -46,7 +46,7 @@ public class PhysicsObject : MonoBehaviour {
 
 	}
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
         velocity.x = velocityX;
@@ -66,7 +66,7 @@ public class PhysicsObject : MonoBehaviour {
         Movement(move, 'y');
     }
 
-    void Movement(Vector2 move, char axis)
+    protected void Movement(Vector2 move, char axis)
     {
         // Distance that object is going to move
         float distance = move.magnitude;

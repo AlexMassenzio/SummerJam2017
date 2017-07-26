@@ -7,7 +7,6 @@ public class SlimeNPC : NPC {
 	private const int SLIME_MAX_HEALTH = 1;
 	private bool isAttacking = false;
 
-	// Use this for initialization
 	protected override void Start ()
 	{
         damage = 5;
@@ -23,16 +22,40 @@ public class SlimeNPC : NPC {
 	protected override void Update()
 	{
 		base.Update();
+
 	}
 
-	protected override void Action()
+    protected override void FixedUpdate()
+    {
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+        velocity.x = velocityX;
+
+        grounded = false;
+
+        Vector2 deltaPosition = velocity * Time.deltaTime;
+
+        Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+
+        Vector2 move = moveAlongGround * deltaPosition.x;
+
+        Movement(move, 'x');
+
+        move = Vector2.up * deltaPosition.y;
+
+        Movement(move, 'y');
+    }
+
+    protected override void Action()
 	{
-		
+	    	
 	}
 
 	protected override void ComputeVelocity()
 	{
-		
-	}
+        //Vector2 move = new Vector2(-5, 0);
+
+        //velocityX = move.x * cs.currentSpeed;
+        velocityX = -5;
+    }
 
 }

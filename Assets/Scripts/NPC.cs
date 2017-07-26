@@ -14,10 +14,10 @@ using UnityEngine;
 
 public class NPC : PhysicsObject {
 
-	private GameObject target;
-	private CharacterStats cs;
+	protected GameObject target;
+	protected CharacterStats cs;
 
-	private DamageInfo di;
+	protected DamageInfo di;
 	public int damage = 0;
 	public int health = 0;
 	public float maxSpeed = 0;
