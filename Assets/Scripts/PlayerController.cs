@@ -8,14 +8,16 @@ public class PlayerController : PhysicsObject {
     private CharacterStats cs;
 
     public int health = 100;
-	public float maxSpeed = 12f;
-    public float crouchSpeed = 5f;
-	public float jumpTakeOffSpeed = 20f;
+	public float maxSpeed = 10f;
+    public float crouchSpeed;
+	public float jumpTakeOffSpeed = 25f;
     public bool crouching = false;
 
     protected override void Start()
     {
         base.Start();
+
+        crouchSpeed = maxSpeed / 3;
 
         ma = gameObject.GetComponent<MackAttack>();
 
@@ -42,7 +44,7 @@ public class PlayerController : PhysicsObject {
         }
 
         // Crouching
-        if (Input.GetAxisRaw("Vertical") == -1 && grounded)
+        if (Input.GetAxisRaw("Vertical") == -1 && (grounded || crouching))
         {
             crouching = true;
             cs.currentSpeed = cs.crouchSpeed;
@@ -52,8 +54,7 @@ public class PlayerController : PhysicsObject {
             crouching = false;
             cs.currentSpeed = cs.maxSpeed;
         }
-
-        // TODO double jumping?
+        
         // Jumping
         if (Input.GetButtonDown("Jump") && grounded)
 		{
