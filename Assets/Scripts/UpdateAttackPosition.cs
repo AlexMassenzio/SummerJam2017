@@ -12,11 +12,26 @@ public class UpdateAttackPosition : MonoBehaviour {
     private void Start()
     { 
         newPosition = transform.position;
+        xOffset = 2f;
+        yOffset = 0.227f;
     }
-    
-    void Update () {
-        // TODO change offsets based on character orientation
 
+    void Update () {
+        if (character.GetComponent<PlayerManager>().changedDirection)
+        {
+            // Facing left
+            if (character.GetComponent<SpriteRenderer>().flipX)
+            {
+                xOffset = -2f;
+                yOffset = 0.227f;
+            }
+            // Facing right
+            else
+            {
+                xOffset = 2f;
+                yOffset = 0.227f;
+            }
+        }
         newPosition.x = character.transform.position.x + xOffset;
         newPosition.y = character.transform.position.y + yOffset;
         transform.position = newPosition;

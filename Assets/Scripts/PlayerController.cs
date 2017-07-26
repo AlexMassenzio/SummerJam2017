@@ -44,7 +44,7 @@ public class PlayerController : PhysicsObject {
         }
 
         // Crouching
-        if (Input.GetAxisRaw("Vertical") == -1 && grounded)
+        if (Input.GetAxisRaw("Vertical") == -1 && (grounded || crouching))
         {
             crouching = true;
             cs.currentSpeed = cs.crouchSpeed;
@@ -54,8 +54,7 @@ public class PlayerController : PhysicsObject {
             crouching = false;
             cs.currentSpeed = cs.maxSpeed;
         }
-
-        // TODO double jumping?
+        
         // Jumping
         if (Input.GetButtonDown("Jump") && grounded)
 		{

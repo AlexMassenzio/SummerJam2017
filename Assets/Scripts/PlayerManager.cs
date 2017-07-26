@@ -6,19 +6,27 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour {
 
 	private GameObject player;
-    private CapsuleCollider2D hb;
-	private SpriteRenderer sr;
+
+    private CapsuleCollider2D upHurtBox;
+    private BoxCollider2D crouchHurtBox;
+
+    private SpriteRenderer sr;
 	private PlayerController pc;
     private MackAttack ma;
 	private Animator ani;
     private CharacterStats cs;
 
-    private float pillXPos;
-    private float pillYPos;
-    private float pillXSize;
-    private float pillYSize;
+    // Vectors used to modify Mack's hurt and hit boxes
+    private Vector2 newUpOffset;
+    private Vector2 newUpSize;
+    private Vector2 newCrouchOffset;
+    private Vector2 newCrouchSize;
+    private Vector2 newMackPos;
+    private Vector2 newPos;
 
     private bool dead;
+    private bool setNewPos;
+    public bool changedDirection;
 
 	// Use this for initialization
 	void Start () {
@@ -35,46 +43,138 @@ public class PlayerManager : MonoBehaviour {
 		}
 
         dead = false;
+        setNewPos = false;
+        changedDirection = false;
 
-        hb = player.GetComponent<CapsuleCollider2D>();
+        upHurtBox = player.GetComponent<CapsuleCollider2D>();
+        crouchHurtBox = player.GetComponent<BoxCollider2D>();
+
 		sr = player.GetComponent<SpriteRenderer>();
 		pc = player.transform.parent.gameObject.GetComponent<PlayerController>();
         ma = player.transform.parent.gameObject.GetComponent<MackAttack>();
 		ani = this.GetComponent<Animator>();
         cs = player.GetComponent<CharacterStats>();
-	}
+
+        // Default to facing right upright
+        newUpOffset = new Vector2(0.16f, -0.1f);
+        newUpSize = new Vector2(1.4f, 3.3f);
+        newCrouchOffset = new Vector2(0.16f, -0.28f);
+        newCrouchSize = new Vector2(1.61f, 2.73f);
+        newMackPos = new Vector2(2f, 0.227f);
+        upHurtBox.enabled = true;
+        crouchHurtBox.enabled = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        // Vector used to modify Mack's hurt and hit boxes
-        Vector2 newPos = hb.transform.position;
 		bool moving = false;
+        setNewPos = false;
+        changedDirection = false;
 
         if (!ma.attacking)
         {
             // Moving to the left
             if (Input.GetAxisRaw("Horizontal") < 0)
             {
+                // Check if we are swapping directions
+                if (!sr.flipX)
+                {
+                    changedDirection = true;
+                }
                 // Flip sprite along X axis to the left
                 sr.flipX = true;
-                // Create new vector to update Mack's hurtbox with
-                newPos = new Vector2(gameObject.transform.position.x-0.16f, gameObject.transform.position.y-0.1f);
                 moving = true;
             }
             // Moving to the right
             else if (Input.GetAxisRaw("Horizontal") > 0)
             {
+                // Check if we are swapping directions
+                if (sr.flipX)
+                {
+                    changedDirection = true;
+                }
                 // Flip sprite along X axis to the right
                 sr.flipX = false;
-                // Create new vector to update Mack's hurtbox with
-                newPos = new Vector2(gameObject.transform.position.x+0.16f, gameObject.transform.position.y-0.1f);
                 moving = true;
             }
         }
 
-        // Update Mack's hurtbox
-        hb.transform.position = newPos;
+        // Mack is looking left
+        if (sr.flipX)
+        {
+            if (pc.crouching)
+            {
+                newCrouchOffset = new Vector2(-0.16f, -0.28f);
+                newCrouchSize = new Vector2(1.58f, 2.5f);
+                // If we are coming from a standing position, teleport down a little
+                if (upHurtBox.enabled)
+                {
+                    newPos = new Vector2(player.transform.position.x, player.transform.position.y - 0.21f);
+                    setNewPos = true;
+                }
+                upHurtBox.enabled = false;
+                crouchHurtBox.enabled = true;
+            }
+            else
+            {
+                newUpOffset = new Vector2(-0.16f, -0.1f);
+                newUpSize = new Vector2(1.4f, 3.3f);
+                // If we are going from crouching to standing, teleport up a little
+                if (crouchHurtBox.enabled)
+                {
+                    newPos = new Vector2(player.transform.position.x, player.transform.position.y + 0.21f);
+                    setNewPos = true;
+                }
+                upHurtBox.enabled = true;
+                crouchHurtBox.enabled = false;
+            }
+        }
+        // Mack is looking right
+        else
+        {
+            //ma.GetComponent<UpdateAttackPosition>().xOffset = 2f;
+            //ma.GetComponent<UpdateAttackPosition>().yOffset = 0.227f;
+            if (pc.crouching)
+            {
+                newCrouchOffset = new Vector2(0.16f, -0.28f);
+                newCrouchSize = new Vector2(1.58f, 2.5f);
+                // If we are coming from a standing position, teleport down a little
+                if (upHurtBox.enabled)
+                {
+                    newPos = new Vector2(player.transform.position.x, player.transform.position.y - 0.21f);
+                    setNewPos = true;
+                }
+                upHurtBox.enabled = false;
+                crouchHurtBox.enabled = true;
+            }
+            else
+            {
+                newUpOffset = new Vector2(0.16f, -0.1f);
+                newUpSize = new Vector2(1.4f, 3.3f);
+                // If we are going from crouching to standing, teleport up a little
+                if (crouchHurtBox.enabled)
+                {
+                    newPos = new Vector2(player.transform.position.x, player.transform.position.y+0.21f);
+                    setNewPos = true;
+                }
+                upHurtBox.enabled = true;
+                crouchHurtBox.enabled = false;
+            }
+        }
+
+        // Update Mack's position if he needed to be shifted
+        if (setNewPos)
+        {
+            player.transform.position = newPos;
+        }
+
+        // Update Mack's hurt and hitboxes
+        upHurtBox.offset = newUpOffset;
+        upHurtBox.size = newUpSize;
+        crouchHurtBox.offset = newCrouchOffset;
+        crouchHurtBox.size = newCrouchSize;
 
         if (ma.attacking)
         {
