@@ -52,9 +52,7 @@ public class SlimeNPC : NPC {
 
 	protected override void ComputeVelocity()
 	{
-        //Vector2 move = new Vector2(-5, 0);
-
-        //velocityX = move.x * cs.currentSpeed;
+        // Just move to the left at a constant speed
         velocityX = -5;
     }
 
