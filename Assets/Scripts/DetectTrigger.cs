@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +20,6 @@ public class DetectTrigger : MonoBehaviour {
 
                 case "Uvula":
                     Debug.Log("HALP HITLER ME");
-                    // TODO: Trigger harpoon being thrown up
                     GameObject harpoon = GameObject.Find("Harpoon");
                     harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-800f, 600f));
                     break;
@@ -38,8 +37,10 @@ public class DetectTrigger : MonoBehaviour {
                     break;
             }
         }
+        // Mack's hurtbox
         else if (gameObject.tag == "Player")
         {
+            Inventory inv = gameObject.GetComponent<Inventory>();
             switch (col.tag)
             {
                 case "Door":
@@ -47,10 +48,26 @@ public class DetectTrigger : MonoBehaviour {
                     Debug.Log("Bye bye");
                     break;
 
-                case "Weapon":
-                    // TODO: Inventory system
-                    Debug.Log("Touched a weapon");
+                case "WeaponPickup":
+                    Debug.Log(col.name + " get!");
+                    if (col.name == "AnchorPickup")
+                    {
+                        inv.WeaponGet("Anchor");
+                    }
                     Destroy(col.gameObject);
+                    break;
+            }
+        }
+        else if (gameObject.name == "Anchor") 
+        {
+            WeaponStats ws = gameObject.GetComponent<WeaponStats>();
+            switch (col.tag) 
+            {
+                case "Enemy":
+                    Debug.Log("Hit enemy with Anchor");
+                    col.gameObject.SendMessage("Injure", ws.myDamageInfo);
+                    col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
+                    col.gameObject.SendMessage("Knockback", ws.knockback);
                     break;
             }
         }

@@ -1,37 +1,53 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : PhysicsObject {
 
     private MackAttack ma;
-    private CharacterStats cs;
+    private Inventory inv;
 
-    public int health = 100;
-	public float maxSpeed = 10f;
-    public float crouchSpeed;
-	public float jumpTakeOffSpeed = 25f;
+    public GameObject anchor;
+    
     public bool crouching = false;
 
     protected override void Start()
     {
         base.Start();
 
-        crouchSpeed = maxSpeed / 3;
-
         ma = gameObject.GetComponent<MackAttack>();
+        inv = gameObject.GetComponentInChildren<Inventory>();
 
         cs = gameObject.GetComponentInChildren<CharacterStats>();
         cs.myDamageInfo = new DamageInfo(5);
-        cs.health = health;
-        cs.maxSpeed = maxSpeed;
-        cs.crouchSpeed = crouchSpeed;
-        cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
+        cs.health = 100;
+        cs.maxSpeed = 10f;
+        cs.crouchSpeed = cs.maxSpeed / 3;
+        cs.jumpTakeOffSpeed = 25f;
+        cs.stamina = 100;
+
     }
 
     private void OnEnable()
     {
         rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    protected override void Update() {
+
+        base.Update();
+
+        // Use Weapon
+        if (Input.GetMouseButtonDown(1) && inv.haveWeapon)
+        {
+            if (inv.cooldownLeft <= 0)
+            {
+                if (inv.weaponName == "Anchor")
+                {
+                    Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
+                }
+            }
+        }
     }
 
     protected override void ComputeVelocity()

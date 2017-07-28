@@ -20,6 +20,7 @@ public class PhysicsObject : MonoBehaviour {
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
     protected List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(16);
+    protected CharacterStats cs;
 
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
@@ -34,6 +35,15 @@ public class PhysicsObject : MonoBehaviour {
         // Ignore any contacts involving trigger colliders
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+
+        if (gameObject.tag == "Player")
+        {
+            cs = gameObject.GetComponentInChildren<CharacterStats>();
+        }
+        else if (gameObject.tag == "Enemy")
+        {
+            cs = gameObject.GetComponent<CharacterStats>();
+        }
 	}
 	
 	protected virtual void Update ()

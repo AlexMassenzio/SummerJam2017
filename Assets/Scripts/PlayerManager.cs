@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour {
     private Vector2 newUpSize;
     private Vector2 newCrouchOffset;
     private Vector2 newCrouchSize;
-    private Vector2 newMackPos;
+   // private Vector2 newMackPos;
     private Vector2 newPos;
 
     private bool dead;
@@ -60,7 +60,7 @@ public class PlayerManager : MonoBehaviour {
         newUpSize = new Vector2(1.4f, 3.3f);
         newCrouchOffset = new Vector2(0.16f, -0.28f);
         newCrouchSize = new Vector2(1.61f, 2.73f);
-        newMackPos = new Vector2(2f, 0.227f);
+        //newMackPos = new Vector2(2f, 0.227f);
         upHurtBox.enabled = true;
         crouchHurtBox.enabled = false;
 

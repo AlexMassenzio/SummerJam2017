@@ -1,4 +1,4 @@
-﻿/*
+/*
  * NPC.cs
  * 
  * This is the base class for all Non-Player Characters in the game.
@@ -15,7 +15,6 @@ using UnityEngine;
 public class NPC : PhysicsObject {
 
 	protected GameObject target;
-	protected CharacterStats cs;
 
 	protected DamageInfo di;
 	public int damage = 0;
@@ -24,7 +23,7 @@ public class NPC : PhysicsObject {
 	public float crouchSpeed = 0;
 	public float jumpTakeOffSpeed = 0;
 	public float cooldown = 0;
-	protected bool actionable; // Will the npc attack it's target if in range.
+	public bool actionable; // Will the npc attack it's target if in range.
 
 	void OnEnable()
 	{
@@ -34,14 +33,13 @@ public class NPC : PhysicsObject {
     protected override void Start ()
 	{
 		di = new DamageInfo(damage);
-        cs = gameObject.GetComponent<CharacterStats>();
 
         cs.health = health;
         cs.myDamageInfo = di;
         cs.maxSpeed = maxSpeed;
         cs.crouchSpeed = crouchSpeed;
         cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
-        cs.cooldown = cooldown; 
+        cs.cooldown = cooldown;
 	}
 	
 	protected override void Update ()

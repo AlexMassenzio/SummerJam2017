@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ public class SlimeNPC : NPC {
 
 	protected override void Start ()
 	{
+
         damage = 5;
 		health = SLIME_MAX_HEALTH;
 		maxSpeed = 5f;
@@ -52,8 +53,8 @@ public class SlimeNPC : NPC {
 
 	protected override void ComputeVelocity()
 	{
-        // Just move to the left at a constant speed
-        velocityX = -5;
+    	// Just move to the left at a constant speed
+    	velocityX = -5;
     }
 
 }

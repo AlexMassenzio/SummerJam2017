@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,34 +11,38 @@ public class CharacterStats : MonoBehaviour
     public float currentSpeed;
     public float crouchSpeed;
     public float jumpTakeOffSpeed;
+    public int stamina;
     public float cooldown;
-    
+
+    public float hitstunDuration = 0f;
+
     public bool dead = false;
     public bool dying = false;
     
     // Dying animation duration
-    public float dyingTimeMax = 2.5f;
+    public float dyingTimeMax;
     public float dyingTimeLeft = 0f;
 
     // Time laying there dead
-    public float deadTimeMax = 1f;
+    public float deadTimeMax;
     public float deadTimeLeft = 0f;
 
-    public CharacterStats(int health, DamageInfo myDI, float maxSpeed, float crouchSpeed, float jumpTakeOffSpeed, float cooldown)
+    /*
+    public CharacterStats(int health, DamageInfo myDI, float maxSpeed, 
+                          float crouchSpeed, float jumpTakeOffSpeed, 
+                          float cooldown, int stamina, float dyingTime,
+                          float deadTime)
     {
         this.myDamageInfo = myDI;
         this.health = health;
         this.maxSpeed = maxSpeed;
         this.crouchSpeed = crouchSpeed;
         this.jumpTakeOffSpeed = jumpTakeOffSpeed;
-        this.cooldown = cooldown;
+        this.stamina = stamina;
+        this.dyingTimeMax = dyingTime;
+        this.deadTimeMax = deadTime;
     }
-
-    public void Start()
-    {
-        dyingTimeMax = 2.5f;
-        deadTimeMax = 1f;
-    }
+    */
 
     public void GetDamageInfo(CharacterStats cs)
     {
@@ -50,8 +54,35 @@ public class CharacterStats : MonoBehaviour
         health -= di.damageModifier;
     }
 
+    public void Hitstun(float hitstunDuration)
+    {
+        
+    }
+
+    public void Knockback()
+    {
+
+    }
+
     public void Update()
     {
+
+        if (hitstunDuration > 0)
+        {
+            // Disable controls and hurtboxes
+            if (gameObject.tag == "Player") 
+            {
+                // TODO: disable controls and hurtboxes
+            }
+            // Break its spirit
+            else if (gameObject.tag == "Enemy")
+            {
+                gameObject.GetComponent<SlimeNPC>().actionable = false;
+            }
+
+            hitstunDuration -= Time.deltaTime;
+        }
+
         // Bye Bye
         if (health <= 0)
         {
