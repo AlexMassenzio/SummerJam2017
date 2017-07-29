@@ -32,6 +32,9 @@ public class NPC : PhysicsObject {
     
     protected override void Start ()
 	{
+
+        base.Start();
+        
 		di = new DamageInfo(damage);
 
         cs.health = health;
@@ -63,8 +66,10 @@ public class NPC : PhysicsObject {
 	/// <returns></returns>
 	protected virtual bool IsInRange()
 	{
-		return Vector3.Distance(this.transform.position, target.transform.position) < 5;
-	}
+        //return Vector3.Distance(this.transform.position, target.transform.position) < 5;
+        // TODO: get target correctly
+        return true;
+    }
 
 	/// <summary>
 	/// Changes the object in which the NPC applies its AI to.

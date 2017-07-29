@@ -26,24 +26,7 @@ public class CharacterStats : MonoBehaviour
     // Time laying there dead
     public float deadTimeMax;
     public float deadTimeLeft = 0f;
-
-    /*
-    public CharacterStats(int health, DamageInfo myDI, float maxSpeed, 
-                          float crouchSpeed, float jumpTakeOffSpeed, 
-                          float cooldown, int stamina, float dyingTime,
-                          float deadTime)
-    {
-        this.myDamageInfo = myDI;
-        this.health = health;
-        this.maxSpeed = maxSpeed;
-        this.crouchSpeed = crouchSpeed;
-        this.jumpTakeOffSpeed = jumpTakeOffSpeed;
-        this.stamina = stamina;
-        this.dyingTimeMax = dyingTime;
-        this.deadTimeMax = deadTime;
-    }
-    */
-
+    
     public void GetDamageInfo(CharacterStats cs)
     {
         cs.Injure(myDamageInfo);

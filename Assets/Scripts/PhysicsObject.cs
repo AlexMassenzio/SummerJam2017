@@ -67,13 +67,23 @@ public class PhysicsObject : MonoBehaviour {
 
         Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
 
-		Vector2 move = moveAlongGround * deltaPosition.x;
-        
-        Movement(move, 'x');
+        Vector2 move;
 
+        if (gameObject.tag != "Weapon")
+        {
+            move = moveAlongGround * deltaPosition.x;
+        }
+        else
+        {
+            move = Vector2.right * deltaPosition.x;
+        }
+
+        Movement(move, 'x');
+        
         move = Vector2.up * deltaPosition.y;
 
         Movement(move, 'y');
+
     }
 
     protected void Movement(Vector2 move, char axis)
@@ -81,8 +91,8 @@ public class PhysicsObject : MonoBehaviour {
         // Distance that object is going to move
         float distance = move.magnitude;
 
-        // Only check for collision if we are trying to move
-        if (distance > minMoveDistance)
+        // Only check for collision if we are trying to move 
+        if (distance > minMoveDistance && gameObject.tag != "Weapon")
         {
             int count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
 
@@ -105,27 +115,28 @@ public class PhysicsObject : MonoBehaviour {
                     // If we are modifying the object's y coordinate
                     if (axis == 'y')
                     {
-						groundNormal = currentNormal;
-						currentNormal.x = 0;
+                        groundNormal = currentNormal;
+                        currentNormal.x = 0;
                     }
                 }
 
-				float projection = Vector2.Dot(velocity, currentNormal);
-				if (projection < 0)
-				{
-					velocity -= projection * currentNormal;
-				}
+                float projection = Vector2.Dot(velocity, currentNormal);
+                if (projection < 0)
+                {
+                    velocity -= projection * currentNormal;
+                }
 
-				float modifiedDistance = hitBufferList[i].distance - shellRadius;
-				if (modifiedDistance < distance)
-				{
-					distance = modifiedDistance;
-				}
-			}
+                float modifiedDistance = hitBufferList[i].distance - shellRadius;
+                if (modifiedDistance < distance)
+                {
+                    distance = modifiedDistance;
+                }
+            }
 
         }
 
         rb2d.position += move.normalized * distance;
+        
     }
 
 }

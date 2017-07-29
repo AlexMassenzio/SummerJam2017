@@ -58,13 +58,14 @@ public class DetectTrigger : MonoBehaviour {
                     break;
             }
         }
-        else if (gameObject.name == "Anchor") 
+        else if (gameObject.tag == "Weapon") 
         {
+            Debug.Log("Got into weapon collision");
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();
-            switch (col.tag) 
+            switch (col.tag)
             {
                 case "Enemy":
-                    Debug.Log("Hit enemy with Anchor");
+                    Debug.Log("Hit " + col.name + " with Anchor");
                     col.gameObject.SendMessage("Injure", ws.myDamageInfo);
                     col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
                     col.gameObject.SendMessage("Knockback", ws.knockback);

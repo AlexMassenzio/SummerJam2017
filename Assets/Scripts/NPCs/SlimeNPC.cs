@@ -22,8 +22,7 @@ public class SlimeNPC : NPC {
 
 	protected override void Update()
 	{
-		base.Update();
-
+        base.Update();
 	}
 
     protected override void FixedUpdate()
