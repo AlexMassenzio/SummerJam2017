@@ -60,7 +60,6 @@ public class PlayerManager : MonoBehaviour {
         newUpSize = new Vector2(1.4f, 3.3f);
         newCrouchOffset = new Vector2(0.16f, -0.28f);
         newCrouchSize = new Vector2(1.61f, 2.73f);
-        //newMackPos = new Vector2(2f, 0.227f);
         upHurtBox.enabled = true;
         crouchHurtBox.enabled = false;
 
@@ -134,8 +133,6 @@ public class PlayerManager : MonoBehaviour {
         // Mack is looking right
         else
         {
-            //ma.GetComponent<UpdateAttackPosition>().xOffset = 2f;
-            //ma.GetComponent<UpdateAttackPosition>().yOffset = 0.227f;
             if (pc.crouching)
             {
                 newCrouchOffset = new Vector2(0.16f, -0.28f);
@@ -176,7 +173,7 @@ public class PlayerManager : MonoBehaviour {
         crouchHurtBox.offset = newCrouchOffset;
         crouchHurtBox.size = newCrouchSize;
 
-        if (ma.attacking)
+        if (ma.attacking || cs.hitstunLeft > 0)
         {
             moving = false;
         }
@@ -190,6 +187,7 @@ public class PlayerManager : MonoBehaviour {
 		ani.SetBool("grounded", pc.isGrounded());
 		ani.SetBool("moving", moving);
         ani.SetBool("attacking", ma.attacking);
+        ani.SetFloat("hit", cs.hitstunLeft);
         ani.SetBool("dead", dead);
     }
 }

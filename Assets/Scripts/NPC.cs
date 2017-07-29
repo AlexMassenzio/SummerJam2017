@@ -23,6 +23,7 @@ public class NPC : PhysicsObject {
 	public float crouchSpeed = 0;
 	public float jumpTakeOffSpeed = 0;
 	public float cooldown = 0;
+    public float hitstunDuration = 2f;
 	public bool actionable; // Will the npc attack it's target if in range.
 
 	void OnEnable()
@@ -35,7 +36,7 @@ public class NPC : PhysicsObject {
 
         base.Start();
         
-		di = new DamageInfo(damage);
+		di = new DamageInfo(damage, hitstunDuration);
 
         cs.health = health;
         cs.myDamageInfo = di;

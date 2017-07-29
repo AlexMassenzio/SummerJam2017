@@ -29,11 +29,14 @@ public class DetectTrigger : MonoBehaviour {
         else if (gameObject.tag == "Enemy")
         {
             // Check what type of object we collided with
+            CharacterStats cs = gameObject.GetComponent<CharacterStats>();
             switch (col.tag)
             {
                 case "Player":
                     // Provide Mack with your damage info and tell him to injure himself
-                    col.gameObject.SendMessage("Injure", gameObject.GetComponent<CharacterStats>().myDamageInfo);
+                    col.gameObject.SendMessage("Injure", cs.myDamageInfo);
+                    col.gameObject.SendMessage("Hitstun", cs.myDamageInfo);
+                    //col.gameObject.SendMessage("Knockback", cs.knockback);
                     break;
             }
         }
@@ -60,12 +63,10 @@ public class DetectTrigger : MonoBehaviour {
         }
         else if (gameObject.tag == "Weapon") 
         {
-            Debug.Log("Got into weapon collision");
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();
             switch (col.tag)
             {
                 case "Enemy":
-                    Debug.Log("Hit " + col.name + " with Anchor");
                     col.gameObject.SendMessage("Injure", ws.myDamageInfo);
                     col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
                     col.gameObject.SendMessage("Knockback", ws.knockback);

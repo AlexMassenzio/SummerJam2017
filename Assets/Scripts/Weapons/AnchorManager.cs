@@ -32,7 +32,7 @@ public class AnchorManager : PhysicsObject {
         }
 
         // TODO: Tweak these values to what feels best in game
-        ws.myDamageInfo = new DamageInfo(5);
+        ws.myDamageInfo = new DamageInfo(5, 2f);
         ws.weight = 5f;
         ws.staminaCost = 5f;
         ws.cooldownMax = 1f;

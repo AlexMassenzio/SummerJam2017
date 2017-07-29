@@ -13,8 +13,7 @@ public class CharacterStats : MonoBehaviour
     public float jumpTakeOffSpeed;
     public int stamina;
     public float cooldown;
-
-    public float hitstunDuration = 0f;
+    public float hitstunLeft;
 
     public bool dead = false;
     public bool dying = false;
@@ -37,9 +36,9 @@ public class CharacterStats : MonoBehaviour
         health -= di.damageModifier;
     }
 
-    public void Hitstun(float hitstunDuration)
+    public void Hitstun(DamageInfo di)
     {
-        
+        hitstunLeft = di.hitstunDuration;
     }
 
     public void Knockback()
@@ -50,20 +49,9 @@ public class CharacterStats : MonoBehaviour
     public void Update()
     {
 
-        if (hitstunDuration > 0)
+        if (hitstunLeft > 0)
         {
-            // Disable controls and hurtboxes
-            if (gameObject.tag == "Player") 
-            {
-                // TODO: disable controls and hurtboxes
-            }
-            // Break its spirit
-            else if (gameObject.tag == "Enemy")
-            {
-                gameObject.GetComponent<SlimeNPC>().actionable = false;
-            }
-
-            hitstunDuration -= Time.deltaTime;
+            hitstunLeft -= Time.deltaTime;
         }
 
         // Bye Bye

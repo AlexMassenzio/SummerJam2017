@@ -48,7 +48,7 @@ public class PhysicsObject : MonoBehaviour {
 	
 	protected virtual void Update ()
     {
-		ComputeVelocity();
+        ComputeVelocity();
     }
 
 	protected virtual void ComputeVelocity()
