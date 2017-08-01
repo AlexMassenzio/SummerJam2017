@@ -33,16 +33,16 @@ public class AnchorManager : PhysicsObject {
 
         // TODO: Tweak these values to what feels best in game
         ws.myDamageInfo = new DamageInfo(5, 2f);
-        ws.weight = 5f;
         ws.staminaCost = 5f;
         ws.cooldownMax = 1f;
         ws.hitstunDuration = 0.5f;
+        ws.useStunDuration = 0.25f;
         ws.knockback = new Vector2(-5f, 5f);
 
         velocity = ws.initVelocity;
         velocityX = ws.initVelocity.x;
 
-        inv.WeaponUsed(ws.cooldownMax);
+        inv.WeaponUsed(ws.cooldownMax, ws.useStunDuration);
     }
     
     protected override void Update()

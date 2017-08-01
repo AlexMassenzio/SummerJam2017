@@ -43,7 +43,6 @@ public class NPC : PhysicsObject {
         cs.maxSpeed = maxSpeed;
         cs.crouchSpeed = crouchSpeed;
         cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
-        cs.cooldown = cooldown;
 	}
 	
 	protected override void Update ()

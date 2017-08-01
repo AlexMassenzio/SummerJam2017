@@ -44,9 +44,10 @@ public class PlayerController : PhysicsObject {
         {
             if (inv.cooldownLeft <= 0)
             {
+                GameObject weapon;
                 if (inv.weaponName == "Anchor")
                 {
-                    Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
+                    weapon = Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
                 }
             }
         }
@@ -61,7 +62,7 @@ public class PlayerController : PhysicsObject {
 	{
         Vector2 move = Vector2.zero;
 
-        if (cs.hitstunLeft <= 0)
+        if (cs.hitstunLeft <= 0 && inv.useStunLeft <= 0)
         {
             if (!grounded || !ma.attacking)
             {

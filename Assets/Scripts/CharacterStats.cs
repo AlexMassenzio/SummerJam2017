@@ -12,12 +12,13 @@ public class CharacterStats : MonoBehaviour
     public float crouchSpeed;
     public float jumpTakeOffSpeed;
     public int stamina;
-    public float cooldown;
+    public float cooldownLeft;
     public float hitstunLeft;
 
     public bool dead = false;
     public bool dying = false;
-    
+    public bool usingWeapon = false;
+
     // Dying animation duration
     public float dyingTimeMax;
     public float dyingTimeLeft = 0f;
@@ -86,5 +87,11 @@ public class CharacterStats : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        
+        if (cooldownLeft > 0)
+        {
+            cooldownLeft -= Time.deltaTime;
+        }
+
     }
 }
