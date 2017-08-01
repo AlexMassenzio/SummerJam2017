@@ -22,7 +22,10 @@ GameObject:
   - component: {fileID: 33148545126594392}
   - component: {fileID: 23968548877808878}
   - component: {fileID: 114515276511337976}
-  - component: {fileID: 50476739667040602}
+  - component: {fileID: 114990174348334740}
+  - component: {fileID: 58243252028881858}
+  - component: {fileID: 50396060699151326}
+  - component: {fileID: 114096803039282954}
   m_Layer: 0
   m_Name: Anchor
   m_TagString: Weapon
@@ -82,14 +85,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1041005656127362}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50476739667040602
+--- !u!50 &50396060699151326
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1041005656127362}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -102,6 +105,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58243252028881858
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041005656127362}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &114096803039282954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041005656127362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff8c6b5b4218544eb1807c37cbfd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114515276511337976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,3 +144,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 5
+--- !u!114 &114990174348334740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041005656127362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e9fc162d47c004aa3bd1add2e464c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initVelocity: {x: 0, y: 0}
+  knockback: {x: 0, y: 0}
+  weight: 0
+  staminaCost: 0
+  cooldownMax: 0
+  cooldownLeft: 0
+  hitstunDuration: 0
