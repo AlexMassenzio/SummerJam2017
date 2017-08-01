@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1073,7 +1073,7 @@ MonoBehaviour:
   jumpTakeOffSpeed: 0
   stamina: 0
   cooldown: 0
-  hitstunDuration: 0
+  hitstunLeft: 0
   dead: 0
   dying: 0
   dyingTimeMax: 0
@@ -1249,7 +1249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1882685031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,11 +1265,12 @@ MonoBehaviour:
   minGroundNormalY: 0.65
   gravityModifier: 5
   damage: 0
-  health: 0
+  health: 5
   maxSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0
   cooldown: 0
+  hitstunDuration: 2
   actionable: 0
 --- !u!61 &1882685032
 BoxCollider2D:
@@ -1367,14 +1368,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a75e6ffe8b2fd24497fd9e7ee85a742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 5
   maxSpeed: 0
   currentSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0
   stamina: 0
   cooldown: 0
-  hitstunDuration: 0
+  hitstunLeft: 0
   dead: 0
   dying: 0
   dyingTimeMax: 0
