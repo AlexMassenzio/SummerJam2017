@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23968548877808878}
   - component: {fileID: 114515276511337976}
   - component: {fileID: 50476739667040602}
+  - component: {fileID: 114044172404463672}
   m_Layer: 0
   m_Name: Anchor
   m_TagString: Weapon
@@ -102,6 +103,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &114044172404463672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041005656127362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e9fc162d47c004aa3bd1add2e464c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initVelocity: {x: 0, y: 0}
+  knockback: {x: 0, y: 0}
+  weight: 0
+  staminaCost: 0
+  cooldownMax: 0
+  cooldownLeft: 0
+  hitstunDuration: 0
 --- !u!114 &114515276511337976
 MonoBehaviour:
   m_ObjectHideFlags: 1
