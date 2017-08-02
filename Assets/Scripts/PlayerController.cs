@@ -38,34 +38,24 @@ public class PlayerController : PhysicsObject {
 	protected override void Update()
 	{
 		base.Update();
-		if (health <= 0)
+		if (cs.health <= 0)
 		{
 			EventManager.TriggerEvent("MackDeath");
 		}
+
+		// Use Weapon
+		if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0)
+		{
+			if (inv.cooldownLeft <= 0)
+			{
+				GameObject weapon;
+				if (inv.weaponName == "Anchor")
+				{
+					weapon = Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
+				}
+			}
+		}
 	}
-
-	protected override void ComputeVelocity()
-	{
-        Vector2 move = Vector2.zero;
-
-        // Use Weapon
-        if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0)
-        {
-            if (inv.cooldownLeft <= 0)
-            {
-                GameObject weapon;
-                if (inv.weaponName == "Anchor")
-                {
-                    weapon = Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
-                }
-            }
-        }
-
-        if (cs.hitstunLeft > 0)
-        {
-            Debug.Log("In hitstun");
-        }
-    }
 
     protected override void ComputeVelocity()
 	{
