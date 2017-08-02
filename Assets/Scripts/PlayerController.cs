@@ -35,9 +35,18 @@ public class PlayerController : PhysicsObject {
         rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
     }
 
-    protected override void Update() {
+	protected override void Update()
+	{
+		base.Update();
+		if (health <= 0)
+		{
+			EventManager.TriggerEvent("MackDeath");
+		}
+	}
 
-        base.Update();
+	protected override void ComputeVelocity()
+	{
+        Vector2 move = Vector2.zero;
 
         // Use Weapon
         if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0)
