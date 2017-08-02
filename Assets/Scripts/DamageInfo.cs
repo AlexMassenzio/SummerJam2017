@@ -5,10 +5,12 @@ using UnityEngine;
 public class DamageInfo {
 
 	public int damageModifier;
+    public float hitstunDuration = 0f;
 
-	public DamageInfo(int damageModifier)
+    public DamageInfo(int damageModifier, float hitstun)
 	{
 		this.damageModifier = damageModifier;
+        this.hitstunDuration = hitstun;
 	}
 
 }

@@ -1,32 +1,33 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : PhysicsObject {
 
     private MackAttack ma;
-    private CharacterStats cs;
+    private Inventory inv;
 
-    public int health = 100;
-	public float maxSpeed = 10f;
-    public float crouchSpeed;
-	public float jumpTakeOffSpeed = 25f;
+    public GameObject anchor;
+
+    // TODO: put CharacterStats fields here
+
     public bool crouching = false;
 
     protected override void Start()
     {
         base.Start();
 
-        crouchSpeed = maxSpeed / 3;
-
         ma = gameObject.GetComponent<MackAttack>();
+        inv = gameObject.GetComponentInChildren<Inventory>();
 
         cs = gameObject.GetComponentInChildren<CharacterStats>();
-        cs.myDamageInfo = new DamageInfo(5);
-        cs.health = health;
-        cs.maxSpeed = maxSpeed;
-        cs.crouchSpeed = crouchSpeed;
-        cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
+        cs.myDamageInfo = new DamageInfo(5, 2f);
+        cs.health = 100;
+        cs.maxSpeed = 10f;
+        cs.crouchSpeed = cs.maxSpeed / 3;
+        cs.jumpTakeOffSpeed = 25f;
+        cs.stamina = 100;
+
     }
 
     private void OnEnable()
@@ -47,35 +48,61 @@ public class PlayerController : PhysicsObject {
 	{
         Vector2 move = Vector2.zero;
 
-        if (!grounded || !ma.attacking)
+        // Use Weapon
+        if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0)
         {
-            move.x = Input.GetAxisRaw("Horizontal");
+            if (inv.cooldownLeft <= 0)
+            {
+                GameObject weapon;
+                if (inv.weaponName == "Anchor")
+                {
+                    weapon = Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
+                }
+            }
         }
 
-        // Crouching
-        if (Input.GetAxisRaw("Vertical") == -1 && (grounded || crouching))
+        if (cs.hitstunLeft > 0)
         {
-            crouching = true;
-            cs.currentSpeed = cs.crouchSpeed;
+            Debug.Log("In hitstun");
         }
-        else
+    }
+
+    protected override void ComputeVelocity()
+	{
+        Vector2 move = Vector2.zero;
+
+        if (cs.hitstunLeft <= 0 && inv.useStunLeft <= 0)
         {
-            crouching = false;
-            cs.currentSpeed = cs.maxSpeed;
+            if (!grounded || !ma.attacking)
+            {
+                move.x = Input.GetAxisRaw("Horizontal");
+            }
+
+            // Crouching
+            if (Input.GetAxisRaw("Vertical") == -1 && (grounded || crouching))
+            {
+                crouching = true;
+                cs.currentSpeed = cs.crouchSpeed;
+            }
+            else
+            {
+                crouching = false;
+                cs.currentSpeed = cs.maxSpeed;
+            }
+
+            // Jumping
+            if (Input.GetButtonDown("Jump") && grounded)
+            {
+                velocityY = cs.jumpTakeOffSpeed;
+            }
+            else if (Input.GetButtonUp("Jump"))
+            {
+                if (velocityY > 0)
+                {
+                    velocityY = velocity.y * 0.5f;
+                }
+            }
         }
-        
-        // Jumping
-        if (Input.GetButtonDown("Jump") && grounded)
-		{
-			velocityY = cs.jumpTakeOffSpeed;
-		}
-		else if (Input.GetButtonUp("Jump"))
-		{
-			if (velocityY > 0)
-			{
-				velocityY = velocity.y * 0.5f;
-			}
-		}
 
 		velocityX = move.x * cs.currentSpeed;
 	}

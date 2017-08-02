@@ -1,4 +1,4 @@
-﻿/*
+/*
  * NPC.cs
  * 
  * This is the base class for all Non-Player Characters in the game.
@@ -14,17 +14,17 @@ using UnityEngine;
 
 public class NPC : PhysicsObject {
 
-	private GameObject target;
-	private CharacterStats cs;
+	protected GameObject target;
 
-	private DamageInfo di;
+	protected DamageInfo di;
 	public int damage = 0;
 	public int health = 0;
 	public float maxSpeed = 0;
 	public float crouchSpeed = 0;
 	public float jumpTakeOffSpeed = 0;
 	public float cooldown = 0;
-	protected bool actionable; // Will the npc attack it's target if in range.
+    public float hitstunDuration = 2f;
+	public bool actionable; // Will the npc attack it's target if in range.
 
 	void OnEnable()
 	{
@@ -33,15 +33,16 @@ public class NPC : PhysicsObject {
     
     protected override void Start ()
 	{
-		di = new DamageInfo(damage);
-        cs = gameObject.GetComponent<CharacterStats>();
+
+        base.Start();
+        
+		di = new DamageInfo(damage, hitstunDuration);
 
         cs.health = health;
         cs.myDamageInfo = di;
         cs.maxSpeed = maxSpeed;
         cs.crouchSpeed = crouchSpeed;
         cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
-        cs.cooldown = cooldown; 
 	}
 	
 	protected override void Update ()
@@ -65,8 +66,10 @@ public class NPC : PhysicsObject {
 	/// <returns></returns>
 	protected virtual bool IsInRange()
 	{
-		return Vector3.Distance(this.transform.position, target.transform.position) < 5;
-	}
+        //return Vector3.Distance(this.transform.position, target.transform.position) < 5;
+        // TODO: get target correctly
+        return true;
+    }
 
 	/// <summary>
 	/// Changes the object in which the NPC applies its AI to.
