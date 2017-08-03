@@ -48,10 +48,9 @@ public class PlayerController : PhysicsObject {
 		{
 			if (inv.cooldownLeft <= 0)
 			{
-				GameObject weapon;
 				if (inv.weaponName == "Anchor")
 				{
-					weapon = Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
+					Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
 				}
 			}
 		}

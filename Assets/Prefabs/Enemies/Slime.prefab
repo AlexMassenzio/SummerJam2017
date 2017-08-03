@@ -130,6 +130,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 6.33
+  damage: 0
+  health: 0
+  maxSpeed: 0
+  crouchSpeed: 0
+  jumpTakeOffSpeed: 0
+  cooldown: 0
+  hitstunDuration: 2
+  actionable: 0
 --- !u!212 &212193238389776594
 SpriteRenderer:
   m_ObjectHideFlags: 1
