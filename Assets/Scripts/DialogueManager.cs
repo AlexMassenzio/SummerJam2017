@@ -34,5 +34,21 @@ public class DialogueManager : MonoBehaviour {
         }
 
 	}
-	
+
+	void Update()
+	{
+
+		theText.text = textLines[currentLine];
+
+		if (Input.GetMouseButtonDown(0))
+		{
+			currentLine++;
+		}
+		
+		if (currentLine > endLine)
+		{
+			textBox.SetActive(false);
+		}	
+	}
+
 }

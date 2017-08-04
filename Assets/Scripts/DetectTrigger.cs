@@ -20,7 +20,7 @@ public class DetectTrigger : MonoBehaviour {
 
                 case "Uvula":
                     Debug.Log("HALP HITLER ME");
-                    GameObject harpoon = GameObject.Find("Harpoon");
+                    GameObject harpoon = GameObject.Find("HarpoonPickup");
                     harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-800f, 600f));
                     break;
 
