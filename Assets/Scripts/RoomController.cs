@@ -8,6 +8,7 @@ public class RoomController : MonoBehaviour {
 
 	private UnityAction deathListener;
 	private UnityAction leaveListener;
+    private UnityAction uvulaListener;
 
 	private bool firstFrameInState;
 
