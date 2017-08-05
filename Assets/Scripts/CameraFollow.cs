@@ -14,8 +14,8 @@ public class CameraFollow : MonoBehaviour {
 	private float screenWidth;
 
 	//Camera bounds properties
-	private const float CAMERA_THRESHOLD = 0.3f;
-	private const float CAMERA_SNAP = 0.15f;
+	private const float CAMERA_THRESHOLD = 0.15f;
+	private const float CAMERA_SNAP = 0.05f;
 	enum SnapBound {Left, Right};
 	private SnapBound currentSnap;
 
@@ -103,28 +103,23 @@ public class CameraFollow : MonoBehaviour {
 		float progress = 0;
 		float target;
 
-		if (currentSnap == SnapBound.Left)
+		
+		while (progress < 1)
 		{
-			while (progress < 1)
+			if (currentSnap == SnapBound.Left)
 			{
 				target = player.transform.position.x + (transform.position.x - (transform.position.x - screenWidth * CAMERA_SNAP));
-				focus.x = Mathf.Lerp(start, target, progress);
-				progress += Time.deltaTime;
-				yield return null;
 			}
-		}
-		else
-		{
-			while (progress < 1)
+			else
 			{
 				target = player.transform.position.x - ((transform.position.x + screenWidth * CAMERA_SNAP) - transform.position.x);
-				focus.x = Mathf.Lerp(start, target, progress);
-				progress += Time.deltaTime;
-				yield return null;
 			}
+
+			focus.x = LeanTween.easeOutCubic(start, target, progress);
+			progress += Time.deltaTime;
+			yield return null;
 		}
 
-		
 		boundTransitioning = null;
 	}
 }
