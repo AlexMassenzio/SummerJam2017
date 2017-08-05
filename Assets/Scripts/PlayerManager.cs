@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour {
     private MackAttack ma;
 	private Animator ani;
     private CharacterStats cs;
+    private Inventory inv;
 
     // Vectors used to modify Mack's hurt and hit boxes
     private Vector2 newUpOffset;
@@ -25,6 +26,7 @@ public class PlayerManager : MonoBehaviour {
     private Vector2 newPos;
 
     private bool dead;
+    public bool throwing;
     private bool setNewPos;
     public bool changedDirection;
 
@@ -43,6 +45,7 @@ public class PlayerManager : MonoBehaviour {
 		}
 
         dead = false;
+        throwing = false;
         setNewPos = false;
         changedDirection = false;
 
@@ -54,6 +57,7 @@ public class PlayerManager : MonoBehaviour {
         ma = player.transform.parent.gameObject.GetComponent<MackAttack>();
 		ani = this.GetComponent<Animator>();
         cs = player.GetComponent<CharacterStats>();
+        inv = player.GetComponent<Inventory>();
 
         // Default to facing right upright
         newUpOffset = new Vector2(0.16f, -0.1f);
@@ -183,11 +187,21 @@ public class PlayerManager : MonoBehaviour {
             dead = true;
         }
 
+        if (inv.useStunLeft > 0)
+        {
+            throwing = true;
+        }
+        else
+        {
+            throwing = false;
+        }
+
         ani.SetBool("crouching", pc.crouching);
 		ani.SetBool("grounded", pc.isGrounded());
 		ani.SetBool("moving", moving);
         ani.SetBool("attacking", ma.attacking);
         ani.SetFloat("hit", cs.hitstunLeft);
         ani.SetBool("dead", dead);
+        ani.SetBool("throwing", throwing);
     }
 }

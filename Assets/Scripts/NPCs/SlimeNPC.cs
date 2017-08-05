@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class SlimeNPC : NPC {
 
-    /*
-    protected DamageInfo di;
-    public int damage = 0;
-    public int health = 0;
-    public float maxSpeed = 0;
-    public float crouchSpeed = 0;
-    public float jumpTakeOffSpeed = 0;
-    public float cooldown = 0;
-    */
     private const int SLIME_MAX_HEALTH = 1;
-	private bool isAttacking = false;
 
 	protected override void Start ()
 	{

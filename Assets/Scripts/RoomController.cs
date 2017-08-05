@@ -16,6 +16,10 @@ public class RoomController : MonoBehaviour {
 
 	private GameObject gui;
 
+	void Start()
+	{
+			
+	}
 
 	void Awake () {
 		deathListener = new UnityAction(Death);
