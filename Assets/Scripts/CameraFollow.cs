@@ -61,32 +61,26 @@ public class CameraFollow : MonoBehaviour {
 		{
 			if (currentSnap == SnapBound.Left)
 			{
-				Debug.Log("Left");
 
 				if (player.transform.position.x > leftSnap)
 				{
-					Debug.Log("Over snap bound");
 					focus.x = player.transform.position.x + (transform.position.x - leftSnap);
 				}
 				else if (player.transform.position.x < leftThreshold)
 				{
-					Debug.Log("changing direction");
 					currentSnap = SnapBound.Right;
 					boundTransitioning = StartCoroutine(BoundTransition());
 				}
 			}
 			else
 			{
-				Debug.Log("Right");
 
 				if (player.transform.position.x < rightSnap)
 				{
-					Debug.Log("Over snap bound");
 					focus.x = player.transform.position.x - (rightSnap - transform.position.x);
 				}
 				else if (player.transform.position.x > rightThreshold)
 				{
-					Debug.Log("changing direction");
 					currentSnap = SnapBound.Left;
 					boundTransitioning = StartCoroutine(BoundTransition());
 				}

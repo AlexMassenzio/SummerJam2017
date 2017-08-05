@@ -15,6 +15,12 @@ public class MackAttack : MonoBehaviour {
     public float attackTimeLeft = 0;
 
     public Collider2D attackTrigger;
+    private PlayerManager pm;
+
+    private void Start()
+    {
+        pm = gameObject.GetComponentInChildren<PlayerManager>();
+    }
 
     private void Awake()
     {
@@ -24,6 +30,12 @@ public class MackAttack : MonoBehaviour {
 
     private void Update()
     {
+
+        if (pm.hasHarpoon)
+        {
+            attackTrigger = transform.GetChild(2).GetComponent<BoxCollider2D>();
+        }
+
         // GetMouseButtonDown(0) is left click, 1 is right, and 2 is middle
         if (Input.GetMouseButtonDown(0) && !attacking)
         {

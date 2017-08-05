@@ -18,7 +18,7 @@ public class RoomController : MonoBehaviour {
 
 	void Start()
 	{
-			
+		
 	}
 
 	void Awake () {

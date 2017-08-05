@@ -9,15 +9,17 @@ public class DetectTrigger : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Object that is doing the hitting   
-        if (gameObject.tag == "MackAttack")
+        if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack")
         {
             // Check what type of object we collided with
             switch (col.tag)
             {
                 // If MackAttack passed through an enemy
                 case "Enemy":
+                    Debug.Log("Hit the boy");
                     // Provide the enemy with Mack's damage info and tell him to injure himself
                     col.gameObject.SendMessage("Injure", gameObject.transform.parent.GetComponentInChildren<CharacterStats>().myDamageInfo);
+                    //col.gameObject.SendMessage("Injure", transform.GetComponent<CharacterStats>().myDamageInfo);
                     break;
 
                 case "Uvula":
@@ -61,14 +63,13 @@ public class DetectTrigger : MonoBehaviour {
                     break;
 
                 case "WeaponPickup":
-                    Debug.Log(col.name + " get!");
                     if (col.name == "AnchorPickup")
                     {
                         inv.WeaponGet("Anchor");
                     }
 					else if (col.name == "HarpoonPickup")
 					{
-						EventManager.TriggerEvent("harpoonGetEvent");
+						EventManager.TriggerEvent("HarpoonGet");
 					}
                     Destroy(col.gameObject);
                     break;

@@ -12,6 +12,7 @@ TagManager:
   - Weapon
   - WeaponPickup
   - GUI
+  - HarpoonAttack
   layers:
   - Default
   - TransparentFX
