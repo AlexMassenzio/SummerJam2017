@@ -6,5 +6,5 @@ PhysicsMaterial2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Harpoon Material
-  friction: 0.3
-  bounciness: 0.5
+  friction: 0.5
+  bounciness: 0.4

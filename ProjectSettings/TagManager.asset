@@ -24,7 +24,7 @@ TagManager:
   - Hitbox
   - MackLayer
   - Background
-  - 
+  - Foreground
   - 
   - 
   - 
@@ -54,4 +54,7 @@ TagManager:
     locked: 0
   - name: MackLayer
     uniqueID: 433027319
+    locked: 0
+  - name: Foreground
+    uniqueID: 3910625843
     locked: 0

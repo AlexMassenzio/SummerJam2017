@@ -26,8 +26,8 @@ public class DetectTrigger : MonoBehaviour {
 						GameObject harpoon = GameObject.Find("HarpoonPickup");
 						float harpoonSmackX = harpoon.transform.position.x + 1;
 						float harpoonSmackY = harpoon.transform.position.y;
-						Debug.DrawLine(new Vector2(0, 100), new Vector2(harpoonSmackX, harpoonSmackY), Color.red);
-						harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-700, 175));
+						//Debug.DrawLine(new Vector2(0, 100), new Vector2(harpoonSmackX, harpoonSmackY), Color.red);
+						harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-750, 200));
 						harpoon.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(0, 400), new Vector2(harpoonSmackX, harpoonSmackY));
 						uvulaHit = true;
 					}
