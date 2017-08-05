@@ -23,7 +23,7 @@ TagManager:
   - 
   - Hitbox
   - MackLayer
-  - 
+  - Background
   - 
   - 
   - 
@@ -46,6 +46,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1267618937
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: MackLayer
+    uniqueID: 433027319
     locked: 0

@@ -5,50 +5,73 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
 
-    public GameObject textBox;
+	public GameObject textBox;
 
-    public Text theText;
+	public Text theText;
 
-    public TextAsset textFile;
-    public string[] textLines;
+	public TextAsset textFile;
+	public string[] textLines;
 
-    public int currentLine;
-    public int endLine;
+	public int currentLine;
+	public int endLine;
 
-    public PlayerController player;
+	public PlayerController player;
+
+	[SerializeField]
+	private bool speaking;
 
 	// Use this for initialization
-	void Start ()
-    {
-        player = FindObjectOfType<PlayerController>();
-        
-        if (textFile != null)
-        {
-            textLines = (textFile.text.Split('\n'));
-        }
+	void Start()
+	{
+		player = FindObjectOfType<PlayerController>();
 
-        // If endLine is 0, go through the entire text file
-        if (endLine == 0)
-        {
-            endLine = textLines.Length - 1;
-        }
+		if (textFile != null)
+		{
+			textLines = (textFile.text.Split('\n'));
+		}
+
+		//EventManager.TriggerEvent("uvulaInjure");
+
+		//speaking = false;
 
 	}
 
-	void Update()
+	private void Update()
 	{
-
-		theText.text = textLines[currentLine];
-
-		if (Input.GetMouseButtonDown(0))
+		if (speaking)
 		{
-			currentLine++;
+			// TODO: Pause game
+
+			Debug.Log("currentLine: " + currentLine);
+			Debug.Log("textLines.Length: " + textLines.Length);
+
+			theText.text = textLines[currentLine];
+
+			if (Input.GetMouseButtonDown(0))
+			{
+				currentLine++;
+			}
+
+			if (currentLine > endLine)
+			{
+				//textBox.SetActive(false);
+				currentLine = 0;
+				endLine = 0;
+				speaking = false;
+			}
 		}
-		
-		if (currentLine > endLine)
+	}
+
+	public void SpeakDialogue(int start, int end)
+	{
+		if (start == 0)
 		{
-			textBox.SetActive(false);
-		}	
+			Debug.Log("just recieved the goods my dude");
+		}
+		Debug.Log("started dialogue with " + start + " and " + end);
+		speaking = true;
+		currentLine = start;
+		endLine = end;
 	}
 
 }

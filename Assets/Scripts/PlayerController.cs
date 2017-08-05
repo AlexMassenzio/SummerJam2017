@@ -7,7 +7,7 @@ public class PlayerController : PhysicsObject {
     private MackAttack ma;
     private Inventory inv;
 
-    public GameObject anchor;
+	public GameObject anchor;
 
     // TODO: put CharacterStats fields here
 
@@ -27,12 +27,12 @@ public class PlayerController : PhysicsObject {
         cs.crouchSpeed = cs.maxSpeed / 3;
         cs.jumpTakeOffSpeed = 25f;
         cs.stamina = 100;
-
-    }
+	}
 
     private void OnEnable()
     {
         rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
+		
     }
 
 	protected override void Update()

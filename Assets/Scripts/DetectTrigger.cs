@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DetectTrigger : MonoBehaviour {
 
+	private bool uvulaHit = false;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Object that is doing the hitting   
@@ -19,10 +21,17 @@ public class DetectTrigger : MonoBehaviour {
                     break;
 
                 case "Uvula":
-                    Debug.Log("HALP HITLER ME");
-                    GameObject harpoon = GameObject.Find("HarpoonPickup");
-                    harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-800f, 600f));
-                    break;
+					if (!uvulaHit)
+					{
+						GameObject harpoon = GameObject.Find("HarpoonPickup");
+						float harpoonSmackX = harpoon.transform.position.x + 1;
+						float harpoonSmackY = harpoon.transform.position.y;
+						Debug.DrawLine(new Vector2(0, 100), new Vector2(harpoonSmackX, harpoonSmackY), Color.red);
+						harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-700, 175));
+						harpoon.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(0, 400), new Vector2(harpoonSmackX, harpoonSmackY));
+						uvulaHit = true;
+					}
+					break;
 
             }
         }
@@ -57,8 +66,13 @@ public class DetectTrigger : MonoBehaviour {
                     {
                         inv.WeaponGet("Anchor");
                     }
+					else if (col.name == "HarpoonPickup")
+					{
+						EventManager.TriggerEvent("harpoonGetEvent");
+					}
                     Destroy(col.gameObject);
                     break;
+
             }
         }
         else if (gameObject.tag == "Weapon") 
