@@ -14,12 +14,12 @@ public class CameraFollow : MonoBehaviour {
 	private float screenWidth;
 
 	//Camera bounds properties
-	private const float CAMERA_THRESHOLD = 0.5f;
-	private const float CAMERA_SNAP = 0.25f;
+	private const float CAMERA_THRESHOLD = 0.3f;
+	private const float CAMERA_SNAP = 0.15f;
 	enum SnapBound {Left, Right};
 	private SnapBound currentSnap;
 
-	private bool boundTransitioning;
+	private Coroutine boundTransitioning;
 
 	// Initialization
 	void Start ()
@@ -42,9 +42,10 @@ public class CameraFollow : MonoBehaviour {
 
 		currentSnap = SnapBound.Left;
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
 
 		float leftSnap = transform.position.x - screenWidth * CAMERA_SNAP;
 		float leftThreshold = transform.position.x - screenWidth * CAMERA_THRESHOLD;
@@ -56,7 +57,7 @@ public class CameraFollow : MonoBehaviour {
 		Debug.DrawLine(new Vector3(rightSnap, transform.position.y, 0), new Vector3(rightSnap, transform.position.y + 5, 0), Color.blue);
 		Debug.DrawLine(new Vector3(rightThreshold, transform.position.y, 0), new Vector3(rightThreshold, transform.position.y + 5, 0), Color.blue);
 
-		if (boundTransitioning)
+		if (boundTransitioning == null)
 		{
 			if (currentSnap == SnapBound.Left)
 			{
@@ -71,6 +72,7 @@ public class CameraFollow : MonoBehaviour {
 				{
 					Debug.Log("changing direction");
 					currentSnap = SnapBound.Right;
+					boundTransitioning = StartCoroutine(BoundTransition());
 				}
 			}
 			else
@@ -86,6 +88,7 @@ public class CameraFollow : MonoBehaviour {
 				{
 					Debug.Log("changing direction");
 					currentSnap = SnapBound.Left;
+					boundTransitioning = StartCoroutine(BoundTransition());
 				}
 			}
 		}
@@ -96,6 +99,32 @@ public class CameraFollow : MonoBehaviour {
 
 	IEnumerator BoundTransition()
 	{
+		float start = transform.position.x;
+		float progress = 0;
+		float target;
 
+		if (currentSnap == SnapBound.Left)
+		{
+			while (progress < 1)
+			{
+				target = player.transform.position.x + (transform.position.x - (transform.position.x - screenWidth * CAMERA_SNAP));
+				focus.x = Mathf.Lerp(start, target, progress);
+				progress += Time.deltaTime;
+				yield return null;
+			}
+		}
+		else
+		{
+			while (progress < 1)
+			{
+				target = player.transform.position.x - ((transform.position.x + screenWidth * CAMERA_SNAP) - transform.position.x);
+				focus.x = Mathf.Lerp(start, target, progress);
+				progress += Time.deltaTime;
+				yield return null;
+			}
+		}
+
+		
+		boundTransitioning = null;
 	}
 }
