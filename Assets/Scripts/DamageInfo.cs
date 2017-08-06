@@ -13,4 +13,14 @@ public class DamageInfo {
         this.hitstunDuration = hitstun;
 	}
 
+    public void ChangeDamage(int newDamage)
+    {
+        this.damageModifier = newDamage;
+    }
+
+    public void ChangeHitstun()
+    {
+
+    }
+
 }

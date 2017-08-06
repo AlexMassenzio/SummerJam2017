@@ -46,9 +46,11 @@ public class PlayerManager : MonoBehaviour {
         EventManager.StartListening("HarpoonGet", HarpoonGet);
     }
 
+    // TODO: Figure out how to drop harpoon
     private void HarpoonGet()
     {
         hasHarpoon = true;
+        cs.myDamageInfo.ChangeDamage(10);
     }
 
     // Use this for initialization

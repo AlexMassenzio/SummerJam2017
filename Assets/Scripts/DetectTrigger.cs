@@ -9,7 +9,7 @@ public class DetectTrigger : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Object that is doing the hitting   
-        if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack")
+        if (gameObject.tag == "MackAttack")
         {
             // Check what type of object we collided with
             switch (col.tag)
@@ -34,6 +34,22 @@ public class DetectTrigger : MonoBehaviour {
 						uvulaHit = true;
 					}
 					break;
+
+            }
+        }
+        else if (gameObject.tag == "HarpoonAttack")
+        {
+            Debug.Log("Hitting something");
+            // Check what type of object we collided with
+            switch (col.tag)
+            {
+                // If MackAttack passed through an enemy
+                case "Enemy":
+                    Debug.Log("Hit the boy");
+                    // Provide the enemy with Mack's damage info and tell him to injure himself
+                    col.gameObject.SendMessage("Injure", gameObject.transform.parent.GetComponentInChildren<CharacterStats>().myDamageInfo);
+                    //col.gameObject.SendMessage("Injure", transform.GetComponent<CharacterStats>().myDamageInfo);
+                    break;
 
             }
         }
