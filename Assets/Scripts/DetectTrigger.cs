@@ -16,7 +16,7 @@ public class DetectTrigger : MonoBehaviour {
             {
                 // If MackAttack passed through an enemy
                 case "Enemy":
-                    Debug.Log("Hit the boy");
+                    Debug.Log("Hit the boy with " + gameObject.transform.parent.GetComponentInChildren<CharacterStats>().myDamageInfo.damageModifier + " damage");
                     // Provide the enemy with Mack's damage info and tell him to injure himself
                     col.gameObject.SendMessage("Injure", gameObject.transform.parent.GetComponentInChildren<CharacterStats>().myDamageInfo);
                     //col.gameObject.SendMessage("Injure", transform.GetComponent<CharacterStats>().myDamageInfo);
@@ -29,7 +29,7 @@ public class DetectTrigger : MonoBehaviour {
 						float harpoonSmackX = harpoon.transform.position.x + 1;
 						float harpoonSmackY = harpoon.transform.position.y;
 						//Debug.DrawLine(new Vector2(0, 100), new Vector2(harpoonSmackX, harpoonSmackY), Color.red);
-						harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-750, 200));
+						harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-850, 700));
 						harpoon.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(0, 400), new Vector2(harpoonSmackX, harpoonSmackY));
 						uvulaHit = true;
 					}
@@ -45,7 +45,7 @@ public class DetectTrigger : MonoBehaviour {
             {
                 // If MackAttack passed through an enemy
                 case "Enemy":
-                    Debug.Log("Hit the boy");
+                    Debug.Log("Hit the boy with " + gameObject.transform.parent.GetComponentInChildren<CharacterStats>().myDamageInfo.damageModifier + " damage");
                     // Provide the enemy with Mack's damage info and tell him to injure himself
                     col.gameObject.SendMessage("Injure", gameObject.transform.parent.GetComponentInChildren<CharacterStats>().myDamageInfo);
                     //col.gameObject.SendMessage("Injure", transform.GetComponent<CharacterStats>().myDamageInfo);
@@ -60,6 +60,7 @@ public class DetectTrigger : MonoBehaviour {
             switch (col.tag)
             {
                 case "Player":
+                    Debug.Log("Enemy hit Mack");
                     // Provide Mack with your damage info and tell him to injure himself
                     col.gameObject.SendMessage("Injure", cs.myDamageInfo);
                     col.gameObject.SendMessage("Hitstun", cs.myDamageInfo);

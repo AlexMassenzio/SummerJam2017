@@ -26,7 +26,7 @@ TagManager:
   - MackLayer
   - Background
   - Foreground
-  - 
+  - WallDebug
   - 
   - 
   - 
@@ -58,4 +58,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3910625843
+    locked: 0
+  - name: WallDebug
+    uniqueID: 746516913
     locked: 0
