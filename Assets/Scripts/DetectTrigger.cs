@@ -42,7 +42,6 @@ public class DetectTrigger : MonoBehaviour {
             switch (col.tag)
             {
                 case "Player":
-                    Debug.Log("Enemy hit Mack");
                     if (cs.invincibilityLeft <= 0)
                     {
                         // Provide Mack with your damage info and tell him to injure himself
@@ -61,7 +60,6 @@ public class DetectTrigger : MonoBehaviour {
             {
                 case "Door":
                     // TODO: Room change logic
-                    Debug.Log("Bye bye");
                     break;
 
                 case "WeaponPickup":
