@@ -6,18 +6,19 @@ public class DetectTrigger : MonoBehaviour {
 
 	private bool uvulaHit = false;
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
         // Object that is doing the hitting   
-        if (gameObject.tag == "MackAttack")
+        if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack")
         {
+            WeaponStats ws = gameObject.transform.parent.GetComponentInChildren<WeaponStats>();
             // Check what type of object we collided with
             switch (col.tag)
             {
                 // If MackAttack passed through an enemy
                 case "Enemy":
-                    // Provide the enemy with Mack's damage info and tell him to injure himself
-                    col.gameObject.SendMessage("Injure", gameObject.transform.parent.GetComponentInChildren<CharacterStats>().myDamageInfo);
+                    col.gameObject.SendMessage("Injure", ws.damage);
+                    col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
                     break;
 
                 case "Uvula":
@@ -26,26 +27,29 @@ public class DetectTrigger : MonoBehaviour {
 						GameObject harpoon = GameObject.Find("HarpoonPickup");
 						float harpoonSmackX = harpoon.transform.position.x + 1;
 						float harpoonSmackY = harpoon.transform.position.y;
-						//Debug.DrawLine(new Vector2(0, 100), new Vector2(harpoonSmackX, harpoonSmackY), Color.red);
-						harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-750, 200));
+						harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-850, 700));
 						harpoon.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(0, 400), new Vector2(harpoonSmackX, harpoonSmackY));
 						uvulaHit = true;
 					}
 					break;
-
             }
         }
         else if (gameObject.tag == "Enemy")
         {
             // Check what type of object we collided with
-            CharacterStats cs = gameObject.GetComponent<CharacterStats>();
+            WeaponStats ws = gameObject.GetComponent<WeaponStats>();
+            CharacterStats cs = col.gameObject.GetComponent<CharacterStats>();
             switch (col.tag)
             {
                 case "Player":
-                    // Provide Mack with your damage info and tell him to injure himself
-                    col.gameObject.SendMessage("Injure", cs.myDamageInfo);
-                    col.gameObject.SendMessage("Hitstun", cs.myDamageInfo);
-                    //col.gameObject.SendMessage("Knockback", cs.knockback);
+                    Debug.Log("Enemy hit Mack");
+                    if (cs.invincibilityLeft <= 0)
+                    {
+                        // Provide Mack with your damage info and tell him to injure himself
+                        col.gameObject.SendMessage("Injure", ws.damage);
+                        col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
+                        col.gameObject.SendMessage("Knockback", ws.knockback);
+                    }
                     break;
             }
         }
@@ -61,29 +65,27 @@ public class DetectTrigger : MonoBehaviour {
                     break;
 
                 case "WeaponPickup":
-                    Debug.Log(col.name + " get!");
                     if (col.name == "AnchorPickup")
                     {
                         inv.WeaponGet("Anchor");
                     }
 					else if (col.name == "HarpoonPickup")
 					{
-						EventManager.TriggerEvent("harpoonGetEvent");
+						EventManager.TriggerEvent("HarpoonGet");
 					}
                     Destroy(col.gameObject);
                     break;
-
             }
         }
-        else if (gameObject.tag == "Weapon") 
+        else if (gameObject.tag == "Weapon")
         {
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();
             switch (col.tag)
             {
                 case "Enemy":
-                    col.gameObject.SendMessage("Injure", ws.myDamageInfo);
+                    col.gameObject.SendMessage("Injure", ws.damage);
                     col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
-                    col.gameObject.SendMessage("Knockback", ws.knockback);
+                    //col.gameObject.SendMessage("Knockback", ws.knockback);
                     break;
             }
         }

@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class MackAttack : MonoBehaviour {
 
+    public int damage = 2;
+    public float hitstunDuration = 0.5f;
+
     public bool attacking = false;
     public bool delayEnabled = false;
     public bool timeEnabled = false;
 
     public float attackDelayMax = 0.1f;
     public float attackDelayLeft = 0;
-
     public float attackTimeMax = 0.65f;
     public float attackTimeLeft = 0;
 
     public Collider2D attackTrigger;
+    private PlayerManager pm;
+    private WeaponStats ws;
+
+    private void Start()
+    {
+        pm = gameObject.GetComponentInChildren<PlayerManager>();
+        ws = gameObject.GetComponentInChildren<WeaponStats>();
+
+        ws.damage = this.damage;
+        ws.hitstunDuration = this.hitstunDuration;
+    }
 
     private void Awake()
     {
@@ -24,6 +37,12 @@ public class MackAttack : MonoBehaviour {
 
     private void Update()
     {
+
+        if (pm.hasHarpoon)
+        {
+            attackTrigger = transform.GetChild(2).GetComponent<BoxCollider2D>();
+        }
+
         // GetMouseButtonDown(0) is left click, 1 is right, and 2 is middle
         if (Input.GetMouseButtonDown(0) && !attacking)
         {
@@ -34,7 +53,6 @@ public class MackAttack : MonoBehaviour {
 
         if (attacking)
         {
-
             if (delayEnabled)
             {
                 if (attackDelayLeft > 0)

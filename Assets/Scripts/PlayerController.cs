@@ -8,9 +8,7 @@ public class PlayerController : PhysicsObject {
     private Inventory inv;
 
 	public GameObject anchor;
-
-    // TODO: put CharacterStats fields here
-
+    
     public bool crouching = false;
 
     protected override void Start()
@@ -19,9 +17,8 @@ public class PlayerController : PhysicsObject {
 
         ma = gameObject.GetComponent<MackAttack>();
         inv = gameObject.GetComponentInChildren<Inventory>();
-
         cs = gameObject.GetComponentInChildren<CharacterStats>();
-        cs.myDamageInfo = new DamageInfo(5, 2f);
+
         cs.health = 100;
         cs.maxSpeed = 10f;
         cs.crouchSpeed = cs.maxSpeed / 3;
@@ -31,8 +28,7 @@ public class PlayerController : PhysicsObject {
 
     private void OnEnable()
     {
-        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
-		
+        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();	
     }
 
 	protected override void Update()

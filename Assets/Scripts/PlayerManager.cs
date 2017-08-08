@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerManager : MonoBehaviour {
 
 	private GameObject player;
+
+    private UnityAction harpoonListener;
 
     private CapsuleCollider2D upHurtBox;
     private BoxCollider2D crouchHurtBox;
@@ -16,6 +19,8 @@ public class PlayerManager : MonoBehaviour {
 	private Animator ani;
     private CharacterStats cs;
     private Inventory inv;
+    private DetectTrigger dt;
+    private WeaponStats ws;
 
     // Vectors used to modify Mack's hurt and hit boxes
     private Vector2 newUpOffset;
@@ -29,9 +34,28 @@ public class PlayerManager : MonoBehaviour {
     public bool throwing;
     private bool setNewPos;
     public bool changedDirection;
+    public bool hasHarpoon;
+    public bool hit;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        harpoonListener = new UnityAction(HarpoonGet);
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("HarpoonGet", HarpoonGet);
+    }
+
+    // TODO: Figure out how to drop harpoon
+    private void HarpoonGet()
+    {
+        hasHarpoon = true;
+        ws.damage = 10;
+    }
+
+    // Use this for initialization
+    void Start () {
 		try
 		{
 			player = GameObject.FindGameObjectsWithTag("Player")[0];
@@ -48,6 +72,8 @@ public class PlayerManager : MonoBehaviour {
         throwing = false;
         setNewPos = false;
         changedDirection = false;
+        hasHarpoon = false;
+        hit = false;
 
         upHurtBox = player.GetComponent<CapsuleCollider2D>();
         crouchHurtBox = player.GetComponent<BoxCollider2D>();
@@ -58,6 +84,8 @@ public class PlayerManager : MonoBehaviour {
 		ani = this.GetComponent<Animator>();
         cs = player.GetComponent<CharacterStats>();
         inv = player.GetComponent<Inventory>();
+        dt = player.GetComponent<DetectTrigger>();
+        ws = player.GetComponent<WeaponStats>();
 
         // Default to facing right upright
         newUpOffset = new Vector2(0.16f, -0.1f);
@@ -177,6 +205,15 @@ public class PlayerManager : MonoBehaviour {
         crouchHurtBox.offset = newCrouchOffset;
         crouchHurtBox.size = newCrouchSize;
 
+        if (cs.hitstunLeft > 0)
+        {
+            hit = true;
+        }
+        else
+        {
+            hit = false;
+        }
+
         if (ma.attacking || cs.hitstunLeft > 0)
         {
             moving = false;
@@ -200,8 +237,9 @@ public class PlayerManager : MonoBehaviour {
 		ani.SetBool("grounded", pc.isGrounded());
 		ani.SetBool("moving", moving);
         ani.SetBool("attacking", ma.attacking);
-        ani.SetFloat("hit", cs.hitstunLeft);
+        ani.SetBool("hit", hit);
         ani.SetBool("dead", dead);
         ani.SetBool("throwing", throwing);
+        ani.SetBool("harpoon", hasHarpoon);
     }
 }

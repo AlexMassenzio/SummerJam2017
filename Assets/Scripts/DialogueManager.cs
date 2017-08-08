@@ -42,9 +42,6 @@ public class DialogueManager : MonoBehaviour {
 		{
 			// TODO: Pause game
 
-			Debug.Log("currentLine: " + currentLine);
-			Debug.Log("textLines.Length: " + textLines.Length);
-
 			theText.text = textLines[currentLine];
 
 			if (Input.GetMouseButtonDown(0))
