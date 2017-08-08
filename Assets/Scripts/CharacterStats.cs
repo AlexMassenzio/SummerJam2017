@@ -27,6 +27,9 @@ public class CharacterStats : MonoBehaviour
     public float deadTimeMax;
     public float deadTimeLeft = 0f;
 
+    public float invincibilityMax = 2f;
+    public float invincibilityLeft = 0;
+
     private void Start()
     {
         pc = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
@@ -35,31 +38,27 @@ public class CharacterStats : MonoBehaviour
     public void Injure(int damage)
     {
         health -= damage;
+        invincibilityLeft = invincibilityMax;
     }
 
     public void Hitstun(float hitstunDuration)
     {
         hitstunLeft = hitstunDuration;
     }
-
+    
     public void Knockback(Vector2 knockback)
     {
         SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-        // If character is facing right
-        if (!sr.flipX)
-        {
-            pc.velocity = new Vector2(-500f, 500f);
-            pc.velocityX = -500f;
-        }
-        // If character is facing left
-        else
-        {
-
-        }
+        pc.velocity = knockback;
     }
-
+    
     public void Update()
     {
+
+        if (invincibilityLeft > 0)
+        {
+            invincibilityLeft -= Time.deltaTime;
+        }
 
         if (hitstunLeft > 0)
         {
@@ -71,30 +70,24 @@ public class CharacterStats : MonoBehaviour
         {
             if (!dying && !dead)
             {
-                Debug.Log("started dying");
                 dying = true;
                 dyingTimeLeft = dyingTimeMax;
-                Debug.Log("dyingTimeLeft: " + dyingTimeLeft);
             }
             else if (dying && !dead && dyingTimeLeft > 0)
             {
-                Debug.Log("dying");
                 dyingTimeLeft -= Time.deltaTime;
             }
             else if (dying && !dead && dyingTimeLeft <= 0)
             {
-                Debug.Log("started death");
                 dead = true;
                 deadTimeLeft = deadTimeMax;
             }
             else if (dead && deadTimeLeft > 0)
             {
-                Debug.Log("being dead");
                 deadTimeLeft -= Time.deltaTime;
             }
             else if (dead && deadTimeLeft <= 0)
             {
-                Debug.Log("finished death");
                 Destroy(gameObject);
             }
         }

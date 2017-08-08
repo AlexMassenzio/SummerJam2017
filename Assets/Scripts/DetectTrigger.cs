@@ -6,7 +6,7 @@ public class DetectTrigger : MonoBehaviour {
 
 	private bool uvulaHit = false;
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
         // Object that is doing the hitting   
         if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack")
@@ -38,14 +38,18 @@ public class DetectTrigger : MonoBehaviour {
         {
             // Check what type of object we collided with
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();
+            CharacterStats cs = col.gameObject.GetComponent<CharacterStats>();
             switch (col.tag)
             {
                 case "Player":
                     Debug.Log("Enemy hit Mack");
-                    // Provide Mack with your damage info and tell him to injure himself
-                    col.gameObject.SendMessage("Injure", ws.damage);
-                    col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
-                    col.gameObject.SendMessage("Knockback", ws.knockback);
+                    if (cs.invincibilityLeft <= 0)
+                    {
+                        // Provide Mack with your damage info and tell him to injure himself
+                        col.gameObject.SendMessage("Injure", ws.damage);
+                        col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
+                        col.gameObject.SendMessage("Knockback", ws.knockback);
+                    }
                     break;
             }
         }
@@ -81,7 +85,7 @@ public class DetectTrigger : MonoBehaviour {
                 case "Enemy":
                     col.gameObject.SendMessage("Injure", ws.damage);
                     col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
-                    col.gameObject.SendMessage("Knockback", ws.knockback);
+                    //col.gameObject.SendMessage("Knockback", ws.knockback);
                     break;
             }
         }

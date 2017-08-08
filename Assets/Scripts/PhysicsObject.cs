@@ -21,6 +21,7 @@ public class PhysicsObject : MonoBehaviour {
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
     protected List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(16);
     protected CharacterStats cs;
+    protected SpriteRenderer sr;
 
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
@@ -33,6 +34,7 @@ public class PhysicsObject : MonoBehaviour {
     protected virtual void Start ()
     {
         // Ignore any contacts involving trigger colliders
+        sr = gameObject.GetComponentInChildren<SpriteRenderer>();
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
 
@@ -59,7 +61,24 @@ public class PhysicsObject : MonoBehaviour {
     protected virtual void FixedUpdate()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-        velocity.x = velocityX;
+        if (cs.hitstunLeft > 0)
+        {
+            // If facing left
+            if (sr.flipX)
+            {
+                velocity = new Vector2(15, velocity.y);
+            }
+            // If we are facing right
+            else
+            {
+                velocity = new Vector2(-15, velocity.y);
+            }
+        }
+        else
+        {
+            velocity.x = velocityX;
+        }
+        
 
         grounded = false;
 
@@ -69,7 +88,8 @@ public class PhysicsObject : MonoBehaviour {
 
         Vector2 move;
 
-        if (gameObject.tag != "Weapon")
+        // If we are actionable Mack
+        if (gameObject.tag == "Weapon" || cs.hitstunLeft <= 0)
         {
             move = moveAlongGround * deltaPosition.x;
         }

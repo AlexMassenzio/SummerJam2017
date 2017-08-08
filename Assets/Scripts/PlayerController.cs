@@ -8,9 +8,7 @@ public class PlayerController : PhysicsObject {
     private Inventory inv;
 
 	public GameObject anchor;
-
-    // TODO: put CharacterStats fields here
-
+    
     public bool crouching = false;
 
     protected override void Start()
@@ -30,8 +28,7 @@ public class PlayerController : PhysicsObject {
 
     private void OnEnable()
     {
-        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
-		
+        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();	
     }
 
 	protected override void Update()
