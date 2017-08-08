@@ -8,21 +8,21 @@ using UnityEngine;
  */
 
 public class AnchorManager : PhysicsObject {
-
-    private GameObject mack;
+    
     private Inventory inv;
     private WeaponStats ws;
+    private SpriteRenderer sr;
 
     protected override void Start()
     {
         base.Start();
-
-        mack = GameObject.FindWithTag("Player");
-        inv = mack.GetComponentInChildren<Inventory>();
+        
+        inv = gameObject.GetComponentInChildren<Inventory>();
         ws = gameObject.GetComponent<WeaponStats>();
+        sr = gameObject.GetComponent<SpriteRenderer>();
 
         // If Mack is facing to the right
-        if (!mack.GetComponentInChildren<SpriteRenderer>().flipX)
+        if (!sr.flipX)
         {
             ws.initVelocity = new Vector2(12.5f, 25);
         }
@@ -32,12 +32,12 @@ public class AnchorManager : PhysicsObject {
         }
 
         // TODO: Tweak these values to what feels best in game
-        ws.myDamageInfo = new DamageInfo(5, 2f);
+        ws.damage = 5;
         ws.staminaCost = 5f;
         ws.cooldownMax = 1f;
         ws.hitstunDuration = 0.5f;
         ws.useStunDuration = 0.3334f;
-        ws.knockback = new Vector2(-5f, 5f);
+        ws.knockback = new Vector2(5f, 5f);
 
         velocity = ws.initVelocity;
         velocityX = ws.initVelocity.x;

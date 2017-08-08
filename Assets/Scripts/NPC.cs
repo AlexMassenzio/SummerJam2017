@@ -15,8 +15,7 @@ using UnityEngine;
 public class NPC : PhysicsObject {
 
 	protected GameObject target;
-
-	protected DamageInfo di;
+    
 	public int damage = 0;
 	public int health = 0;
 	public float maxSpeed = 0;
@@ -35,11 +34,8 @@ public class NPC : PhysicsObject {
 	{
 
         base.Start();
-        
-		di = new DamageInfo(damage, hitstunDuration);
 
         cs.health = health;
-        cs.myDamageInfo = di;
         cs.maxSpeed = maxSpeed;
         cs.crouchSpeed = crouchSpeed;
         cs.jumpTakeOffSpeed = jumpTakeOffSpeed;

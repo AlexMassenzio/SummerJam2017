@@ -19,9 +19,8 @@ public class PlayerController : PhysicsObject {
 
         ma = gameObject.GetComponent<MackAttack>();
         inv = gameObject.GetComponentInChildren<Inventory>();
-
         cs = gameObject.GetComponentInChildren<CharacterStats>();
-        cs.myDamageInfo = new DamageInfo(5, 2f);
+
         cs.health = 100;
         cs.maxSpeed = 10f;
         cs.crouchSpeed = cs.maxSpeed / 3;

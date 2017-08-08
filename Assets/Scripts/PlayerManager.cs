@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour {
     private CharacterStats cs;
     private Inventory inv;
     private DetectTrigger dt;
+    private WeaponStats ws;
 
     // Vectors used to modify Mack's hurt and hit boxes
     private Vector2 newUpOffset;
@@ -50,7 +51,7 @@ public class PlayerManager : MonoBehaviour {
     private void HarpoonGet()
     {
         hasHarpoon = true;
-        cs.myDamageInfo.ChangeDamage(10);
+        ws.damage = 10;
     }
 
     // Use this for initialization
@@ -84,6 +85,7 @@ public class PlayerManager : MonoBehaviour {
         cs = player.GetComponent<CharacterStats>();
         inv = player.GetComponent<Inventory>();
         dt = player.GetComponent<DetectTrigger>();
+        ws = player.GetComponent<WeaponStats>();
 
         // Default to facing right upright
         newUpOffset = new Vector2(0.16f, -0.1f);

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    private PlayerController pc;
 
-    public DamageInfo myDamageInfo;
     public int health;
     public float maxSpeed;
     public float currentSpeed;
@@ -26,25 +26,36 @@ public class CharacterStats : MonoBehaviour
     // Time laying there dead
     public float deadTimeMax;
     public float deadTimeLeft = 0f;
-    
-    public void GetDamageInfo(CharacterStats cs)
+
+    private void Start()
     {
-        cs.Injure(myDamageInfo);
+        pc = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
     }
 
-    public void Injure(DamageInfo di)
+    public void Injure(int damage)
     {
-        health -= di.damageModifier;
+        health -= damage;
     }
 
-    public void Hitstun(DamageInfo di)
+    public void Hitstun(float hitstunDuration)
     {
-        hitstunLeft = di.hitstunDuration;
+        hitstunLeft = hitstunDuration;
     }
 
-    public void Knockback()
+    public void Knockback(Vector2 knockback)
     {
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        // If character is facing right
+        if (!sr.flipX)
+        {
+            pc.velocity = new Vector2(-500f, 500f);
+            pc.velocityX = -500f;
+        }
+        // If character is facing left
+        else
+        {
 
+        }
     }
 
     public void Update()
