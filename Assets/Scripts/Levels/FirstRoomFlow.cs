@@ -18,7 +18,6 @@ public class FirstRoomFlow : MonoBehaviour {
 	private void Start()
 	{
 		dm = FindObjectOfType<DialogueManager>();
-		Debug.Log("In FirstRoomFlow Start and am about to call SpeakDialogue");
 		dm.SpeakDialogue(0, 1);
 	}
 

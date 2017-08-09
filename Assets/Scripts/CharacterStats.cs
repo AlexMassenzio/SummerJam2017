@@ -32,7 +32,10 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
-        pc = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
+        if (gameObject.tag == "Player")
+        {
+            pc = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
+        }
     }
 
     public void Injure(int damage)
