@@ -6,12 +6,13 @@ public class DetectTrigger : MonoBehaviour {
 
 	private bool uvulaHit = false;
 
-    private void OnTriggerStay2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         // Object that is doing the hitting   
         if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack")
         {
-            WeaponStats ws = gameObject.transform.parent.GetComponentInChildren<WeaponStats>();
+            WeaponStats ws = gameObject.GetComponent<WeaponStats>();
+
             // Check what type of object we collided with
             switch (col.tag)
             {
@@ -42,7 +43,6 @@ public class DetectTrigger : MonoBehaviour {
             switch (col.tag)
             {
                 case "Player":
-                    Debug.Log("Enemy hit Mack");
                     if (cs.invincibilityLeft <= 0)
                     {
                         // Provide Mack with your damage info and tell him to injure himself
@@ -61,7 +61,6 @@ public class DetectTrigger : MonoBehaviour {
             {
                 case "Door":
                     // TODO: Room change logic
-                    Debug.Log("Bye bye");
                     break;
 
                 case "WeaponPickup":
@@ -70,8 +69,8 @@ public class DetectTrigger : MonoBehaviour {
                         inv.WeaponGet("Anchor");
                     }
 					else if (col.name == "HarpoonPickup")
-					{
-						EventManager.TriggerEvent("HarpoonGet");
+                    {
+                        EventManager.TriggerEvent("HarpoonGet");
 					}
                     Destroy(col.gameObject);
                     break;

@@ -128,6 +128,7 @@ public class PhysicsObject : MonoBehaviour {
                 Vector2 currentNormal = hitBufferList[i].normal;
 
                 // If what we collided with is flat enough to be considered ground
+                //Debug.Log("currentNormalY: " + currentNormal.y);
                 if (currentNormal.y > minGroundNormalY)
                 {
                     // Set grounded equal to true

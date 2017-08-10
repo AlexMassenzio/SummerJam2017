@@ -61,11 +61,6 @@ public class DialogueManager : MonoBehaviour {
 
 	public void SpeakDialogue(int start, int end)
 	{
-		if (start == 0)
-		{
-			Debug.Log("just recieved the goods my dude");
-		}
-		Debug.Log("started dialogue with " + start + " and " + end);
 		speaking = true;
 		currentLine = start;
 		endLine = end;

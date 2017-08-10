@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 61303683752446752}
   - component: {fileID: 50166906885701112}
   - component: {fileID: 114872124975639424}
+  - component: {fileID: 114234488731943236}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -90,6 +91,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.33, y: 1.27}
   m_EdgeRadius: 0
+--- !u!114 &114234488731943236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885890389584420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e9fc162d47c004aa3bd1add2e464c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initVelocity: {x: 0, y: 0}
+  knockback: {x: 0, y: 0}
+  damage: 0
+  staminaCost: 0
+  cooldownMax: 0
+  cooldownLeft: 0
+  useStunDuration: 0
+  hitstunDuration: 0
 --- !u!114 &114626802122641982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a75e6ffe8b2fd24497fd9e7ee85a742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 15
   maxSpeed: 0
   currentSpeed: 0
   crouchSpeed: 0
@@ -116,6 +136,8 @@ MonoBehaviour:
   dyingTimeLeft: 0
   deadTimeMax: 0
   deadTimeLeft: 0
+  invincibilityMax: 2
+  invincibilityLeft: 0
 --- !u!114 &114865718914436990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,6 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 6.33
+  velocityX: 0
+  velocity: {x: 0, y: 0}
   damage: 0
   health: 0
   maxSpeed: 0
