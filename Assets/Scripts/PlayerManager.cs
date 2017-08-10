@@ -199,8 +199,8 @@ public class PlayerManager : MonoBehaviour {
         }
 
         // Update Mack's hurt and hitboxes
-        upHurtBox.offset = newUpOffset;
-        upHurtBox.size = newUpSize;
+        //upHurtBox.offset = newUpOffset;
+        //upHurtBox.size = newUpSize;
         crouchHurtBox.offset = newCrouchOffset;
         crouchHurtBox.size = newCrouchSize;
 
