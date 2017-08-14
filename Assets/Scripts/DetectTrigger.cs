@@ -64,7 +64,6 @@ public class DetectTrigger : MonoBehaviour {
                     break;
 
                 case "WeaponPickup":
-                    // TODO: this can't use col.name forever
                     if (col.name == "AnchorPickup")
                     {
                         inv.WeaponGet("Anchor");
@@ -88,9 +87,10 @@ public class DetectTrigger : MonoBehaviour {
                 case "Enemy":
                     col.gameObject.SendMessage("Injure", ws.damage);
                     col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
-                    //col.gameObject.SendMessage("Knockback", ws.knockback);
+                    Destroy(gameObject);
                     break;
             }
+
         }
     }
 

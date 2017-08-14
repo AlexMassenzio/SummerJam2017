@@ -111,10 +111,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initVelocity: {x: 0, y: 0}
   knockback: {x: 0, y: 0}
-  staminaCost: 0
-  cooldownMax: 0
+  damage: 5
+  staminaCost: 15
+  cooldownMax: 1
   cooldownLeft: 0
-  useStunDuration: 0
+  useStunDuration: 0.334
   hitstunDuration: 0
 --- !u!114 &114515276511337976
 MonoBehaviour:
@@ -129,6 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 5
+  velocityX: 0
+  velocity: {x: 0, y: 0}
 --- !u!114 &114561430642497750
 MonoBehaviour:
   m_ObjectHideFlags: 1

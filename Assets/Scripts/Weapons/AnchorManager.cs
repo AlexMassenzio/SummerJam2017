@@ -37,7 +37,7 @@ public class AnchorManager : PhysicsObject {
         ws.cooldownMax = 1f;
         ws.hitstunDuration = 0.5f;
         ws.useStunDuration = 0.3334f;
-        ws.knockback = new Vector2(5f, 5f);
+        ws.knockback = new Vector2();
 
         velocity = ws.initVelocity;
         velocityX = ws.initVelocity.x;

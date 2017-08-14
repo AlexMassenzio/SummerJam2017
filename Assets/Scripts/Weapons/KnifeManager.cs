@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/* 
- * In Castlvania the axe goes 3/8 of the screen (6 Simon's in front of you), 
- * and is twice the height of Simon. It takes about a second to do a full arc.
- */
-
 public class KnifeManager : PhysicsObject
 {
 
@@ -23,7 +18,7 @@ public class KnifeManager : PhysicsObject
         ws.initVelocity = new Vector2();
 
         ws.damage = 2;
-        ws.staminaCost = 2f;
+        ws.staminaCost = 10f;
         ws.cooldownMax = 1f;
         ws.hitstunDuration = 0.3334f;
         ws.useStunDuration = 0.3334f;
@@ -31,8 +26,10 @@ public class KnifeManager : PhysicsObject
 
         velocity = ws.initVelocity;
         velocityX = ws.initVelocity.x;
-
-        inv.WeaponUsed(ws.cooldownMax, ws.useStunDuration);
+        if (inv != null)
+        {
+            inv.WeaponUsed(ws.cooldownMax, ws.useStunDuration);
+        }
     }
 
     protected override void Update()

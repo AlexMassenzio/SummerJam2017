@@ -11,7 +11,7 @@ public class CharacterStats : MonoBehaviour
     public float currentSpeed;
     public float crouchSpeed;
     public float jumpTakeOffSpeed;
-    public int stamina;
+    public float stamina;
     public float cooldownLeft;
     public float hitstunLeft;
 

@@ -97,18 +97,6 @@ public class PhysicsObject : MonoBehaviour {
         {
             move = Vector2.right * deltaPosition.x;
         }
-
-        if (gameObject.name != "Mack")
-        {
-            if (gameObject.name == "Knife(Clone)")
-            {
-                Debug.Log("indeed I am Knife(Clone)");
-            }
-            else
-            {
-                Debug.Log("I am only " + gameObject.name);
-            }
-        }
         
         if (gameObject.name == "Knife(Clone)")
         {
