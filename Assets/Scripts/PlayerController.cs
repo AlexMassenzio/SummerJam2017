@@ -8,6 +8,7 @@ public class PlayerController : PhysicsObject {
     private Inventory inv;
 
 	public GameObject anchor;
+    public GameObject knife;
     
     public bool crouching = false;
 
@@ -48,6 +49,10 @@ public class PlayerController : PhysicsObject {
 				{
 					Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
 				}
+                else if (inv.weaponName == "Knife")
+                {
+                    Instantiate(knife, transform.GetChild(0).position, new Quaternion());
+                }
 			}
 		}
 	}

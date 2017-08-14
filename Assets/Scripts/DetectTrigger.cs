@@ -64,9 +64,13 @@ public class DetectTrigger : MonoBehaviour {
                     break;
 
                 case "WeaponPickup":
+                    // TODO: this can't use col.name forever
                     if (col.name == "AnchorPickup")
                     {
                         inv.WeaponGet("Anchor");
+                    }
+                    else if (col.name == "KnifePickup") {
+                        inv.WeaponGet("Knife");
                     }
 					else if (col.name == "HarpoonPickup")
                     {
