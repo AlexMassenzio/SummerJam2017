@@ -68,6 +68,9 @@ public class DetectTrigger : MonoBehaviour {
                     {
                         inv.WeaponGet("Anchor");
                     }
+                    else if (col.name == "KnifePickup") {
+                        inv.WeaponGet("Knife");
+                    }
 					else if (col.name == "HarpoonPickup")
                     {
                         EventManager.TriggerEvent("HarpoonGet");
@@ -84,9 +87,10 @@ public class DetectTrigger : MonoBehaviour {
                 case "Enemy":
                     col.gameObject.SendMessage("Injure", ws.damage);
                     col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
-                    //col.gameObject.SendMessage("Knockback", ws.knockback);
+                    Destroy(gameObject);
                     break;
             }
+
         }
     }
 

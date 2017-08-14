@@ -61,7 +61,7 @@ public class PhysicsObject : MonoBehaviour {
     protected virtual void FixedUpdate()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-        if (cs.hitstunLeft > 0)
+        if (cs != null && cs.hitstunLeft > 0)
         {
             // If facing left
             if (sr.flipX)
@@ -97,10 +97,22 @@ public class PhysicsObject : MonoBehaviour {
         {
             move = Vector2.right * deltaPosition.x;
         }
+        
+        if (gameObject.name == "Knife(Clone)")
+        {
+            move = Vector2.right * velocityX;
+        }
 
         Movement(move, 'x');
-        
-        move = Vector2.up * deltaPosition.y;
+
+        if (gameObject.name == "Knife(Clone)")
+        {
+            move = new Vector2();
+        }
+        else
+        {
+            move = Vector2.up * deltaPosition.y;
+        }
 
         Movement(move, 'y');
 

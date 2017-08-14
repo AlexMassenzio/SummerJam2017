@@ -103,7 +103,7 @@ public class PlayerManager : MonoBehaviour {
         setNewPos = false;
         changedDirection = false;
 
-        if (!ma.attacking)
+        if (!ma.attacking && cs.hitstunLeft <= 0 && inv.useStunLeft <= 0)
         {
             // Moving to the left
             if (Input.GetAxisRaw("Horizontal") < 0)
