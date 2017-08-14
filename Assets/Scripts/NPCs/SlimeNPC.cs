@@ -12,7 +12,7 @@ public class SlimeNPC : NPC {
 
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
 
-        bodyHitbox.knockback = new Vector2(15f, 15f);
+        bodyHitbox.knockback = new Vector2(2f, 5f);
         bodyHitbox.damage = 5;
         bodyHitbox.hitstunDuration = 0.5f;
     
