@@ -35,10 +35,6 @@ public class KnifeManager : PhysicsObject
     protected override void Update()
     {
         base.Update();
-        if (transform.position.y < -100)
-        {
-            Destroy(gameObject);
-        }
     }
 
     protected override void ComputeVelocity()
