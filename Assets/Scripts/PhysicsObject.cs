@@ -98,7 +98,7 @@ public class PhysicsObject : MonoBehaviour {
             move = Vector2.right * deltaPosition.x;
         }
         
-        if (gameObject.name == "Knife(Clone)")
+        if (gameObject.tag == "Weapon")
         {
             move = Vector2.right * velocityX;
         }

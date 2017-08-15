@@ -5,17 +5,30 @@ using UnityEngine;
 public class KnifeManager : PhysicsObject
 {
 
+    private GameObject mack;
     private Inventory inv;
     private WeaponStats ws;
+    private SpriteRenderer sr;
 
     protected override void Start()
     {
         base.Start();
 
-        inv = gameObject.GetComponentInChildren<Inventory>();
+        mack = GameObject.FindGameObjectWithTag("Player");
+        inv = mack.GetComponentInChildren<Inventory>();
         ws = gameObject.GetComponent<WeaponStats>();
+        sr = mack.GetComponentInChildren<SpriteRenderer>();
 
-        ws.initVelocity = new Vector2();
+        // If Mack is facing to the right
+        if (!sr.flipX)
+        {
+            ws.initVelocity = new Vector2(0.5f, 27);
+        }
+        // If Mack is facing to the left
+        else
+        {
+            ws.initVelocity = new Vector2(-0.5f, 27);
+        }
 
         ws.damage = 2;
         ws.staminaCost = 10f;
@@ -25,21 +38,15 @@ public class KnifeManager : PhysicsObject
         ws.knockback = new Vector2();
 
         velocity = ws.initVelocity;
-        velocityX = ws.initVelocity.x;
         if (inv != null)
         {
             inv.WeaponUsed(ws.cooldownMax, ws.useStunDuration);
         }
     }
 
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void ComputeVelocity()
     {
-        velocityX = 0.5f;
+        velocityX = ws.initVelocity.x;
     }
 
 }

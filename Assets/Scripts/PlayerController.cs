@@ -49,17 +49,13 @@ public class PlayerController : PhysicsObject {
 				{
                     Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
                     WeaponStats ws = anchor.GetComponent<WeaponStats>();
-                    Debug.Log("decreased stamina from " + cs.stamina + " to ");
                     cs.stamina -= ws.staminaCost;
-                    Debug.Log(cs.stamina + " using " + ws.staminaCost);
 				}
                 else if (inv.weaponName == "Knife")
                 {
                     Instantiate(knife, transform.GetChild(0).position, new Quaternion());
                     WeaponStats ws = knife.GetComponent<WeaponStats>();
-                    Debug.Log("decreased stamina from " + cs.stamina + " to ");
                     cs.stamina -= ws.staminaCost;
-                    Debug.Log(cs.stamina + " using " + ws.staminaCost);
                 }
 			}
 		}
