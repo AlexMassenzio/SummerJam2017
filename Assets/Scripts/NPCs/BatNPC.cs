@@ -2,38 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BatNPC : NPC
+public class BatNPC : PhysicsObject
 {
 
-    private const int BAT_MAX_HEALTH = 10;
-    private WeaponStats bodyHitbox;
+    private WeaponStats ws;
+    private Vector2 initPos;
+    private float posY;
 
     protected override void Start()
     {
-
-        bodyHitbox = gameObject.GetComponent<WeaponStats>();
-
-        bodyHitbox.knockback = new Vector2(2f, 5f);
-        bodyHitbox.damage = 5;
-        bodyHitbox.hitstunDuration = 0.5f;
-
-        health = BAT_MAX_HEALTH;
-        maxSpeed = 5f;
-
         base.Start();
 
-        SetTarget(GameObject.FindGameObjectWithTag("Player"));
+        initPos = transform.position;
+
+        ws = gameObject.GetComponent<WeaponStats>();
+        ws.damage = 2;
+        ws.staminaCost = 10f;
+        ws.cooldownMax = 1f;
+        ws.hitstunDuration = 0.3334f;
+        ws.useStunDuration = 0.3334f;
+        ws.knockback = new Vector2();
     }
 
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();
+
+        Vector2 move;
+
+        transform.position = new Vector2(transform.position.x, posY + initPos.y);
+
+        move = Vector2.right * velocityX;
+
+        Movement(move, 'x');
+
+        
+
+
+        //Movement(move, 'y');
+
     }
 
     protected override void ComputeVelocity()
     {
-        //gravityModifier = 0;
-        velocityX = -5f;
+        velocityX = -0.1f;
+        posY = Mathf.Sin(Time.time * 3);
+        Debug.Log("velY: " + velocityY);
     }
 
 }
