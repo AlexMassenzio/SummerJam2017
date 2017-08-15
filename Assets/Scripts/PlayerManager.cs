@@ -20,14 +20,8 @@ public class PlayerManager : MonoBehaviour {
     private CharacterStats cs;
     private Inventory inv;
     private DetectTrigger dt;
-    //public WeaponStats ws;
 
     // Vectors used to modify Mack's hurt and hit boxes
-    private Vector2 newUpOffset;
-    private Vector2 newUpSize;
-    private Vector2 newCrouchOffset;
-    private Vector2 newCrouchSize;
-   // private Vector2 newMackPos;
     private Vector2 newPos;
 
     private bool dead;
@@ -84,13 +78,7 @@ public class PlayerManager : MonoBehaviour {
         cs = player.GetComponent<CharacterStats>();
         inv = player.GetComponent<Inventory>();
         dt = player.GetComponent<DetectTrigger>();
-        //ws = player.GetComponent<WeaponStats>();
-
-        // Default to facing right upright
-        newUpOffset = new Vector2(0.16f, -0.1f);
-        newUpSize = new Vector2(1.4f, 3.3f);
-        newCrouchOffset = new Vector2(0.16f, -0.28f);
-        newCrouchSize = new Vector2(1.61f, 2.73f);
+        
         upHurtBox.enabled = true;
         crouchHurtBox.enabled = false;
 
@@ -136,8 +124,6 @@ public class PlayerManager : MonoBehaviour {
         {
             if (pc.crouching)
             {
-                newCrouchOffset = new Vector2(-0.16f, -0.28f);
-                newCrouchSize = new Vector2(1.58f, 2.5f);
                 // If we are coming from a standing position, teleport down a little
                 if (upHurtBox.enabled)
                 {
@@ -149,8 +135,6 @@ public class PlayerManager : MonoBehaviour {
             }
             else
             {
-                newUpOffset = new Vector2(-0.16f, -0.1f);
-                newUpSize = new Vector2(1.4f, 3.3f);
                 // If we are going from crouching to standing, teleport up a little
                 if (crouchHurtBox.enabled)
                 {
@@ -166,8 +150,6 @@ public class PlayerManager : MonoBehaviour {
         {
             if (pc.crouching)
             {
-                newCrouchOffset = new Vector2(0.16f, -0.28f);
-                newCrouchSize = new Vector2(1.58f, 2.5f);
                 // If we are coming from a standing position, teleport down a little
                 if (upHurtBox.enabled)
                 {
@@ -179,12 +161,10 @@ public class PlayerManager : MonoBehaviour {
             }
             else
             {
-                newUpOffset = new Vector2(0.16f, -0.1f);
-                newUpSize = new Vector2(1.4f, 3.3f);
                 // If we are going from crouching to standing, teleport up a little
                 if (crouchHurtBox.enabled)
                 {
-                    newPos = new Vector2(player.transform.position.x, player.transform.position.y+0.21f);
+                    newPos = new Vector2(player.transform.position.x, player.transform.position.y + 0.21f);
                     setNewPos = true;
                 }
                 upHurtBox.enabled = true;
@@ -197,12 +177,6 @@ public class PlayerManager : MonoBehaviour {
         {
             player.transform.position = newPos;
         }
-
-        // Update Mack's hurt and hitboxes
-        //upHurtBox.offset = newUpOffset;
-        //upHurtBox.size = newUpSize;
-        crouchHurtBox.offset = newCrouchOffset;
-        crouchHurtBox.size = newCrouchSize;
 
         if (cs.hitstunLeft > 0)
         {

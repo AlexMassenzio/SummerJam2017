@@ -51,7 +51,7 @@ public class CharacterStats : MonoBehaviour
     
     public void Knockback(Vector2 knockback)
     {
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        //SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
         pc.velocity = knockback;
     }
     

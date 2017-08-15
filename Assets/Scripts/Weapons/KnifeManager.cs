@@ -8,7 +8,7 @@ public class KnifeManager : PhysicsObject
     private GameObject mack;
     private Inventory inv;
     private WeaponStats ws;
-    private SpriteRenderer sr;
+    private SpriteRenderer sre;
 
     protected override void Start()
     {
@@ -17,10 +17,10 @@ public class KnifeManager : PhysicsObject
         mack = GameObject.FindGameObjectWithTag("Player");
         inv = mack.GetComponentInChildren<Inventory>();
         ws = gameObject.GetComponent<WeaponStats>();
-        sr = mack.GetComponentInChildren<SpriteRenderer>();
+        sre = mack.GetComponentInChildren<SpriteRenderer>();
 
         // If Mack is facing to the right
-        if (!sr.flipX)
+        if (!sre.flipX)
         {
             ws.initVelocity = new Vector2(0.5f, 27);
         }
