@@ -79,7 +79,6 @@ public class PhysicsObject : MonoBehaviour {
             velocity.x = velocityX;
         }
         
-
         grounded = false;
 
 		Vector2 deltaPosition = velocity * Time.deltaTime;
@@ -98,7 +97,7 @@ public class PhysicsObject : MonoBehaviour {
             move = Vector2.right * deltaPosition.x;
         }
         
-        if (gameObject.name == "Knife(Clone)")
+        if (gameObject.tag == "Weapon")
         {
             move = Vector2.right * velocityX;
         }
@@ -115,7 +114,6 @@ public class PhysicsObject : MonoBehaviour {
         }
 
         Movement(move, 'y');
-
     }
 
     protected void Movement(Vector2 move, char axis)
@@ -140,7 +138,6 @@ public class PhysicsObject : MonoBehaviour {
                 Vector2 currentNormal = hitBufferList[i].normal;
 
                 // If what we collided with is flat enough to be considered ground
-                //Debug.Log("currentNormalY: " + currentNormal.y);
                 if (currentNormal.y > minGroundNormalY)
                 {
                     // Set grounded equal to true
@@ -165,11 +162,7 @@ public class PhysicsObject : MonoBehaviour {
                     distance = modifiedDistance;
                 }
             }
-
         }
-
         rb2d.position += move.normalized * distance;
-        
     }
-
 }

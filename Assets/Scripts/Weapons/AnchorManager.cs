@@ -8,30 +8,32 @@ using UnityEngine;
  */
 
 public class AnchorManager : PhysicsObject {
-    
+
+    public GameObject mack;
     private Inventory inv;
     private WeaponStats ws;
-    //private SpriteRenderer sr;
+    private SpriteRenderer sre;
 
     protected override void Start()
     {
         base.Start();
-        
-        inv = gameObject.GetComponentInChildren<Inventory>();
+
+        mack = GameObject.FindGameObjectWithTag("Player");
+        inv = mack.GetComponentInChildren<Inventory>();
         ws = gameObject.GetComponent<WeaponStats>();
-        //sr = gameObject.GetComponent<SpriteRenderer>();
+        sre = mack.GetComponent<SpriteRenderer>();
 
         // If Mack is facing to the right
-        if (!sr.flipX)
+        if (!sre.flipX)
         {
-            ws.initVelocity = new Vector2(12.5f, 25);
+            ws.initVelocity = new Vector2(0.225f, 27);
         }
+        // If Mack is facing to the left
         else
         {
-            ws.initVelocity = new Vector2(-12.5f, 25);
+            ws.initVelocity = new Vector2(-0.225f, 27);
         }
 
-        // TODO: Tweak these values to what feels best in game
         ws.damage = 5;
         ws.staminaCost = 5f;
         ws.cooldownMax = 1f;
@@ -40,7 +42,6 @@ public class AnchorManager : PhysicsObject {
         ws.knockback = new Vector2();
 
         velocity = ws.initVelocity;
-        velocityX = ws.initVelocity.x;
 
         inv.WeaponUsed(ws.cooldownMax, ws.useStunDuration);
     }
@@ -53,5 +54,11 @@ public class AnchorManager : PhysicsObject {
             Destroy(gameObject);
         }    
     }
-   
+
+    protected override void ComputeVelocity()
+    {
+        velocityX = ws.initVelocity.x;
+        base.ComputeVelocity();
+    }
+
 }
