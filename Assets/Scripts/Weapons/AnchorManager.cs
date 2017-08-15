@@ -12,7 +12,7 @@ public class AnchorManager : PhysicsObject {
     public GameObject mack;
     private Inventory inv;
     private WeaponStats ws;
-    private SpriteRenderer sr;
+    //private SpriteRenderer sr;
 
     protected override void Start()
     {
@@ -21,7 +21,7 @@ public class AnchorManager : PhysicsObject {
         mack = GameObject.FindGameObjectWithTag("Player");
         inv = mack.GetComponentInChildren<Inventory>();
         ws = gameObject.GetComponent<WeaponStats>();
-        sr = mack.GetComponent<SpriteRenderer>();
+        //sr = mack.GetComponent<SpriteRenderer>();
 
         // If Mack is facing to the right
         if (!sr.flipX)

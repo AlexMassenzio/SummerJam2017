@@ -132,6 +132,7 @@ MonoBehaviour:
   gravityModifier: 5
   velocityX: 0
   velocity: {x: 0, y: 0}
+  mack: {fileID: 0}
 --- !u!114 &114561430642497750
 MonoBehaviour:
   m_ObjectHideFlags: 1
