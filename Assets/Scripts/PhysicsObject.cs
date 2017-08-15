@@ -124,7 +124,7 @@ public class PhysicsObject : MonoBehaviour {
         float distance = move.magnitude;
 
         // Only check for collision if we are trying to move 
-        if (distance > minMoveDistance && gameObject.tag != "Weapon")
+        if (distance > minMoveDistance && gameObject.tag != "Weapon" && rb2d != null)
         {
             int count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
 
