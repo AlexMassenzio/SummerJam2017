@@ -14,6 +14,8 @@ public class BatNPC : PhysicsObject
     {
         base.Start();
 
+        sr.flipX = true;
+
         initPos = transform.position;
         oscillationFactor = 4;
 
@@ -32,11 +34,6 @@ public class BatNPC : PhysicsObject
         move = Vector2.right * velocityX;
 
         Movement(move, 'x');
-
-        
-
-
-        //Movement(move, 'y');
 
     }
 
