@@ -28,7 +28,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Slime_Walk
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -39,7 +39,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6ab6edef53e8ea34eb8db8e135c64ee7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 692c8d490b752c4468dd53915d44dcef, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
