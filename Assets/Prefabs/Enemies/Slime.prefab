@@ -154,7 +154,7 @@ MonoBehaviour:
   dyingTimeLeft: 0
   deadTimeMax: 0
   deadTimeLeft: 0
-  invincibilityMax: 2
+  invincibilityMax: 0.5
   invincibilityLeft: 0
 --- !u!114 &114865718914436990
 MonoBehaviour:

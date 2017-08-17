@@ -14,8 +14,6 @@ public class BatNPC : PhysicsObject
     {
         base.Start();
 
-        sr.flipX = true;
-
         initPos = transform.position;
         oscillationFactor = 4;
 
@@ -39,7 +37,8 @@ public class BatNPC : PhysicsObject
 
     protected override void ComputeVelocity()
     {
-        velocityX = -0.1f;
+        velocityX = 0;
+        //velocityX = -0.2f;
         posY = Mathf.Sin(Time.time * oscillationFactor);
     }
 
