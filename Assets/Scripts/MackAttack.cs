@@ -20,13 +20,12 @@ public class MackAttack : MonoBehaviour {
     private PlayerManager pm;
     private WeaponStats ws;
 
-    //[SerializeField]
-    public float MACK_ATTACK_DELAY = 0.1f;
-    public float MACK_ATTACK_TIME = 0.65f;
-    public float HARPOON_DELAY = 0.4f;
-    public float HARPOON_TIME = 0.6f;
-    public float BETTER_HARPOON_DELAY = 0.4f;
-    public float BETTER_HARPOON_TIME = 0.6f;
+    private const float MACK_ATTACK_DELAY = 0.4f;
+    private const float MACK_ATTACK_TIME = 0.6f;
+    private const float HARPOON_DELAY = 0.4f;
+    private const float HARPOON_TIME = 0.6f;
+    private const float BETTER_HARPOON_DELAY = 0.4f;
+    private const float BETTER_HARPOON_TIME = 0.6f;
 
     private void Start()
     {
