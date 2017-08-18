@@ -40,29 +40,19 @@ public class CharacterStats : MonoBehaviour
 
     public void Injure(int damage)
     {
-        if (invincibilityLeft <= 0)
-        {
-            Debug.Log(gameObject.name + " took " + damage);
-            health -= damage;
-            Debug.Log("health is now " + health);
-            invincibilityLeft = invincibilityMax;
-        }
+        health -= damage;
+        invincibilityLeft = invincibilityMax;
     }
 
     public void Hitstun(float hitstunDuration)
     {
-        if (invincibilityLeft <= 0)
-        {
-            hitstunLeft = hitstunDuration;
-        }
+        hitstunLeft = hitstunDuration;
     }
     
     public void Knockback(Vector2 knockback)
     {
-        if (invincibilityLeft <= 0)
-        {
-            pc.velocity = knockback;
-        }
+        //SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        pc.velocity = knockback;
     }
     
     public void Update()

@@ -33,12 +33,16 @@ public class BatNPC : PhysicsObject
 
         Movement(move, 'x');
 
+        
+
+
+        //Movement(move, 'y');
+
     }
 
     protected override void ComputeVelocity()
     {
-        velocityX = 0;
-        //velocityX = -0.2f;
+        velocityX = -0.1f;
         posY = Mathf.Sin(Time.time * oscillationFactor);
     }
 

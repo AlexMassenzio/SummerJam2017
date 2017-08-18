@@ -6,7 +6,7 @@ public class DetectTrigger : MonoBehaviour {
 
 	private bool uvulaHit = false;
 
-    private void OnTriggerStay2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         // Object that is doing the hitting   
         if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack")
@@ -18,8 +18,8 @@ public class DetectTrigger : MonoBehaviour {
             {
                 // If MackAttack passed through an enemy
                 case "Enemy":
-                    col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
                     col.gameObject.SendMessage("Injure", ws.damage);
+                    col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
                     break;
 
                 case "Uvula":
@@ -46,9 +46,9 @@ public class DetectTrigger : MonoBehaviour {
                     if (cs.invincibilityLeft <= 0)
                     {
                         // Provide Mack with your damage info and tell him to injure himself
+                        col.gameObject.SendMessage("Injure", ws.damage);
                         col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
                         col.gameObject.SendMessage("Knockback", ws.knockback);
-                        col.gameObject.SendMessage("Injure", ws.damage);
                     }
                     break;
             }
