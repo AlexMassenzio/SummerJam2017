@@ -19,7 +19,7 @@ public class DetectTrigger : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D col)
     {
         // Object that is doing the hitting   
-        if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack")
+        if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack" || gameObject.tag == "BetterHarpoonAttack")
         {
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();
 
