@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour {
     private bool setNewPos;
     public bool changedDirection;
     public bool hasHarpoon;
+    public bool hasBetterHarpoon;
     public bool hit;
 
     private void Awake()
@@ -42,9 +43,15 @@ public class PlayerManager : MonoBehaviour {
     }
 
     // TODO: Figure out how to drop harpoon
-    private void HarpoonGet()
+    public void HarpoonGet()
     {
         hasHarpoon = true;
+    }
+
+    public void BetterHarpoonGet()
+    {
+        hasHarpoon = false;
+        hasBetterHarpoon = true;
     }
 
     // Use this for initialization
@@ -66,6 +73,7 @@ public class PlayerManager : MonoBehaviour {
         setNewPos = false;
         changedDirection = false;
         hasHarpoon = false;
+        hasBetterHarpoon = false;
         hit = false;
 
         upHurtBox = player.GetComponent<CapsuleCollider2D>();
@@ -184,5 +192,6 @@ public class PlayerManager : MonoBehaviour {
         ani.SetBool("dead", dead);
         ani.SetBool("throwing", throwing);
         ani.SetBool("harpoon", hasHarpoon);
+        ani.SetBool("harpoon2", hasBetterHarpoon);
     }
 }
