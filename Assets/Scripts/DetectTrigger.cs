@@ -6,10 +6,20 @@ public class DetectTrigger : MonoBehaviour {
 
 	private bool uvulaHit = false;
 
+    private PlayerManager pm;
+
+    private void Start()
+    {
+        if (gameObject.tag == "Player")
+        {
+            pm = gameObject.GetComponent<PlayerManager>();
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D col)
     {
         // Object that is doing the hitting   
-        if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack")
+        if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack" || gameObject.tag == "BetterHarpoonAttack")
         {
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();
 
@@ -73,8 +83,14 @@ public class DetectTrigger : MonoBehaviour {
                     }
 					else if (col.name == "HarpoonPickup")
                     {
+                        pm.HarpoonGet();
                         EventManager.TriggerEvent("HarpoonGet");
 					}
+                    else if (col.name == "BetterHarpoonPickup")
+                    {
+                        pm.BetterHarpoonGet();
+                        EventManager.TriggerEvent("BetterHarpoonGet");
+                    }
                     Destroy(col.gameObject);
                     break;
             }
