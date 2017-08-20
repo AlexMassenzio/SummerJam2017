@@ -151,10 +151,10 @@ public class PlayerManager : MonoBehaviour {
         }
 
         // Update Mack's position if he needed to be shifted
-        if (setNewPos)
+        /*if (setNewPos)
         {
             player.transform.position = newPos;
-        }
+        }*/
 
         if (cs.hitstunLeft > 0)
         {
