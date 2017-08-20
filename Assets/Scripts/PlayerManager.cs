@@ -129,32 +129,14 @@ public class PlayerManager : MonoBehaviour {
 
         if (pc.crouching)
         {
-            // If we are coming from a standing position, teleport down a little
-            if (upHurtBox.enabled)
-            {
-                newPos = new Vector2(player.transform.position.x, player.transform.position.y - 0.21f);
-                setNewPos = true;
-            }
             upHurtBox.enabled = false;
             crouchHurtBox.enabled = true;
         }
         else
         {
-            // If we are going from crouching to standing, teleport up a little
-            if (crouchHurtBox.enabled)
-            {
-                newPos = new Vector2(player.transform.position.x, player.transform.position.y + 0.21f);
-                setNewPos = true;
-            }
             upHurtBox.enabled = true;
             crouchHurtBox.enabled = false;
         }
-
-        // Update Mack's position if he needed to be shifted
-        /*if (setNewPos)
-        {
-            player.transform.position = newPos;
-        }*/
 
         if (cs.hitstunLeft > 0)
         {
