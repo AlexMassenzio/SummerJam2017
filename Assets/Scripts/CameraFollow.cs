@@ -56,6 +56,7 @@ public class CameraFollow : MonoBehaviour {
 		float rightThreshold = transform.position.x + screenWidth * CAMERA_THRESHOLD;
 		Debug.DrawLine(new Vector3(rightSnap, transform.position.y, 0), new Vector3(rightSnap, transform.position.y + 5, 0), Color.blue);
 		Debug.DrawLine(new Vector3(rightThreshold, transform.position.y, 0), new Vector3(rightThreshold, transform.position.y + 5, 0), Color.blue);
+        
 
 		if (boundTransitioning == null)
 		{
@@ -86,7 +87,9 @@ public class CameraFollow : MonoBehaviour {
 				}
 			}
 		}
+                
 
+        focus.y = player.transform.position.y;
 		focus.z = -20;
 		transform.position = focus;
 	}
