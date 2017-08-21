@@ -25,6 +25,10 @@ public class PlayerController : PhysicsObject {
         cs.crouchSpeed = cs.maxSpeed / 3;
         cs.jumpTakeOffSpeed = 25f;
         cs.stamina = 100;
+        if (gameObject.tag == "Player")
+        {
+            cs.currentSpeed = 10;
+        }
 	}
 
     private void OnEnable()
@@ -65,7 +69,7 @@ public class PlayerController : PhysicsObject {
 	{
         
         Vector2 move = Vector2.zero;
-
+        
         if (cs.hitstunLeft <= 0 && inv.useStunLeft <= 0 || (inv.useStunLeft > 0 && !grounded))
         {
             if (!grounded || !ma.attacking)
@@ -118,7 +122,7 @@ public class PlayerController : PhysicsObject {
                 }
             }
         }
-
+        Debug.Log("currentspeed: " + cs.currentSpeed);
 		velocityX = move.x * cs.currentSpeed;
 	}
 
