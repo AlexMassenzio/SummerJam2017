@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1861561728735490}
+  m_RootGameObject: {fileID: 1667419036360150}
   m_IsPrefabParent: 1
---- !u!1 &1861561728735490
+--- !u!1 &1667419036360150
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4729850689205994}
-  - component: {fileID: 33214310003855732}
-  - component: {fileID: 23413885045774888}
-  - component: {fileID: 61330927390293492}
-  - component: {fileID: 50973227736765364}
+  - component: {fileID: 4236331112334770}
+  - component: {fileID: 33909744888795598}
+  - component: {fileID: 23318819160299654}
+  - component: {fileID: 61325917411049264}
+  - component: {fileID: 50783581706050312}
   m_Layer: 0
   m_Name: BetterHarpoonPickup
-  m_TagString: Untagged
+  m_TagString: WeaponPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4729850689205994
+--- !u!4 &4236331112334770
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861561728735490}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -99.15698, y: 20.018238, z: 0}
+  m_GameObject: {fileID: 1667419036360150}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.937218, y: -1.9594498, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23413885045774888
+--- !u!23 &23318819160299654
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861561728735490}
+  m_GameObject: {fileID: 1667419036360150}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -75,20 +75,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33214310003855732
+--- !u!33 &33909744888795598
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861561728735490}
+  m_GameObject: {fileID: 1667419036360150}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50973227736765364
+--- !u!50 &50783581706050312
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861561728735490}
+  m_GameObject: {fileID: 1667419036360150}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -102,12 +102,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61330927390293492
+--- !u!61 &61325917411049264
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861561728735490}
+  m_GameObject: {fileID: 1667419036360150}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
