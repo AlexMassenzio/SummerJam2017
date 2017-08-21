@@ -63,9 +63,10 @@ public class PlayerController : PhysicsObject {
 
     protected override void ComputeVelocity()
 	{
+        
         Vector2 move = Vector2.zero;
 
-        if (cs.hitstunLeft <= 0 && inv.useStunLeft <= 0)
+        if (cs.hitstunLeft <= 0 && inv.useStunLeft <= 0 || (inv.useStunLeft > 0 && !grounded))
         {
             if (!grounded || !ma.attacking)
             {
@@ -80,8 +81,28 @@ public class PlayerController : PhysicsObject {
             }
             else
             {
-                crouching = false;
-                cs.currentSpeed = cs.maxSpeed;
+                // Code so Mack can't stop crouching if something is above his head
+                GameObject ch = transform.GetChild(0).gameObject;
+                Vector2[] origins = new Vector2[5];
+                RaycastHit2D[] hits = new RaycastHit2D[5];
+                float xBaseOffset = -0.65f;
+                float checkDistance = 0.409f;
+                for (int i = 0; i < 5; i++)
+                {
+                    origins[i] = new Vector2(ch.transform.position.x + xBaseOffset, ch.transform.position.y + 1.19f);
+                    xBaseOffset += 0.325f;
+                    hits[i] = Physics2D.Raycast(origins[i], Vector2.up, checkDistance);
+                    if (hits[i].collider != null)
+                    {
+                        Debug.Log("[" + Time.time + "]: " + i + " hitting head");
+                        break;
+                    }
+                    else if (i == 4)
+                    {
+                        crouching = false;
+                        cs.currentSpeed = cs.maxSpeed;
+                    }
+                }
             }
 
             // Jumping

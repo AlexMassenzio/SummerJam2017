@@ -110,5 +110,13 @@ public class CharacterStats : MonoBehaviour
             cooldownLeft -= Time.deltaTime;
         }
 
+        if (stamina < 100 && gameObject.tag == "Player")
+        {
+            Debug.Log("Replenishing stamina from " + stamina);
+            stamina += 2f/60f;
+            Debug.Log(" to " + stamina);
+        }
+
     }
+
 }
