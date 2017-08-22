@@ -7,11 +7,13 @@ public class CharacterStats : MonoBehaviour
     private PlayerController pc;
 
     public int health;
+	public int maxHealth;
     public float maxSpeed;
     public float currentSpeed;
     public float crouchSpeed;
     public float jumpTakeOffSpeed;
     public float stamina;
+	public float maxStamina;
     public float cooldownLeft;
     public float hitstunLeft;
 
