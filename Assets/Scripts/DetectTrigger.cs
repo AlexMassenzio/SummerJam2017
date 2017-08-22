@@ -91,6 +91,11 @@ public class DetectTrigger : MonoBehaviour {
                         pm.BetterHarpoonGet();
                         EventManager.TriggerEvent("BetterHarpoonGet");
                     }
+                    else if (col.name == "BestHarpoonPickup")
+                    {
+                        pm.BestHarpoonGet();
+                        EventManager.TriggerEvent("BestHarpoonGet");
+                    }
                     Destroy(col.gameObject);
                     break;
             }
