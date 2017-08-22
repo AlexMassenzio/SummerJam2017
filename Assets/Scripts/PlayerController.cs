@@ -25,8 +25,8 @@ public class PlayerController : PhysicsObject
         cs.maxSpeed = 10f;
         cs.crouchSpeed = cs.maxSpeed / 3;
         cs.jumpTakeOffSpeed = 25f;
-        cs.stamina = 100;
-        if (gameObject.tag == "Player")
+        cs.stamina = 100; 
+        if (gameObject.name == "Mack")
         {
             cs.currentSpeed = 10;
         }
@@ -99,7 +99,6 @@ public class PlayerController : PhysicsObject
                     hits[i] = Physics2D.Raycast(origins[i], Vector2.up, checkDistance);
                     if (hits[i].collider != null)
                     {
-                        Debug.Log("[" + Time.time + "]: " + i + " hitting head");
                         break;
                     }
                     else if (i == 4)
@@ -123,7 +122,6 @@ public class PlayerController : PhysicsObject
                 }
             }
         }
-        Debug.Log("currentspeed: " + cs.currentSpeed);
         velocityX = move.x * cs.currentSpeed;
     }
 

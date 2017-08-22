@@ -5,11 +5,12 @@ using UnityEngine;
 public class SlimeNPC : NPC {
 
     private const int SLIME_MAX_HEALTH = 1;
+    private CharacterStats cs;
     private WeaponStats bodyHitbox;
 
 	protected override void Start ()
 	{
-
+        cs = gameObject.GetComponent<CharacterStats>();
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
 
         bodyHitbox.knockback = new Vector2(2f, 5f);
@@ -56,8 +57,15 @@ public class SlimeNPC : NPC {
 
 	protected override void ComputeVelocity()
 	{
-    	// Just move to the left at a constant speed
-    	velocityX = -5f;
+        if (cs.hitstunLeft > 0)
+        {
+            velocityX = 0;
+            velocityY = 0;
+        }
+        else
+        {
+            velocityX = -5f;
+        }
     }
 
 }

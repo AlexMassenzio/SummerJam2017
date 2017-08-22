@@ -38,7 +38,7 @@ public class PhysicsObject : MonoBehaviour {
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
 
-        if (gameObject.tag == "Player")
+        if (gameObject.name == "Mack")
         {
             cs = gameObject.GetComponentInChildren<CharacterStats>();
         }
