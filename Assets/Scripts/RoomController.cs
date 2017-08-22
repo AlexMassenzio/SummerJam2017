@@ -27,7 +27,6 @@ public class RoomController : MonoBehaviour {
 		gs = GameState.Init;
 
 		gui = GameObject.FindGameObjectWithTag("GUI");
-		gui.SetActive(false);
 	}
 
 	void OnEnable()
@@ -49,7 +48,7 @@ public class RoomController : MonoBehaviour {
 			if(firstFrameInState)
 			{
 				Debug.Log("Entered State: Death");
-				gui.SetActive(true);
+				gui.GetComponent<GUIController>().enableDeathGUI();
 			}
 		}
 		else if(gs == GameState.Leave)

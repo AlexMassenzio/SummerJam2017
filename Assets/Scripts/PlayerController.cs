@@ -20,11 +20,13 @@ public class PlayerController : PhysicsObject {
         inv = gameObject.GetComponentInChildren<Inventory>();
         cs = gameObject.GetComponentInChildren<CharacterStats>();
 
-        cs.health = 100;
+		cs.maxHealth = 25;
+        cs.health = cs.maxHealth;
         cs.maxSpeed = 10f;
         cs.crouchSpeed = cs.maxSpeed / 3;
         cs.jumpTakeOffSpeed = 25f;
-        cs.stamina = 100;
+		cs.maxStamina = 100;
+        cs.stamina = cs.maxStamina;
         if (gameObject.tag == "Player")
         {
             cs.currentSpeed = 10;
