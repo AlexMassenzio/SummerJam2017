@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50126258131628360}
   - component: {fileID: 212753649171871298}
   m_Layer: 0
-  m_Name: HarpoonPickup
+  m_Name: FirstHarpoonPickup
   m_TagString: WeaponPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

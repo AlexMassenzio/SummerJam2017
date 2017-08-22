@@ -16,6 +16,7 @@ TagManager:
   - BetterHarpoonAttack
   - RightRoomBounds
   - LeftRoomBounds
+  - BestHarpoonAttack
   layers:
   - Default
   - TransparentFX

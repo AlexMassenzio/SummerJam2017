@@ -47,12 +47,15 @@ public class PlayerManager : MonoBehaviour {
     public void HarpoonGet()
     {
         hasHarpoon = true;
+        hasBetterHarpoon = false;
+        hasBestHarpoon = false;
     }
 
     public void BetterHarpoonGet()
     {
         hasHarpoon = false;
         hasBetterHarpoon = true;
+        hasBestHarpoon = false;
     }
 
     public void BestHarpoonGet()

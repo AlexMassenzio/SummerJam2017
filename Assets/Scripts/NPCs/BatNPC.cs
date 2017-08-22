@@ -6,6 +6,7 @@ public class BatNPC : PhysicsObject
 {
 
     private WeaponStats ws;
+    private CharacterStats cs;
     private Vector2 initPos;
     private float posY;
     public float oscillationFactor;
@@ -16,6 +17,8 @@ public class BatNPC : PhysicsObject
 
         initPos = transform.position;
         oscillationFactor = 4;
+
+        cs = gameObject.GetComponent<CharacterStats>();
 
         ws = gameObject.GetComponent<WeaponStats>();
         ws.damage = 2;
@@ -37,7 +40,16 @@ public class BatNPC : PhysicsObject
 
     protected override void ComputeVelocity()
     {
-        velocityX = -0.2f;
+        if (cs.hitstunLeft > 0)
+        {
+            velocityX = 0;
+            velocityY = 0;
+            velocity = new Vector2();
+        }
+        else
+        {
+            velocityX = -0.2f;
+        }
         posY = Mathf.Sin(Time.time * oscillationFactor);
     }
 

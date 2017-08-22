@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : PhysicsObject {
+public class PlayerController : PhysicsObject
+{
 
     private MackAttack ma;
     private Inventory inv;
 
-	public GameObject anchor;
+    public GameObject anchor;
     public GameObject knife;
-    
+
     public bool crouching = false;
 
     protected override void Start()
@@ -25,53 +26,53 @@ public class PlayerController : PhysicsObject {
         cs.maxSpeed = 10f;
         cs.crouchSpeed = cs.maxSpeed / 3;
         cs.jumpTakeOffSpeed = 25f;
-		cs.maxStamina = 100;
+		    cs.maxStamina = 100;
         cs.stamina = cs.maxStamina;
-        if (gameObject.tag == "Player")
+        if (gameObject.name == "Mack")
         {
             cs.currentSpeed = 10;
         }
-	}
+    }
 
     private void OnEnable()
     {
-        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();	
+        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
     }
 
-	protected override void Update()
-	{
-		base.Update();
-		if (cs.health <= 0)
-		{
-			EventManager.TriggerEvent("MackDeath");
-		}
+    protected override void Update()
+    {
+        base.Update();
+        if (cs.health <= 0)
+        {
+            EventManager.TriggerEvent("MackDeath");
+        }
 
-		// Use Weapon
-		if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0 && cs.stamina > 0)
-		{
-			if (inv.cooldownLeft <= 0)
-			{
-				if (inv.weaponName == "Anchor")
-				{
+        // Use Weapon
+        if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0 && cs.stamina > 0)
+        {
+            if (inv.cooldownLeft <= 0)
+            {
+                if (inv.weaponName == "Anchor")
+                {
                     Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
                     WeaponStats ws = anchor.GetComponent<WeaponStats>();
                     cs.stamina -= ws.staminaCost;
-				}
+                }
                 else if (inv.weaponName == "Knife")
                 {
                     Instantiate(knife, transform.GetChild(0).position, new Quaternion());
                     WeaponStats ws = knife.GetComponent<WeaponStats>();
                     cs.stamina -= ws.staminaCost;
                 }
-			}
-		}
-	}
+            }
+        }
+    }
 
     protected override void ComputeVelocity()
-	{
-        
+    {
+
         Vector2 move = Vector2.zero;
-        
+
         if (cs.hitstunLeft <= 0 && inv.useStunLeft <= 0 || (inv.useStunLeft > 0 && !grounded))
         {
             if (!grounded || !ma.attacking)
@@ -100,7 +101,6 @@ public class PlayerController : PhysicsObject {
                     hits[i] = Physics2D.Raycast(origins[i], Vector2.up, checkDistance);
                     if (hits[i].collider != null)
                     {
-                        Debug.Log("[" + Time.time + "]: " + i + " hitting head");
                         break;
                     }
                     else if (i == 4)
@@ -124,13 +124,12 @@ public class PlayerController : PhysicsObject {
                 }
             }
         }
-        Debug.Log("currentspeed: " + cs.currentSpeed);
-		velocityX = move.x * cs.currentSpeed;
-	}
+        velocityX = move.x * cs.currentSpeed;
+    }
 
-	public bool isGrounded()
-	{
-		return grounded;
-	}
+    public bool isGrounded()
+    {
+        return grounded;
+    }
 
 }
