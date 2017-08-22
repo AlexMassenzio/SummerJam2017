@@ -7,6 +7,7 @@ public class BatNPC : PhysicsObject
 
     private WeaponStats ws;
     private CharacterStats cs;
+    private Animator ani;
     private Vector2 initPos;
     private float posY;
     public float oscillationFactor;
@@ -19,10 +20,29 @@ public class BatNPC : PhysicsObject
         oscillationFactor = 4;
 
         cs = gameObject.GetComponent<CharacterStats>();
-
+        ani = gameObject.GetComponent<Animator>();
         ws = gameObject.GetComponent<WeaponStats>();
         ws.damage = 2;
         ws.hitstunDuration = 0.3334f;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (cs.hitstunLeft > 0)
+        {
+            ani.SetBool("hit", true);
+        }
+        else
+        {
+            ani.SetBool("hit", false);
+        }
+
+        if (cs.health <= 0)
+        {
+            ani.SetBool("dead", true);
+        }
     }
 
     protected override void FixedUpdate()

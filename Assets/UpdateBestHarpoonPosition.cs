@@ -36,7 +36,7 @@ public class UpdateBestHarpoonPosition : MonoBehaviour
             // Facing right
             else
             {
-                xOffset = 0;
+                xOffset = 3.5f;
             }
         }
 
