@@ -43,8 +43,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4966897759242428}
-  - component: {fileID: 114306458777928100}
   - component: {fileID: 114919515974837850}
+  - component: {fileID: 114081379530864376}
   m_Layer: 9
   m_Name: Mack
   m_TagString: Player
@@ -412,6 +412,25 @@ MonoBehaviour:
   cooldownLeft: 0
   useStunDuration: 0
   hitstunDuration: 0
+--- !u!114 &114081379530864376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309356650199490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd45df8b8dab2834b85fb2efc2b71e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minGroundNormalY: 0.65
+  gravityModifier: 5
+  grounded: 0
+  velocityX: 0
+  velocity: {x: 0, y: 0}
+  anchor: {fileID: 1041005656127362, guid: e4dd6c243309f494299b7006cade1d86, type: 2}
+  knife: {fileID: 1213801225613152, guid: 95e62d61647524b41991391d0eed0d6e, type: 2}
+  crouching: 0
 --- !u!114 &114172890369387604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -460,25 +479,6 @@ MonoBehaviour:
   weaponName: 
   cooldownLeft: 0
   useStunLeft: 0
---- !u!114 &114306458777928100
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1309356650199490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0649ec4cd8f574849ad7a921ee59e803, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  gravityModifier: 5
-  grounded: 0
-  velocityX: 0
-  velocity: {x: 0, y: 0}
-  anchor: {fileID: 1041005656127362, guid: e4dd6c243309f494299b7006cade1d86, type: 2}
-  knife: {fileID: 1213801225613152, guid: 95e62d61647524b41991391d0eed0d6e, type: 2}
-  crouching: 0
 --- !u!114 &114445125814342428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -533,6 +533,7 @@ MonoBehaviour:
   changedDirection: 0
   hasHarpoon: 0
   hasBetterHarpoon: 0
+  hasBestHarpoon: 0
   hit: 0
 --- !u!114 &114754563595310546
 MonoBehaviour:
