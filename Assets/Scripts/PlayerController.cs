@@ -1,15 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : PhysicsObject {
+public class PlayerController : PhysicsObject
+{
 
     private MackAttack ma;
     private Inventory inv;
 
-	public GameObject anchor;
+    public GameObject anchor;
     public GameObject knife;
-    
+
     public bool crouching = false;
 
     protected override void Start()
@@ -29,47 +30,47 @@ public class PlayerController : PhysicsObject {
         {
             cs.currentSpeed = 10;
         }
-	}
+    }
 
     private void OnEnable()
     {
-        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();	
+        rb2d = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
     }
 
-	protected override void Update()
-	{
-		base.Update();
-		if (cs.health <= 0)
-		{
-			EventManager.TriggerEvent("MackDeath");
-		}
+    protected override void Update()
+    {
+        base.Update();
+        if (cs.health <= 0)
+        {
+            EventManager.TriggerEvent("MackDeath");
+        }
 
-		// Use Weapon
-		if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0 && cs.stamina > 0)
-		{
-			if (inv.cooldownLeft <= 0)
-			{
-				if (inv.weaponName == "Anchor")
-				{
+        // Use Weapon
+        if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0 && cs.stamina > 0)
+        {
+            if (inv.cooldownLeft <= 0)
+            {
+                if (inv.weaponName == "Anchor")
+                {
                     Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
                     WeaponStats ws = anchor.GetComponent<WeaponStats>();
                     cs.stamina -= ws.staminaCost;
-				}
+                }
                 else if (inv.weaponName == "Knife")
                 {
                     Instantiate(knife, transform.GetChild(0).position, new Quaternion());
                     WeaponStats ws = knife.GetComponent<WeaponStats>();
                     cs.stamina -= ws.staminaCost;
                 }
-			}
-		}
-	}
+            }
+        }
+    }
 
     protected override void ComputeVelocity()
-	{
-        
+    {
+
         Vector2 move = Vector2.zero;
-        
+
         if (cs.hitstunLeft <= 0 && inv.useStunLeft <= 0 || (inv.useStunLeft > 0 && !grounded))
         {
             if (!grounded || !ma.attacking)
@@ -123,12 +124,12 @@ public class PlayerController : PhysicsObject {
             }
         }
         Debug.Log("currentspeed: " + cs.currentSpeed);
-		velocityX = move.x * cs.currentSpeed;
-	}
+        velocityX = move.x * cs.currentSpeed;
+    }
 
-	public bool isGrounded()
-	{
-		return grounded;
-	}
+    public bool isGrounded()
+    {
+        return grounded;
+    }
 
 }
