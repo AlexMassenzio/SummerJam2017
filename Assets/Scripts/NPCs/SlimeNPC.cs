@@ -10,6 +10,7 @@ public class SlimeNPC : NPC {
 
 	protected override void Start ()
 	{
+        sr.flipX = true;
         cs = gameObject.GetComponent<CharacterStats>();
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
 
