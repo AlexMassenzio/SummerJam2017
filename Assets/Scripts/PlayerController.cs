@@ -9,15 +9,27 @@ public class PlayerController : PhysicsObject
     private Inventory inv;
 
     public GameObject anchor;
+    public GameObject character;
     public GameObject knife;
 
     public bool crouching = false;
+
+    private float weaponHorizontalPos;
+
+    private float knifeCrouchingHeight;
+    private float knifeStandingHeight;
+    private float anchorCrouchingHeight;
+    private float anchorStandingHeight;
+
+    private Vector2 knifeSpawnPos;
+    private Vector2 anchorSpawnPos;
 
     protected override void Start()
     {
         base.Start();
 
         ma = gameObject.GetComponent<MackAttack>();
+        character = transform.GetChild(0).gameObject;
         inv = gameObject.GetComponentInChildren<Inventory>();
         cs = gameObject.GetComponentInChildren<CharacterStats>();
 
@@ -25,11 +37,14 @@ public class PlayerController : PhysicsObject
         cs.maxSpeed = 10f;
         cs.crouchSpeed = cs.maxSpeed / 3;
         cs.jumpTakeOffSpeed = 25f;
-        cs.stamina = 100; 
+        cs.stamina = 100;
         if (gameObject.name == "Mack")
         {
             cs.currentSpeed = 10;
         }
+
+        weaponHorizontalPos = 1.5f;
+
     }
 
     private void OnEnable()
@@ -40,6 +55,40 @@ public class PlayerController : PhysicsObject
     protected override void Update()
     {
         base.Update();
+
+        knifeCrouchingHeight = character.transform.position.y + 0.5f;
+        anchorCrouchingHeight = character.transform.position.y + 0.5f;
+        knifeStandingHeight = character.transform.position.y + 0.8f;
+        anchorStandingHeight = character.transform.position.y + 0.8f;
+
+        if (crouching)
+        {
+            // If facing left
+            if (sr.flipX)
+            {
+                knifeSpawnPos = new Vector2(character.transform.position.x - weaponHorizontalPos, knifeCrouchingHeight);
+                anchorSpawnPos = new Vector2(character.transform.position.x - weaponHorizontalPos, anchorCrouchingHeight);
+            }
+            else
+            {
+                knifeSpawnPos = new Vector2(character.transform.position.x + weaponHorizontalPos, knifeCrouchingHeight);
+                anchorSpawnPos = new Vector2(character.transform.position.x + weaponHorizontalPos, anchorCrouchingHeight);
+            }
+        }
+        else
+        {
+            if (sr.flipX)
+            {
+                knifeSpawnPos = new Vector2(character.transform.position.x - weaponHorizontalPos, knifeStandingHeight);
+                anchorSpawnPos = new Vector2(character.transform.position.x - weaponHorizontalPos, anchorStandingHeight);
+            }
+            else
+            {
+                knifeSpawnPos = new Vector2(character.transform.position.x + weaponHorizontalPos, knifeStandingHeight);
+                anchorSpawnPos = new Vector2(character.transform.position.x + weaponHorizontalPos, anchorStandingHeight);
+            }
+        }
+
         if (cs.health <= 0)
         {
             EventManager.TriggerEvent("MackDeath");
@@ -52,13 +101,13 @@ public class PlayerController : PhysicsObject
             {
                 if (inv.weaponName == "Anchor")
                 {
-                    Instantiate(anchor, transform.GetChild(0).position, new Quaternion());
+                    Instantiate(anchor, anchorSpawnPos, new Quaternion());
                     WeaponStats ws = anchor.GetComponent<WeaponStats>();
                     cs.stamina -= ws.staminaCost;
                 }
                 else if (inv.weaponName == "Knife")
                 {
-                    Instantiate(knife, transform.GetChild(0).position, new Quaternion());
+                    Instantiate(knife, knifeSpawnPos, new Quaternion());
                     WeaponStats ws = knife.GetComponent<WeaponStats>();
                     cs.stamina -= ws.staminaCost;
                 }
