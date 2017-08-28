@@ -13,6 +13,9 @@ public class CameraFollow : MonoBehaviour {
 
 	private float screenWidth;
 
+	//Room Bounds
+	private float leftRoomBounds, rightRoomBounds;
+
 	//Camera bounds properties
 	private const float CAMERA_THRESHOLD = 0.15f;
 	private const float CAMERA_SNAP = 0.05f;
@@ -38,6 +41,19 @@ public class CameraFollow : MonoBehaviour {
 
 		focus = player.transform.position;
 
+		try
+		{
+			leftRoomBounds = GameObject.FindGameObjectWithTag("LeftRoomBounds").transform.position.x;
+			rightRoomBounds = GameObject.FindGameObjectWithTag("RightRoomBounds").transform.position.x;
+		}
+		catch (Exception e)
+		{
+			Debug.LogError("Could not find at least one room bounds objects.", this);
+			Debug.LogException(e, this);
+			Debug.Log("CameraFollow is turning off to prevent further issues.", this);
+			enabled = false;
+		}
+
 		screenWidth = Camera.main.orthographicSize * Screen.width / Screen.height;
 
 		currentSnap = SnapBound.Left;
@@ -56,42 +72,45 @@ public class CameraFollow : MonoBehaviour {
 		float rightThreshold = transform.position.x + screenWidth * CAMERA_THRESHOLD;
 		Debug.DrawLine(new Vector3(rightSnap, transform.position.y, 0), new Vector3(rightSnap, transform.position.y + 5, 0), Color.blue);
 		Debug.DrawLine(new Vector3(rightThreshold, transform.position.y, 0), new Vector3(rightThreshold, transform.position.y + 5, 0), Color.blue);
-        
 
-		if (boundTransitioning == null)
+
+
+		if (leftRoomBounds < player.transform.position.x - screenWidth && rightRoomBounds > player.transform.position.x + screenWidth)
 		{
-			if (currentSnap == SnapBound.Left)
+			if (boundTransitioning == null)
 			{
+				if (currentSnap == SnapBound.Left)
+				{
 
-				if (player.transform.position.x > leftSnap)
-				{
-					focus.x = player.transform.position.x + (transform.position.x - leftSnap);
+					if (player.transform.position.x > leftSnap)
+					{
+						focus.x = player.transform.position.x + (transform.position.x - leftSnap);
+					}
+					else if (player.transform.position.x < leftThreshold)
+					{
+						currentSnap = SnapBound.Right;
+						boundTransitioning = StartCoroutine(BoundTransition());
+					}
 				}
-				else if (player.transform.position.x < leftThreshold)
+				else
 				{
-					currentSnap = SnapBound.Right;
-					boundTransitioning = StartCoroutine(BoundTransition());
-				}
-			}
-			else
-			{
 
-				if (player.transform.position.x < rightSnap)
-				{
-					focus.x = player.transform.position.x - (rightSnap - transform.position.x);
-				}
-				else if (player.transform.position.x > rightThreshold)
-				{
-					currentSnap = SnapBound.Left;
-					boundTransitioning = StartCoroutine(BoundTransition());
+					if (player.transform.position.x < rightSnap)
+					{
+						focus.x = player.transform.position.x - (rightSnap - transform.position.x);
+					}
+					else if (player.transform.position.x > rightThreshold)
+					{
+						currentSnap = SnapBound.Left;
+						boundTransitioning = StartCoroutine(BoundTransition());
+					}
 				}
 			}
 		}
-                
 
-        focus.y = player.transform.position.y;
-		focus.z = -20;
-		transform.position = focus;
+			focus.y = player.transform.position.y;
+			focus.z = -20;
+			transform.position = focus;
 	}
 
 	IEnumerator BoundTransition()
