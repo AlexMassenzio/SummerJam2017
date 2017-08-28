@@ -32,12 +32,13 @@ public class KnifeManager : PhysicsObject
             knifeSR.flipX = true;
             ws.initVelocity = new Vector2(-0.5f, 27);
         }
-
+        /*
         ws.damage = 2;
         ws.staminaCost = 10f;
         ws.cooldownMax = 1f;
         ws.hitstunDuration = 0.3334f;
         ws.useStunDuration = 0.3334f;
+        */
         ws.knockback = new Vector2();
 
         velocity = ws.initVelocity;

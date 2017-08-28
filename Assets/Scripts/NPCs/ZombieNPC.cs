@@ -1,37 +1,37 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeNPC : NPC {
+public class ZombieNPC : NPC
+{
 
     private const int SLIME_MAX_HEALTH = 1;
-    //private CharacterStats cs;
+    private CharacterStats css;
     private WeaponStats bodyHitbox;
     private SpriteRenderer sre;
 
-	protected override void Start ()
-	{
+    protected override void Start()
+    {
         sre = gameObject.GetComponent<SpriteRenderer>();
         sre.flipX = true;
-        //cs = gameObject.GetComponent<CharacterStats>();
+        css = gameObject.GetComponent<CharacterStats>();
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
 
         bodyHitbox.knockback = new Vector2(2f, 5f);
         bodyHitbox.damage = 5;
         bodyHitbox.hitstunDuration = 0.5f;
-    
-		health = SLIME_MAX_HEALTH;
-        maxSpeed = 5f;
-		
-		base.Start();
+
+        health = SLIME_MAX_HEALTH;
+
+        base.Start();
 
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
-	}
+    }
 
-	protected override void Update()
-	{
+    protected override void Update()
+    {
         base.Update();
-	}
+    }
 
     protected override void FixedUpdate()
     {
@@ -54,20 +54,20 @@ public class SlimeNPC : NPC {
     }
 
     protected override void Action()
-	{
-	    	
-	}
+    {
 
-	protected override void ComputeVelocity()
-	{
-        if (cs.hitstunLeft > 0)
+    }
+
+    protected override void ComputeVelocity()
+    {
+        if (css.hitstunLeft > 0)
         {
             velocityX = 0;
             velocityY = 0;
         }
         else
         {
-            velocityX = -5f;
+            velocityX = -css.maxSpeed;
         }
     }
 

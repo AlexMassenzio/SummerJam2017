@@ -115,7 +115,7 @@ public class CharacterStats : MonoBehaviour
         if (stamina < 100 && gameObject.tag == "Player")
         {
             Debug.Log("Replenishing stamina from " + stamina);
-            stamina += 2f/60f;
+            stamina += 13.5f/60f;
             Debug.Log(" to " + stamina);
         }
 

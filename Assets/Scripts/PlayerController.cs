@@ -98,17 +98,17 @@ public class PlayerController : PhysicsObject
         }
 
         // Use Weapon
-        if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0 && cs.stamina > 0)
+        if (Input.GetMouseButtonDown(1) && inv.haveWeapon && cs.hitstunLeft <= 0)
         {
             if (inv.cooldownLeft <= 0)
             {
-                if (inv.weaponName == "Anchor")
+                if (inv.weaponName == "Anchor" && cs.stamina >= 30)
                 {
                     Instantiate(anchor, anchorSpawnPos, new Quaternion());
                     WeaponStats ws = anchor.GetComponent<WeaponStats>();
                     cs.stamina -= ws.staminaCost;
                 }
-                else if (inv.weaponName == "Knife")
+                else if (inv.weaponName == "Knife" && cs.stamina >= 20)
                 {
                     Instantiate(knife, knifeSpawnPos, new Quaternion());
                     WeaponStats ws = knife.GetComponent<WeaponStats>();

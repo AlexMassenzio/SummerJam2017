@@ -34,11 +34,12 @@ public class NPC : PhysicsObject {
 	{
 
         base.Start();
-
+        /*
         cs.health = health;
         cs.maxSpeed = maxSpeed;
         cs.crouchSpeed = crouchSpeed;
         cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
+        */
 	}
 	
 	protected override void Update ()
