@@ -6,8 +6,9 @@ public class GateController : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		EventManager.TriggerEvent("EnterGate");
+		if (collision.tag == "Player")
+		{
+			EventManager.TriggerEvent("EnterGate");
+		}
 	}
-
-
 }

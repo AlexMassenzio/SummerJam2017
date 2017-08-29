@@ -8,12 +8,12 @@ public class FirstRoomFlow : MonoBehaviour {
 	DialogueManager dm;
 	private UnityAction uvulaListener;
 
-	//[SerializeField]
 	public GameObject slime;
 	public GameObject harpoonPickup;
 	
+	private enum FirstRoomState { Start, HarpoonGet, UvulaHit, SlimeKilled };
+	private FirstRoomState state = FirstRoomState.Start;
 	private bool harpoonGet = false;
-	private bool slimeKilled = false;
 
 	private void Start()
 	{
@@ -28,6 +28,25 @@ public class FirstRoomFlow : MonoBehaviour {
 
 	void WhaleSpeak()
 	{
+
+		switch(state)
+		{
+			case FirstRoomState.Start:
+				dm.SpeakDialogue(2, 2);
+				state = FirstRoomState.UvulaHit;
+				break;
+			case FirstRoomState.UvulaHit:
+				dm.SpeakDialogue(3, 3);
+				slime.SetActive(true);
+				state = FirstRoomState.HarpoonGet;
+				break;
+			case FirstRoomState.HarpoonGet:
+				dm.SpeakDialogue(4, 5);
+				state = FirstRoomState.SlimeKilled;
+				break;
+		}
+
+		/*
 		if (!harpoonGet && !slimeKilled)
 		{
 			harpoonGet = true;
@@ -38,6 +57,7 @@ public class FirstRoomFlow : MonoBehaviour {
 			slimeKilled = true;
 			dm.SpeakDialogue(4, 5);
 		}
+		*/
 	}
 
 	void OnEnable()
@@ -57,7 +77,12 @@ public class FirstRoomFlow : MonoBehaviour {
 			if (harpoonPickup == null)
 			{
 				WhaleSpeak();
+				harpoonGet = true;
 			}
+		}
+		if(slime == null && state == FirstRoomState.HarpoonGet)
+		{
+			WhaleSpeak();
 		}
 	}
 }
