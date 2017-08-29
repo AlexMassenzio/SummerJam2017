@@ -116,7 +116,7 @@ MonoBehaviour:
   cooldownMax: 1
   cooldownLeft: 0
   useStunDuration: 0.334
-  hitstunDuration: 0
+  hitstunDuration: 0.5
 --- !u!114 &114515276511337976
 MonoBehaviour:
   m_ObjectHideFlags: 1

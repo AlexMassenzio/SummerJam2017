@@ -5,16 +5,16 @@ using UnityEngine;
 public class SlimeNPC : NPC {
 
     private const int SLIME_MAX_HEALTH = 1;
-    //private CharacterStats cs;
     private WeaponStats bodyHitbox;
     private PolygonCollider2D pc;
     private SpriteRenderer sre;
+    private Animator ani;
 
 	protected override void Start ()
 	{
+        ani = gameObject.GetComponent<Animator>();
         sre = gameObject.GetComponent<SpriteRenderer>();
         sre.flipX = true;
-        //cs = gameObject.GetComponent<CharacterStats>();
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
         pc = gameObject.GetComponent<PolygonCollider2D>();
 
@@ -46,13 +46,14 @@ public class SlimeNPC : NPC {
         if (cs.health <= 0)
         {
             pc.enabled = false;
+            sr.flipX = false;
             ani.SetBool("dead", true);
         }
     }
 
     protected override void FixedUpdate()
     {
-        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;           
         velocity.x = velocityX;
 
         grounded = false;
