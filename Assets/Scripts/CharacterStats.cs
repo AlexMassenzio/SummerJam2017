@@ -21,6 +21,8 @@ public class CharacterStats : MonoBehaviour
     public bool dying = false;
     public bool usingWeapon = false;
 
+    public string enemyName;
+
     // Dying animation duration
     public float dyingTimeMax;
     public float dyingTimeLeft = 0f;
@@ -83,6 +85,7 @@ public class CharacterStats : MonoBehaviour
         // Bye Bye
         if (health <= 0)
         {
+            maxSpeed = 0;
             if (!dying && !dead)
             {
                 dying = true;
@@ -115,7 +118,7 @@ public class CharacterStats : MonoBehaviour
         if (stamina < 100 && gameObject.tag == "Player")
         {
             Debug.Log("Replenishing stamina from " + stamina);
-            stamina += 2f/60f;
+            stamina += 13.5f/60f;
             Debug.Log(" to " + stamina);
         }
 

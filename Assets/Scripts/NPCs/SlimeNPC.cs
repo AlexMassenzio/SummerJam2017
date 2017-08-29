@@ -5,13 +5,18 @@ using UnityEngine;
 public class SlimeNPC : NPC {
 
     private const int SLIME_MAX_HEALTH = 1;
-    private CharacterStats cs;
     private WeaponStats bodyHitbox;
+    private PolygonCollider2D pc;
+    private SpriteRenderer sre;
+    private Animator ani;
 
 	protected override void Start ()
 	{
-        cs = gameObject.GetComponent<CharacterStats>();
+        ani = gameObject.GetComponent<Animator>();
+        sre = gameObject.GetComponent<SpriteRenderer>();
+        sre.flipX = true;
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
+        pc = gameObject.GetComponent<PolygonCollider2D>();
 
         bodyHitbox.knockback = new Vector2(2f, 5f);
         bodyHitbox.damage = 5;
@@ -25,14 +30,30 @@ public class SlimeNPC : NPC {
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
 	}
 
-	protected override void Update()
-	{
+    protected override void Update()
+    {
         base.Update();
-	}
+
+        if (cs.hitstunLeft > 0)
+        {
+            ani.SetBool("hit", true);
+        }
+        else
+        {
+            ani.SetBool("hit", false);
+        }
+
+        if (cs.health <= 0)
+        {
+            pc.enabled = false;
+            sr.flipX = false;
+            ani.SetBool("dead", true);
+        }
+    }
 
     protected override void FixedUpdate()
     {
-        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;           
         velocity.x = velocityX;
 
         grounded = false;
@@ -57,7 +78,7 @@ public class SlimeNPC : NPC {
 
 	protected override void ComputeVelocity()
 	{
-        if (cs.hitstunLeft > 0)
+        if (cs.hitstunLeft > 0 || cs.dying || cs.dead)
         {
             velocityX = 0;
             velocityY = 0;

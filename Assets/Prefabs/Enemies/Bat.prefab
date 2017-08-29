@@ -23,10 +23,10 @@ GameObject:
   - component: {fileID: 114124197961977610}
   - component: {fileID: 114311825432052902}
   - component: {fileID: 114469140384176554}
-  - component: {fileID: 50900324188514138}
-  - component: {fileID: 58010186575406726}
   - component: {fileID: 95849765478277764}
   - component: {fileID: 212731817851354336}
+  - component: {fileID: 61413750411888924}
+  - component: {fileID: 50941303843655786}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Enemy
@@ -41,13 +41,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1406501227484912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100.32242, y: 27.87181, z: 0}
+  m_LocalPosition: {x: -82.12, y: 18.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50900324188514138
+--- !u!50 &50941303843655786
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -67,8 +67,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58010186575406726
-CircleCollider2D:
+--- !u!61 &61413750411888924
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -79,9 +79,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.2, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.6, y: 3.6}
+    newSize: {x: 3.6, y: 3.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 3.3, y: 1.28}
+  m_EdgeRadius: 0
 --- !u!95 &95849765478277764
 Animator:
   serializedVersion: 3
@@ -112,9 +122,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 0
+  grounded: 0
   velocityX: 0
   velocity: {x: 0, y: 0}
   oscillationFactor: 0
+  oscillationTimer: 0
 --- !u!114 &114124197961977610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,17 +139,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  maxHealth: 0
   maxSpeed: 50
   currentSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0
   stamina: 0
+  maxStamina: 0
   cooldownLeft: 0
   hitstunLeft: 0
   dead: 0
   dying: 0
   usingWeapon: 0
-  dyingTimeMax: 0
+  enemyName: Bat
+  dyingTimeMax: 0.833
   dyingTimeLeft: 0
   deadTimeMax: 0
   deadTimeLeft: 0

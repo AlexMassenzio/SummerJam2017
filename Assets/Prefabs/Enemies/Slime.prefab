@@ -22,11 +22,11 @@ GameObject:
   - component: {fileID: 114865718914436990}
   - component: {fileID: 114626802122641982}
   - component: {fileID: 212165509019666988}
-  - component: {fileID: 61303683752446752}
   - component: {fileID: 50166906885701112}
   - component: {fileID: 114872124975639424}
   - component: {fileID: 114234488731943236}
   - component: {fileID: 95151613283940310}
+  - component: {fileID: 60061157492855948}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885890389584420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -120, y: 30, z: 0}
+  m_LocalPosition: {x: -111.29458, y: 18.396162, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -67,8 +67,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61303683752446752
-BoxCollider2D:
+--- !u!60 &60061157492855948
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -79,19 +79,31 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.19, y: -0.75}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
+    oldSize: {x: 4.8, y: 4.8}
     newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.33, y: 1.27}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.35, y: -1.48}
+      - {x: 1.25, y: -1.3399999}
+      - {x: 0.91999996, y: -1.15}
+      - {x: 0.45999998, y: -1.01}
+      - {x: -0.45999998, y: -0.58}
+      - {x: -1.4499999, y: -0.58}
+      - {x: -1.7199999, y: -0.85999995}
+      - {x: -1.9699999, y: -1.49}
+      - {x: -1.9699999, y: -1.9799999}
+      - {x: -1.8, y: -2.12}
+      - {x: 1.23, y: -2.12}
+      - {x: 1.37, y: -1.9799999}
+      - {x: 1.37, y: -1.5}
 --- !u!95 &95151613283940310
 Animator:
   serializedVersion: 3
@@ -140,17 +152,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
+  maxHealth: 0
   maxSpeed: 0
   currentSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0
   stamina: 0
+  maxStamina: 0
   cooldownLeft: 0
   hitstunLeft: 0
   dead: 0
   dying: 0
   usingWeapon: 0
-  dyingTimeMax: 0
+  enemyName: Slime
+  dyingTimeMax: 0.833
   dyingTimeLeft: 0
   deadTimeMax: 0
   deadTimeLeft: 0
@@ -169,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 6.33
+  grounded: 0
   velocityX: 0
   velocity: {x: 0, y: 0}
   damage: 0
@@ -222,7 +238,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 42942c3b1689fbd49a89eaac1ca089f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c1b0584eff43ef4bb200a5b2ef8f278, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

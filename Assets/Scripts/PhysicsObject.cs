@@ -118,11 +118,18 @@ public class PhysicsObject : MonoBehaviour {
 
     protected void Movement(Vector2 move, char axis)
     {
+        string charName = "";
+        if (gameObject.GetComponent<CharacterStats>() != null)
+        {
+            charName = gameObject.GetComponent<CharacterStats>().enemyName;
+        }
+        Debug.Log(gameObject.name + " has name of " + charName);
+
         // Distance that object is going to move
         float distance = move.magnitude;
 
         // Only check for collision if we are trying to move 
-        if (distance > minMoveDistance && gameObject.tag != "Weapon" && rb2d != null && gameObject.name != "Bat")
+        if (distance > minMoveDistance && gameObject.tag != "Weapon" && rb2d != null && charName != "Bat")
         {
             int count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
 
