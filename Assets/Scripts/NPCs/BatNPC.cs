@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BatNPC : PhysicsObject
 {
-
+    private BoxCollider2D bodyHitbox;
     private WeaponStats ws;
     private CharacterStats NPCcs;
     private Animator ani;
@@ -17,6 +17,7 @@ public class BatNPC : PhysicsObject
     {
         base.Start();
 
+        bodyHitbox = gameObject.GetComponent<BoxCollider2D>();
         initPos = transform.position;
         oscillationTimer = Time.time;
         oscillationFactor = 4;
@@ -43,6 +44,7 @@ public class BatNPC : PhysicsObject
 
         if (NPCcs.health <= 0)
         {
+            bodyHitbox.enabled = false;
             ani.SetBool("dead", true);
         }
     }
@@ -62,7 +64,7 @@ public class BatNPC : PhysicsObject
 
     protected override void ComputeVelocity()
     {
-        if (NPCcs.hitstunLeft > 0)
+        if (NPCcs.hitstunLeft > 0 || NPCcs.dying || NPCcs.dead)
         {
             velocityX = 0;
             velocityY = 0;

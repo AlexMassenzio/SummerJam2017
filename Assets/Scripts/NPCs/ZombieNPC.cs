@@ -8,10 +8,14 @@ public class ZombieNPC : NPC
     private const int SLIME_MAX_HEALTH = 1;
     private CharacterStats css;
     private WeaponStats bodyHitbox;
+    private CapsuleCollider2D cc;
     private SpriteRenderer sre;
+    private Animator ani;
 
     protected override void Start()
     {
+        cc = gameObject.GetComponent<CapsuleCollider2D>();
+        ani = gameObject.GetComponent<Animator>();
         sre = gameObject.GetComponent<SpriteRenderer>();
         sre.flipX = true;
         css = gameObject.GetComponent<CharacterStats>();
@@ -31,6 +35,21 @@ public class ZombieNPC : NPC
     protected override void Update()
     {
         base.Update();
+
+        if (css.hitstunLeft > 0)
+        {
+            ani.SetBool("hit", true);
+        }
+        else
+        {
+            ani.SetBool("hit", false);
+        }
+
+        if (css.health <= 0)
+        {
+            cc.enabled = false;
+            ani.SetBool("dead", true);
+        }
     }
 
     protected override void FixedUpdate()
@@ -60,7 +79,7 @@ public class ZombieNPC : NPC
 
     protected override void ComputeVelocity()
     {
-        if (css.hitstunLeft > 0)
+        if (css.hitstunLeft > 0 || css.dying || css.dead)
         {
             velocityX = 0;
             velocityY = 0;

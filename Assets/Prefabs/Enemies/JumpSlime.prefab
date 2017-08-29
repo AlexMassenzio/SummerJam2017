@@ -153,16 +153,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 0
   maxSpeed: 0
   currentSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0
   stamina: 0
+  maxStamina: 0
   cooldownLeft: 0
   hitstunLeft: 0
   dead: 0
   dying: 0
   usingWeapon: 0
+  enemyName: Jump Slime
   dyingTimeMax: 0
   dyingTimeLeft: 0
   deadTimeMax: 0

@@ -123,6 +123,7 @@ MonoBehaviour:
   dead: 0
   dying: 0
   usingWeapon: 0
+  enemyName: Zombie
   dyingTimeMax: 0
   dyingTimeLeft: 0
   deadTimeMax: 0

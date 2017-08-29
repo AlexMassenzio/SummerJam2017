@@ -21,6 +21,8 @@ public class CharacterStats : MonoBehaviour
     public bool dying = false;
     public bool usingWeapon = false;
 
+    public string enemyName;
+
     // Dying animation duration
     public float dyingTimeMax;
     public float dyingTimeLeft = 0f;
@@ -83,6 +85,7 @@ public class CharacterStats : MonoBehaviour
         // Bye Bye
         if (health <= 0)
         {
+            maxSpeed = 0;
             if (!dying && !dead)
             {
                 dying = true;

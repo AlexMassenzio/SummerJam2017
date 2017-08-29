@@ -15,6 +15,7 @@ using UnityEngine;
 public class NPC : PhysicsObject {
 
 	protected GameObject target;
+    protected Animator ani;
     
 	public int damage = 0;
 	public int health = 0;
@@ -34,6 +35,9 @@ public class NPC : PhysicsObject {
 	{
 
         base.Start();
+
+        ani = gameObject.GetComponent<Animator>();
+
         /*
         cs.health = health;
         cs.maxSpeed = maxSpeed;
@@ -46,10 +50,14 @@ public class NPC : PhysicsObject {
 	{
 		base.Update();
 
-		if(IsInRange() && actionable)
-		{
-			Action();
-		}
+		if (cs.hitstunLeft > 0)
+        {
+            ani.SetBool("hit", true);
+        }
+        else
+        {
+            ani.SetBool("hit", false);
+        }
 	}
 
 	/// <summary>
