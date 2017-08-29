@@ -41,6 +41,7 @@ public class DetectTrigger : MonoBehaviour {
 						harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-850, 700));
 						harpoon.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(0, 400), new Vector2(harpoonSmackX, harpoonSmackY));
 						uvulaHit = true;
+						EventManager.TriggerEvent("harpoonGetEvent");
 					}
 					break;
             }
