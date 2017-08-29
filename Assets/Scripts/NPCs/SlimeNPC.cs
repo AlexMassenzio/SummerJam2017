@@ -5,13 +5,18 @@ using UnityEngine;
 public class SlimeNPC : NPC {
 
     private const int SLIME_MAX_HEALTH = 1;
-    private CharacterStats cs;
+    //private CharacterStats cs;
     private WeaponStats bodyHitbox;
+    private PolygonCollider2D pc;
+    private SpriteRenderer sre;
 
 	protected override void Start ()
 	{
-        cs = gameObject.GetComponent<CharacterStats>();
+        sre = gameObject.GetComponent<SpriteRenderer>();
+        sre.flipX = true;
+        //cs = gameObject.GetComponent<CharacterStats>();
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
+        pc = gameObject.GetComponent<PolygonCollider2D>();
 
         bodyHitbox.knockback = new Vector2(2f, 5f);
         bodyHitbox.damage = 5;
@@ -25,10 +30,25 @@ public class SlimeNPC : NPC {
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
 	}
 
-	protected override void Update()
-	{
+    protected override void Update()
+    {
         base.Update();
-	}
+
+        if (cs.hitstunLeft > 0)
+        {
+            ani.SetBool("hit", true);
+        }
+        else
+        {
+            ani.SetBool("hit", false);
+        }
+
+        if (cs.health <= 0)
+        {
+            pc.enabled = false;
+            ani.SetBool("dead", true);
+        }
+    }
 
     protected override void FixedUpdate()
     {
@@ -57,7 +77,7 @@ public class SlimeNPC : NPC {
 
 	protected override void ComputeVelocity()
 	{
-        if (cs.hitstunLeft > 0)
+        if (cs.hitstunLeft > 0 || cs.dying || cs.dead)
         {
             velocityX = 0;
             velocityY = 0;

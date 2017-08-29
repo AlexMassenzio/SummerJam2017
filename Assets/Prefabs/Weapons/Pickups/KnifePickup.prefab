@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4779023834885674}
-  - component: {fileID: 58961577155107778}
   - component: {fileID: 212565564645667792}
+  - component: {fileID: 60514432255840466}
   m_Layer: 0
   m_Name: KnifePickup
   m_TagString: WeaponPickup
@@ -35,14 +35,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1100831741627530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -120.1, y: 20.5, z: 0}
+  m_LocalPosition: {x: -114.79, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58961577155107778
-CircleCollider2D:
+--- !u!60 &60514432255840466
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,8 +54,24 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.2, y: 0.3}
+    newSize: {x: 1.2, y: 0.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.59999996, y: 0.14999999}
+      - {x: -0.59999996, y: 0.03}
+      - {x: -0.32999998, y: -0.14999999}
+      - {x: 0.14999999, y: -0.14999999}
+      - {x: 0.41, y: -0.089999996}
+      - {x: 0.59999996, y: 0.03}
+      - {x: 0.59999996, y: 0.14999999}
 --- !u!212 &212565564645667792
 SpriteRenderer:
   m_ObjectHideFlags: 1

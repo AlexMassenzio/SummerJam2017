@@ -9,7 +9,7 @@ public class JumpSlimeNPC : NPC
     private CapsuleCollider2D cap;
     private CircleCollider2D circ;
 
-    private CharacterStats cs;
+    //private CharacterStats cs;
 
     private const int SLIME_MAX_HEALTH = 1;
     private WeaponStats bodyHitbox;
@@ -28,7 +28,7 @@ public class JumpSlimeNPC : NPC
         cap = gameObject.GetComponent<CapsuleCollider2D>();
         circ = gameObject.GetComponent<CircleCollider2D>();
 
-        cs = gameObject.GetComponent<CharacterStats>();
+        //cs = gameObject.GetComponent<CharacterStats>();
         ani = gameObject.GetComponent<Animator>();
 
         jumpWaitStart = Time.time;
@@ -142,7 +142,7 @@ public class JumpSlimeNPC : NPC
     protected override void ComputeVelocity()
     {
         // Just move to the left at a constant speed
-        if (cs.hitstunLeft > 0)
+        if (cs.hitstunLeft > 0 || cs.dying || cs.dead)
         {
             velocityX = 0;
         }

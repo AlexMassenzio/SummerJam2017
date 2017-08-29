@@ -4,25 +4,49 @@ using UnityEngine;
 
 public class BatNPC : PhysicsObject
 {
-
+    private BoxCollider2D bodyHitbox;
     private WeaponStats ws;
-    private CharacterStats cs;
+    private CharacterStats NPCcs;
+    private Animator ani;
     private Vector2 initPos;
     private float posY;
     public float oscillationFactor;
+    public float oscillationTimer;
 
     protected override void Start()
     {
         base.Start();
 
+        bodyHitbox = gameObject.GetComponent<BoxCollider2D>();
         initPos = transform.position;
+        oscillationTimer = Time.time;
         oscillationFactor = 4;
 
-        cs = gameObject.GetComponent<CharacterStats>();
-
+        NPCcs = gameObject.GetComponent<CharacterStats>();
+        ani = gameObject.GetComponent<Animator>();
         ws = gameObject.GetComponent<WeaponStats>();
         ws.damage = 2;
         ws.hitstunDuration = 0.3334f;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (NPCcs.hitstunLeft > 0)
+        {
+            ani.SetBool("hit", true);
+        }
+        else
+        {
+            ani.SetBool("hit", false);
+        }
+
+        if (NPCcs.health <= 0)
+        {
+            bodyHitbox.enabled = false;
+            ani.SetBool("dead", true);
+        }
     }
 
     protected override void FixedUpdate()
@@ -40,7 +64,7 @@ public class BatNPC : PhysicsObject
 
     protected override void ComputeVelocity()
     {
-        if (cs.hitstunLeft > 0)
+        if (NPCcs.hitstunLeft > 0 || NPCcs.dying || NPCcs.dead)
         {
             velocityX = 0;
             velocityY = 0;
@@ -48,9 +72,11 @@ public class BatNPC : PhysicsObject
         }
         else
         {
-            velocityX = -0.2f;
+            velocityX = -0.15f;
+            posY = Mathf.Sin(oscillationTimer * oscillationFactor);
+            oscillationTimer += Time.deltaTime;
         }
-        posY = Mathf.Sin(Time.time * oscillationFactor);
+        
     }
 
 }

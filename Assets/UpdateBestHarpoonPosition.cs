@@ -20,7 +20,7 @@ public class UpdateBestHarpoonPosition : MonoBehaviour
         mack = character.transform.parent.gameObject;
 
         newPosition = transform.position;
-        xOffset = -3.9f;
+        xOffset = 0;
         yOffset = Y_STANDING_OFFSET;
     }
 
