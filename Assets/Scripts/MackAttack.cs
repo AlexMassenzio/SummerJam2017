@@ -31,17 +31,16 @@ public class MackAttack : MonoBehaviour {
 
     private void Start()
     {
+
+        // Default to having the hitbox disabled
+        attackTrigger = transform.GetChild(1).GetComponent<CapsuleCollider2D>();
+        attackTrigger.enabled = false;
+
         pm = gameObject.GetComponentInChildren<PlayerManager>();
         ws = gameObject.GetComponentInChildren<WeaponStats>();
 
         ws.damage = this.damage;
         ws.hitstunDuration = this.hitstunDuration;
-    }
-
-    private void Awake()
-    {
-        // Default to having the hitbox disabled
-        attackTrigger.enabled = false;
     }
 
     private void Update()
@@ -67,7 +66,7 @@ public class MackAttack : MonoBehaviour {
         // If we only have Mack Attack
         else
         {
-            attackTrigger = transform.GetChild(1).GetComponent<BoxCollider2D>();
+            attackTrigger = transform.GetChild(1).GetComponent<CapsuleCollider2D>();
             attackDelayMax = MACK_ATTACK_DELAY;
             attackTimeMax = MACK_ATTACK_TIME;
         }

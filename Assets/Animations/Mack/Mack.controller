@@ -3123,7 +3123,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MackAttack Crouching
-  m_Speed: 2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101801687724931152}
@@ -3137,7 +3137,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: 9e15aa649534d244e9459b5384603b33, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -123,7 +123,6 @@ public class PhysicsObject : MonoBehaviour {
         {
             charName = gameObject.GetComponent<CharacterStats>().enemyName;
         }
-        Debug.Log(gameObject.name + " has name of " + charName);
 
         // Distance that object is going to move
         float distance = move.magnitude;
