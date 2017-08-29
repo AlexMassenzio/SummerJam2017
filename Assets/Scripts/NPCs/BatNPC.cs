@@ -7,8 +7,8 @@ public class BatNPC : PhysicsObject
     private BoxCollider2D bodyHitbox;
     private WeaponStats ws;
     private CharacterStats NPCcs;
-    private Animator ani;
     private Vector2 initPos;
+    private Animator ani;
     private float posY;
     public float oscillationFactor;
     public float oscillationTimer;
@@ -17,13 +17,13 @@ public class BatNPC : PhysicsObject
     {
         base.Start();
 
+        ani = gameObject.GetComponent<Animator>();
         bodyHitbox = gameObject.GetComponent<BoxCollider2D>();
         initPos = transform.position;
         oscillationTimer = Time.time;
         oscillationFactor = 4;
 
         NPCcs = gameObject.GetComponent<CharacterStats>();
-        ani = gameObject.GetComponent<Animator>();
         ws = gameObject.GetComponent<WeaponStats>();
         ws.damage = 2;
         ws.hitstunDuration = 0.3334f;

@@ -14,8 +14,8 @@ public class ZombieNPC : NPC
 
     protected override void Start()
     {
-        cc = gameObject.GetComponent<CapsuleCollider2D>();
         ani = gameObject.GetComponent<Animator>();
+        cc = gameObject.GetComponent<CapsuleCollider2D>();
         sre = gameObject.GetComponent<SpriteRenderer>();
         sre.flipX = true;
         css = gameObject.GetComponent<CharacterStats>();
