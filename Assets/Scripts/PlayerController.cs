@@ -59,10 +59,10 @@ public class PlayerController : PhysicsObject
     {
         base.Update();
 
-        knifeCrouchingHeight = character.transform.position.y + 0.5f;
-        anchorCrouchingHeight = character.transform.position.y + 0.5f;
-        knifeStandingHeight = character.transform.position.y + 0.8f;
-        anchorStandingHeight = character.transform.position.y + 0.8f;
+        knifeCrouchingHeight = character.transform.position.y + 0.0f;
+        anchorCrouchingHeight = character.transform.position.y + 0.0f;
+        knifeStandingHeight = character.transform.position.y + 0.5f;
+        anchorStandingHeight = character.transform.position.y + 0.5f;
 
         if (crouching)
         {
