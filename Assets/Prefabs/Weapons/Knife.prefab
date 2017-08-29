@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114243707716184014}
   - component: {fileID: 50150423175057906}
   - component: {fileID: 114642216303240806}
-  - component: {fileID: 95417590090946856}
   - component: {fileID: 58579451349780704}
   - component: {fileID: 212749143763940060}
   m_Layer: 0
@@ -81,23 +80,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!95 &95417590090946856
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1213801225613152}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114243707716184014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,8 +94,8 @@ MonoBehaviour:
   initVelocity: {x: 0, y: 0}
   knockback: {x: 0, y: 0}
   damage: 2
-  staminaCost: 10
-  cooldownMax: 1
+  staminaCost: 20
+  cooldownMax: 0.75
   cooldownLeft: 0
   useStunDuration: 0.334
   hitstunDuration: 0.334
@@ -130,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 5
+  grounded: 0
   velocityX: 0
   velocity: {x: 0, y: 0}
 --- !u!114 &114642216303240806

@@ -20,12 +20,14 @@ public class MackAttack : MonoBehaviour {
     private PlayerManager pm;
     private WeaponStats ws;
 
-    private const float MACK_ATTACK_DELAY = 0.4f;
-    private const float MACK_ATTACK_TIME = 0.6f;
-    private const float HARPOON_DELAY = 0.4f;
-    private const float HARPOON_TIME = 0.6f;
-    private const float BETTER_HARPOON_DELAY = 0.4f;
-    private const float BETTER_HARPOON_TIME = 0.6f;
+    private const float MACK_ATTACK_DELAY = 0.3f;
+    private const float MACK_ATTACK_TIME = 0.5f;
+    private const float HARPOON_DELAY = 0.3f;
+    private const float HARPOON_TIME = 0.425f;
+    private const float BETTER_HARPOON_DELAY = 0.325f;
+    private const float BETTER_HARPOON_TIME = 0.425f;
+    private const float BEST_HARPOON_DELAY = 0.25f;
+    private const float BEST_HARPOON_TIME = 0.4f;
 
     private void Start()
     {
@@ -56,7 +58,13 @@ public class MackAttack : MonoBehaviour {
             attackDelayMax = BETTER_HARPOON_DELAY;
             attackTimeMax = BETTER_HARPOON_TIME;
         }
-        // We only have Mack Attack
+        else if (pm.hasBestHarpoon)
+        {
+            attackTrigger = transform.GetChild(4).GetComponent<BoxCollider2D>();
+            attackDelayMax = BEST_HARPOON_DELAY;
+            attackTimeMax = BEST_HARPOON_TIME;
+        }
+        // If we only have Mack Attack
         else
         {
             attackTrigger = transform.GetChild(1).GetComponent<BoxCollider2D>();

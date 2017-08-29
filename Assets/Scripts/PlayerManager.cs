@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour {
     public bool changedDirection;
     public bool hasHarpoon;
     public bool hasBetterHarpoon;
+    public bool hasBestHarpoon;
     public bool hit;
 
     private void Awake()
@@ -46,12 +47,22 @@ public class PlayerManager : MonoBehaviour {
     public void HarpoonGet()
     {
         hasHarpoon = true;
+        hasBetterHarpoon = false;
+        hasBestHarpoon = false;
     }
 
     public void BetterHarpoonGet()
     {
         hasHarpoon = false;
         hasBetterHarpoon = true;
+        hasBestHarpoon = false;
+    }
+
+    public void BestHarpoonGet()
+    {
+        hasHarpoon = false;
+        hasBetterHarpoon = false;
+        hasBestHarpoon = true;
     }
 
     // Use this for initialization
@@ -74,6 +85,7 @@ public class PlayerManager : MonoBehaviour {
         changedDirection = false;
         hasHarpoon = false;
         hasBetterHarpoon = false;
+        hasBestHarpoon = false;
         hit = false;
 
         upHurtBox = player.GetComponent<CapsuleCollider2D>();
@@ -129,32 +141,14 @@ public class PlayerManager : MonoBehaviour {
 
         if (pc.crouching)
         {
-            // If we are coming from a standing position, teleport down a little
-            if (upHurtBox.enabled)
-            {
-                newPos = new Vector2(player.transform.position.x, player.transform.position.y - 0.21f);
-                setNewPos = true;
-            }
             upHurtBox.enabled = false;
             crouchHurtBox.enabled = true;
         }
         else
         {
-            // If we are going from crouching to standing, teleport up a little
-            if (crouchHurtBox.enabled)
-            {
-                newPos = new Vector2(player.transform.position.x, player.transform.position.y + 0.21f);
-                setNewPos = true;
-            }
             upHurtBox.enabled = true;
             crouchHurtBox.enabled = false;
         }
-
-        // Update Mack's position if he needed to be shifted
-        /*if (setNewPos)
-        {
-            player.transform.position = newPos;
-        }*/
 
         if (cs.hitstunLeft > 0)
         {
@@ -193,5 +187,6 @@ public class PlayerManager : MonoBehaviour {
         ani.SetBool("throwing", throwing);
         ani.SetBool("harpoon", hasHarpoon);
         ani.SetBool("harpoon2", hasBetterHarpoon);
+        ani.SetBool("harpoon3", hasBestHarpoon);
     }
 }

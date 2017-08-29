@@ -19,7 +19,7 @@ public class DetectTrigger : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D col)
     {
         // Object that is doing the hitting   
-        if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack" || gameObject.tag == "BetterHarpoonAttack")
+        if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack" || gameObject.tag == "BetterHarpoonAttack" || gameObject.tag == "BestHarpoonAttack")
         {
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();
 
@@ -41,6 +41,7 @@ public class DetectTrigger : MonoBehaviour {
 						harpoon.GetComponent<Rigidbody2D>().AddForce(new Vector2(-850, 700));
 						harpoon.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(0, 400), new Vector2(harpoonSmackX, harpoonSmackY));
 						uvulaHit = true;
+						EventManager.TriggerEvent("harpoonGetEvent");
 					}
 					break;
             }
@@ -90,6 +91,11 @@ public class DetectTrigger : MonoBehaviour {
                     {
                         pm.BetterHarpoonGet();
                         EventManager.TriggerEvent("BetterHarpoonGet");
+                    }
+                    else if (col.name == "BestHarpoonPickup")
+                    {
+                        pm.BestHarpoonGet();
+                        EventManager.TriggerEvent("BestHarpoonGet");
                     }
                     Destroy(col.gameObject);
                     break;

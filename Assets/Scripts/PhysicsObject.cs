@@ -7,7 +7,7 @@ public class PhysicsObject : MonoBehaviour {
     public float minGroundNormalY = 0.65f;
     public float gravityModifier = 5f;
 
-    protected bool grounded;
+    public bool grounded;
     protected Vector2 groundNormal;
 	public float velocityX;
 	public float velocityY
@@ -38,7 +38,7 @@ public class PhysicsObject : MonoBehaviour {
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
 
-        if (gameObject.tag == "Player")
+        if (gameObject.name == "Mack")
         {
             cs = gameObject.GetComponentInChildren<CharacterStats>();
         }
@@ -118,11 +118,18 @@ public class PhysicsObject : MonoBehaviour {
 
     protected void Movement(Vector2 move, char axis)
     {
+        string charName = "";
+        if (gameObject.GetComponent<CharacterStats>() != null)
+        {
+            charName = gameObject.GetComponent<CharacterStats>().enemyName;
+        }
+        Debug.Log(gameObject.name + " has name of " + charName);
+
         // Distance that object is going to move
         float distance = move.magnitude;
 
         // Only check for collision if we are trying to move 
-        if (distance > minMoveDistance && gameObject.tag != "Weapon" && rb2d != null && gameObject.name != "Bat")
+        if (distance > minMoveDistance && gameObject.tag != "Weapon" && rb2d != null && charName != "Bat")
         {
             int count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
 

@@ -7,17 +7,21 @@ public class CharacterStats : MonoBehaviour
     private PlayerController pc;
 
     public int health;
+	public int maxHealth;
     public float maxSpeed;
     public float currentSpeed;
     public float crouchSpeed;
     public float jumpTakeOffSpeed;
     public float stamina;
+	public float maxStamina;
     public float cooldownLeft;
     public float hitstunLeft;
 
     public bool dead = false;
     public bool dying = false;
     public bool usingWeapon = false;
+
+    public string enemyName;
 
     // Dying animation duration
     public float dyingTimeMax;
@@ -81,6 +85,7 @@ public class CharacterStats : MonoBehaviour
         // Bye Bye
         if (health <= 0)
         {
+            maxSpeed = 0;
             if (!dying && !dead)
             {
                 dying = true;
@@ -110,5 +115,13 @@ public class CharacterStats : MonoBehaviour
             cooldownLeft -= Time.deltaTime;
         }
 
+        if (stamina < 100 && gameObject.tag == "Player")
+        {
+            Debug.Log("Replenishing stamina from " + stamina);
+            stamina += 13.5f/60f;
+            Debug.Log(" to " + stamina);
+        }
+
     }
+
 }

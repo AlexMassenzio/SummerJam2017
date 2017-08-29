@@ -8,6 +8,7 @@ public class RoomController : MonoBehaviour {
 
 	private UnityAction deathListener;
 	private UnityAction leaveListener;
+	private UnityAction loadLevelListener;
 
 	private bool firstFrameInState;
 
@@ -24,22 +25,24 @@ public class RoomController : MonoBehaviour {
 	void Awake () {
 		deathListener = new UnityAction(Death);
 		leaveListener = new UnityAction(Leave);
+		loadLevelListener = new UnityAction(LoadNextLevel);
 		gs = GameState.Init;
 
 		gui = GameObject.FindGameObjectWithTag("GUI");
-		gui.SetActive(false);
 	}
 
 	void OnEnable()
 	{
 		EventManager.StartListening("MackDeath", deathListener);
 		EventManager.StartListening("EnterGate", leaveListener);
+		EventManager.StartListening("LoadNextLevel", loadLevelListener);
 	}
 
 	void OnDisable()
 	{
 		EventManager.StopListening("MackDeath", deathListener);
 		EventManager.StopListening("EnterGate", leaveListener);
+		EventManager.StopListening("LoadNextLevel", loadLevelListener);
 	}
 
 	// Update is called once per frame
@@ -49,15 +52,15 @@ public class RoomController : MonoBehaviour {
 			if(firstFrameInState)
 			{
 				Debug.Log("Entered State: Death");
-				gui.SetActive(true);
+				gui.GetComponent<GUIController>().enableDeathGUI();
 			}
 		}
 		else if(gs == GameState.Leave)
 		{
-			if(firstFrameInState)
+			if (firstFrameInState)
 			{
 				Debug.Log("Entered State: Leave");
-				//TODO: Add level switch info here
+				EventManager.TriggerEvent("FadeToBlack");
 			}
 		}
 
@@ -89,6 +92,11 @@ public class RoomController : MonoBehaviour {
 	public void Respawn()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	private void LoadNextLevel()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 	#endregion
 }
