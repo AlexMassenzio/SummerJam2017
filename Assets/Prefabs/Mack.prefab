@@ -100,11 +100,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4696953672452386}
-  - component: {fileID: 61766901886124236}
   - component: {fileID: 50220506646203330}
   - component: {fileID: 114754563595310546}
   - component: {fileID: 114172890369387604}
   - component: {fileID: 114040863927501450}
+  - component: {fileID: 70307814382705512}
   m_Layer: 9
   m_Name: MackAttack
   m_TagString: MackAttack
@@ -415,31 +415,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.18, y: 1}
   m_EdgeRadius: 0
---- !u!61 &61766901886124236
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1853260744417768}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!70 &70173092842886134
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -454,6 +429,21 @@ CapsuleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.1}
   m_Size: {x: 1.4, y: 3.3}
+  m_Direction: 0
+--- !u!70 &70307814382705512
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853260744417768}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.26, y: 0}
+  m_Size: {x: 1, y: 1}
   m_Direction: 0
 --- !u!95 &95076247276496966
 Animator:
@@ -497,7 +487,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1309356650199490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd45df8b8dab2834b85fb2efc2b71e3c, type: 3}
   m_Name: 
@@ -508,6 +498,7 @@ MonoBehaviour:
   velocityX: 0
   velocity: {x: 0, y: 0}
   anchor: {fileID: 1041005656127362, guid: e4dd6c243309f494299b7006cade1d86, type: 2}
+  character: {fileID: 0}
   knife: {fileID: 1213801225613152, guid: 95e62d61647524b41991391d0eed0d6e, type: 2}
   crouching: 0
 --- !u!114 &114098487592569592
@@ -599,17 +590,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a75e6ffe8b2fd24497fd9e7ee85a742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxSpeed: 0
+  health: 25
+  maxHealth: 25
+  maxSpeed: 10
   currentSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0
   stamina: 0
+  maxStamina: 0
   cooldownLeft: 0
   hitstunLeft: 0
   dead: 0
   dying: 0
   usingWeapon: 0
+  enemyName: 
   dyingTimeMax: 0
   dyingTimeLeft: 0
   deadTimeMax: 0
@@ -756,7 +750,7 @@ MonoBehaviour:
   attackDelayLeft: 0
   attackTimeMax: 0
   attackTimeLeft: 0
-  attackTrigger: {fileID: 61766901886124236}
+  attackTrigger: {fileID: 0}
 --- !u!114 &114995489346989750
 MonoBehaviour:
   m_ObjectHideFlags: 1
