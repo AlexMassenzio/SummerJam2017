@@ -58,6 +58,7 @@ public class DetectTrigger : MonoBehaviour {
                     {
                         // Provide Mack with your damage info and tell him to injure himself
                         col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
+                        Debug.Log("knockback: " + ws.knockback);
                         col.gameObject.SendMessage("Knockback", ws.knockback);
                         col.gameObject.SendMessage("Injure", ws.damage);
                     }

@@ -28,7 +28,10 @@ public class PhysicsObject : MonoBehaviour {
 
     private void OnEnable()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        if (gameObject.name != "Eye")
+        {
+            rb2d = GetComponent<Rigidbody2D>();
+        }
     }
     
     protected virtual void Start ()
@@ -128,7 +131,7 @@ public class PhysicsObject : MonoBehaviour {
         float distance = move.magnitude;
 
         // Only check for collision if we are trying to move 
-        if (distance > minMoveDistance && gameObject.tag != "Weapon" && rb2d != null && charName != "Bat")
+        if (distance > minMoveDistance && gameObject.tag != "Weapon" && rb2d != null && (charName != "Bat" || charName != "Eye"))
         {
             int count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
 
