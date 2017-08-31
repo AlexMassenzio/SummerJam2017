@@ -15,7 +15,7 @@ public class DrawACircle : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 
         timeCounter += Time.deltaTime * speed;
 
@@ -24,5 +24,5 @@ public class DrawACircle : MonoBehaviour {
         
         Debug.DrawLine(transform.position, new Vector2(x, y));
 
-    }
+    }*/
 }

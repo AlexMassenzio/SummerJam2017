@@ -54,53 +54,47 @@ public class EyeNPC : NPC
         switch (state)
         {
             case movementState.leftLine:
-                Debug.Log("In state leftLine");
                 targetVec = new Vector2(leftVertex.x, leftVertex.y + 5f);
                 transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y + 0.1f);
                 if (transform.position.y >= leftVertex.y + 5)
                 {
+                    timeCounter -= Time.deltaTime * eyeSpeed;
                     state = movementState.leftCircle;
-                    x = 0;
-                    y = 0;
                 }
                 break;
            
             case movementState.leftCircle:
-                Debug.Log("In state leftCircle");
-                transform.position = new Vector2(x, y);
                 x = (Mathf.Cos(timeCounter) * radius) + leftVertex.x;
                 y = (Mathf.Sin(timeCounter) * radius) + leftVertex.y;
-                
-                if (transform.position.y <= leftVertex.y && transform.position.x >= leftVertex.x)
+                transform.position = new Vector2(x, y);
+                if (Mathf.Abs(transform.position.x - leftVertex.x) < 0.1f 
+                    && Mathf.Abs(transform.position.y - leftVertex.y + 5) < 0.1f)
                 {
                     state = movementState.rightLine;
                 }
                 break;
 
             case movementState.rightLine:
-                Debug.Log("In state rightLine");
                 transform.position = new Vector2(transform.position.x + (0.05f * eyeSpeed), transform.position.y + (0.05f * eyeSpeed));
                 if (transform.position.y >= rightVertex.y + 5)
                 {
-                    x = Mathf.PI;
-                    y = Mathf.PI / 2;
+                    timeCounter -= Time.deltaTime * eyeSpeed;
                     state = movementState.rightCircle;
                 }
                 break;
                 
             case movementState.rightCircle:
-                Debug.Log("In state rightCircle");
-                transform.position = new Vector2(x, y);
-                x = (Mathf.Cos(-timeCounter) * radius) + rightVertex.x;
+                x = (-Mathf.Cos(timeCounter) * radius) + rightVertex.x;
                 y = (Mathf.Sin(timeCounter) * radius) + rightVertex.y;
-                
-                if (transform.position.y <= rightVertex.y - 4.85f)
+                transform.position = new Vector2(x, y);
+                if (Mathf.Abs(transform.position.x - rightVertex.x) < 0.1f
+                    && Mathf.Abs(transform.position.y - rightVertex.y + 5) < 0.1f)
                 {
-                    state = movementState.rightLine;
+                    state = movementState.leftLine;
                 }
                 break;
         }
-        Debug.DrawLine(transform.position, targetVec);
+        //Debug.DrawLine(transform.position, targetVec);
         /*
         if (cs.hitstunLeft > 0)
         {
