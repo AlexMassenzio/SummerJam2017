@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033232637151978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -109.07, y: 25.52, z: 0}
+  m_LocalPosition: {x: -111.95, y: 23.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a75e6ffe8b2fd24497fd9e7ee85a742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 200
+  maxHealth: 200
   maxSpeed: 0
   currentSpeed: 0
   crouchSpeed: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   dead: 0
   dying: 0
   usingWeapon: 0
-  enemyName: 
+  enemyName: Eye
   dyingTimeMax: 0
   dyingTimeLeft: 0
   deadTimeMax: 0
@@ -164,9 +164,15 @@ MonoBehaviour:
   hitstunDuration: 2
   actionable: 0
   state: 0
-  leftCircleX: 0.05
-  rightCircleX: 0.05
+  currentPhase: 0
+  x: 0
+  y: 0
+  eyeSpeed: 2
+  radius: 5
   startPos: {x: 0, y: 0}
+  leftVertex: {x: 0, y: 0}
+  rightVertex: {x: 0, y: 0}
+  targetVec: {x: 0, y: 0}
 --- !u!212 &212478850481215944
 SpriteRenderer:
   m_ObjectHideFlags: 1
