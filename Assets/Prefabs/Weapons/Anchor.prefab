@@ -112,7 +112,7 @@ MonoBehaviour:
   initVelocity: {x: 0, y: 0}
   knockback: {x: 0, y: 0}
   damage: 5
-  staminaCost: 30
+  staminaCost: 60
   cooldownMax: 1
   cooldownLeft: 0
   useStunDuration: 0.334

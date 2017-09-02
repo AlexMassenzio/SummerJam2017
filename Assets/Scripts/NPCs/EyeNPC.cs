@@ -6,7 +6,9 @@ public class EyeNPC : NPC
 {
 
     public enum movementState { leftLine, leftCircle, rightLine, rightCircle };
+    public enum Phase { firstPhase, secondPhase, finalPhase };
     public movementState state = movementState.leftLine;
+    public Phase currentPhase = Phase.firstPhase;
     public float x, y;
     public float eyeSpeed = 2f;
     public float radius = 5f;
@@ -18,7 +20,7 @@ public class EyeNPC : NPC
     private WeaponStats bodyHitbox;
     private PolygonCollider2D pc;
     private SpriteRenderer sre;
-    private Animator ani;
+    private Animator anim;
 
     protected override void Start()
     {
@@ -27,7 +29,7 @@ public class EyeNPC : NPC
         leftVertex = new Vector2(startPos.x - 5f, startPos.y);
         rightVertex = new Vector2(startPos.x + 5f, startPos.y);
 
-        ani = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
         sre = gameObject.GetComponent<SpriteRenderer>();
         sre.flipX = true;
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
@@ -51,6 +53,19 @@ public class EyeNPC : NPC
 
         timeCounter += Time.deltaTime * eyeSpeed;
 
+        if (currentPhase == Phase.firstPhase)
+        {
+            eyeSpeed = 2f;
+        }
+        else if (currentPhase == Phase.secondPhase)
+        {
+            eyeSpeed = 2.5f;
+        }
+        else
+        {
+            eyeSpeed = 3f;
+        }
+
         switch (state)
         {
             case movementState.leftLine:
@@ -58,7 +73,7 @@ public class EyeNPC : NPC
                 transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y + 0.1f);
                 if (transform.position.y >= leftVertex.y + 5)
                 {
-                    timeCounter -= Time.deltaTime * eyeSpeed;
+                    timeCounter = (Mathf.PI / 2) - (Time.deltaTime * eyeSpeed);
                     state = movementState.leftCircle;
                 }
                 break;
@@ -94,23 +109,47 @@ public class EyeNPC : NPC
                 }
                 break;
         }
-        //Debug.DrawLine(transform.position, targetVec);
-        /*
+      
+        switch (currentPhase)
+        {
+            case Phase.firstPhase:
+                Debug.Log("In first phase");
+                if (cs.health <= 150)
+                {
+                    //anim.SetBool("secondPhase", true);
+                    currentPhase = Phase.secondPhase;
+                }
+                break;
+
+            case Phase.secondPhase:
+                Debug.Log("In second phase");
+                if (cs.health <= 75)
+                {
+                    //anim.SetBool("thirdPhase", true);
+                    currentPhase = Phase.finalPhase;
+                }
+                break;
+
+            case Phase.finalPhase:
+                Debug.Log("In third phase");
+                break;
+        }
+
         if (cs.hitstunLeft > 0)
         {
-            ani.SetBool("hit", true);
+            anim.SetBool("hit", true);
         }
         else
         {
-            ani.SetBool("hit", false);
+            anim.SetBool("hit", false);
         }
 
         if (cs.health <= 0)
         {
             pc.enabled = false;
             sr.flipX = false;
-            ani.SetBool("dead", true);
-        }*/
+            anim.SetBool("dead", true);
+        }
     }
 
     protected override void FixedUpdate()
