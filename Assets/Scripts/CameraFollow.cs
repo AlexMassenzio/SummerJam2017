@@ -65,13 +65,13 @@ public class CameraFollow : MonoBehaviour {
 
 		float leftSnap = transform.position.x - screenWidth * CAMERA_SNAP;
 		float leftThreshold = transform.position.x - screenWidth * CAMERA_THRESHOLD;
-		Debug.DrawLine(new Vector3(leftSnap, transform.position.y, 0), new Vector3(leftSnap, transform.position.y + 5, 0), Color.blue);
-		Debug.DrawLine(new Vector3(leftThreshold, transform.position.y, 0), new Vector3(leftThreshold, transform.position.y + 5, 0), Color.blue);
+		//Debug.DrawLine(new Vector3(leftSnap, transform.position.y, 0), new Vector3(leftSnap, transform.position.y + 5, 0), Color.blue);
+		//Debug.DrawLine(new Vector3(leftThreshold, transform.position.y, 0), new Vector3(leftThreshold, transform.position.y + 5, 0), Color.blue);
 
 		float rightSnap = transform.position.x + screenWidth * CAMERA_SNAP;
 		float rightThreshold = transform.position.x + screenWidth * CAMERA_THRESHOLD;
-		Debug.DrawLine(new Vector3(rightSnap, transform.position.y, 0), new Vector3(rightSnap, transform.position.y + 5, 0), Color.blue);
-		Debug.DrawLine(new Vector3(rightThreshold, transform.position.y, 0), new Vector3(rightThreshold, transform.position.y + 5, 0), Color.blue);
+		//Debug.DrawLine(new Vector3(rightSnap, transform.position.y, 0), new Vector3(rightSnap, transform.position.y + 5, 0), Color.blue);
+		//Debug.DrawLine(new Vector3(rightThreshold, transform.position.y, 0), new Vector3(rightThreshold, transform.position.y + 5, 0), Color.blue);
 
 
 

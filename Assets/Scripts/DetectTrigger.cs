@@ -46,7 +46,7 @@ public class DetectTrigger : MonoBehaviour {
 					break;
             }
         }
-        else if (gameObject.tag == "Enemy")
+        else if (gameObject.tag == "Enemy" || gameObject.tag == "EyeProjectile")
         {
             // Check what type of object we collided with
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();

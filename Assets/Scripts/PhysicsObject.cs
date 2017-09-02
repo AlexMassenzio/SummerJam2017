@@ -91,7 +91,7 @@ public class PhysicsObject : MonoBehaviour {
         Vector2 move;
 
         // If we are actionable Mack
-        if (gameObject.tag == "Weapon" || cs.hitstunLeft <= 0)
+        if (gameObject.tag == "Weapon" || gameObject.tag == "EyeProjectile" || cs.hitstunLeft <= 0)
         {
             move = moveAlongGround * deltaPosition.x;
         }
@@ -107,7 +107,7 @@ public class PhysicsObject : MonoBehaviour {
 
         Movement(move, 'x');
 
-        if (gameObject.name == "Knife(Clone)")
+        if (gameObject.name == "Knife(Clone)" || gameObject.tag == "EyeProjectile")
         {
             move = new Vector2();
         }
@@ -131,7 +131,7 @@ public class PhysicsObject : MonoBehaviour {
         float distance = move.magnitude;
 
         // Only check for collision if we are trying to move 
-        if (distance > minMoveDistance && gameObject.tag != "Weapon" && rb2d != null && (charName != "Bat" || charName != "Eye"))
+        if (distance > minMoveDistance && gameObject.tag != "Weapon" && gameObject.tag != "EyeProjectile" && rb2d != null && (charName != "Bat" || charName != "Eye"))
         {
             int count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
 
@@ -173,7 +173,10 @@ public class PhysicsObject : MonoBehaviour {
             }
         }
 
-        rb2d.position += move.normalized * distance;
+        if (gameObject.name != "Eye")
+        {
+            rb2d.position += move.normalized * distance;
+        }
         
     }
 }

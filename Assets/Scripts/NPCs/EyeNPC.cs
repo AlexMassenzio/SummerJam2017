@@ -12,7 +12,8 @@ public class EyeNPC : NPC
     public float x, y;
     public float eyeSpeed = 2f;
     public float radius = 5f;
-    private float timeCounter;
+    private float timeCounter, projectileTimer, projectileThreshold;
+    public GameObject projectile;
 
     public Vector2 startPos, leftVertex, rightVertex, targetVec;
 
@@ -25,6 +26,7 @@ public class EyeNPC : NPC
     protected override void Start()
     {
         timeCounter = 0;
+        projectileTimer = 0;
         startPos = transform.position;
         leftVertex = new Vector2(startPos.x - 5f, startPos.y);
         rightVertex = new Vector2(startPos.x + 5f, startPos.y);
@@ -51,6 +53,8 @@ public class EyeNPC : NPC
     {
         base.Update();
 
+        projectileTimer += Time.deltaTime;
+        projectileThreshold = Random.value * 5f * 60;
         timeCounter += Time.deltaTime * eyeSpeed;
 
         if (currentPhase == Phase.firstPhase)
@@ -59,18 +63,24 @@ public class EyeNPC : NPC
         }
         else if (currentPhase == Phase.secondPhase)
         {
-            eyeSpeed = 2.5f;
+            eyeSpeed = 3f;
+            // 0.2% chance to shoot projectile each frame
+            if (projectileTimer > projectileThreshold)
+            {
+                projectileTimer = 0;
+                Instantiate(projectile, transform.position, new Quaternion());
+            }
         }
         else
         {
-            eyeSpeed = 3f;
+            eyeSpeed = 5f;
         }
 
         switch (state)
         {
             case movementState.leftLine:
                 targetVec = new Vector2(leftVertex.x, leftVertex.y + 5f);
-                transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y + 0.1f);
+                transform.position = new Vector2(transform.position.x - (0.05f * eyeSpeed), transform.position.y + (0.05f * eyeSpeed));
                 if (transform.position.y >= leftVertex.y + 5)
                 {
                     timeCounter = (Mathf.PI / 2) - (Time.deltaTime * eyeSpeed);
@@ -113,7 +123,7 @@ public class EyeNPC : NPC
         switch (currentPhase)
         {
             case Phase.firstPhase:
-                Debug.Log("In first phase");
+                //Debug.Log("In first phase");
                 if (cs.health <= 150)
                 {
                     //anim.SetBool("secondPhase", true);
@@ -122,7 +132,7 @@ public class EyeNPC : NPC
                 break;
 
             case Phase.secondPhase:
-                Debug.Log("In second phase");
+                //Debug.Log("In second phase");
                 if (cs.health <= 75)
                 {
                     //anim.SetBool("thirdPhase", true);
@@ -131,11 +141,11 @@ public class EyeNPC : NPC
                 break;
 
             case Phase.finalPhase:
-                Debug.Log("In third phase");
+                //Debug.Log("In third phase");
                 break;
         }
 
-        if (cs.hitstunLeft > 0)
+        if (cs.invincibilityLeft > 0)
         {
             anim.SetBool("hit", true);
         }
