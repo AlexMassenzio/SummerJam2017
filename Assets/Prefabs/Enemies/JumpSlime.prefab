@@ -100,7 +100,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
+    oldSize: {x: 4.8, y: 4.8}
     newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -184,8 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initVelocity: {x: 0, y: 0}
-  knockback: {x: 0, y: 0}
-  damage: 0
+  knockback: {x: 15, y: 15}
+  damage: 5
   staminaCost: 0
   cooldownMax: 0
   cooldownLeft: 0

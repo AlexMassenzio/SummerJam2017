@@ -44,9 +44,13 @@ public class DetectTrigger : MonoBehaviour {
 						EventManager.TriggerEvent("harpoonGetEvent");
 					}
 					break;
+
+                case "EyeProjectile":
+                    Destroy(col.gameObject);
+                    break;
             }
         }
-        else if (gameObject.tag == "Enemy")
+        else if (gameObject.tag == "Enemy" || gameObject.tag == "EyeProjectile")
         {
             // Check what type of object we collided with
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();
@@ -58,6 +62,7 @@ public class DetectTrigger : MonoBehaviour {
                     {
                         // Provide Mack with your damage info and tell him to injure himself
                         col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
+                        Debug.Log("knockback: " + ws.knockback);
                         col.gameObject.SendMessage("Knockback", ws.knockback);
                         col.gameObject.SendMessage("Injure", ws.damage);
                     }

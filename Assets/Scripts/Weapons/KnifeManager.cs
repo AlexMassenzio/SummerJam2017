@@ -6,6 +6,7 @@ public class KnifeManager : PhysicsObject
 {
 
     private GameObject mack;
+    private GameObject character;
     private Inventory inv;
     private WeaponStats ws;
     private SpriteRenderer sre;
@@ -45,6 +46,15 @@ public class KnifeManager : PhysicsObject
         if (inv != null)
         {
             inv.WeaponUsed(ws.cooldownMax, ws.useStunDuration);
+        }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (Vector2.Distance(mack.transform.position, gameObject.transform.position) > 100)
+        {
+            Destroy(gameObject);
         }
     }
 

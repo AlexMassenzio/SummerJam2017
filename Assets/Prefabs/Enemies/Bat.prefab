@@ -181,13 +181,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initVelocity: {x: 0, y: 0}
-  knockback: {x: 0, y: 0}
-  damage: 0
+  knockback: {x: 15, y: 15}
+  damage: 2
   staminaCost: 0
   cooldownMax: 0
   cooldownLeft: 0
   useStunDuration: 0
-  hitstunDuration: 0
+  hitstunDuration: 0.3334
 --- !u!212 &212731817851354336
 SpriteRenderer:
   m_ObjectHideFlags: 1

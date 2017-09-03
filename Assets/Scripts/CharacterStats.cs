@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
     private PlayerController pc;
+    private EyeNPC eye;
 
     public int health;
 	public int maxHealth;
@@ -39,6 +40,10 @@ public class CharacterStats : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             pc = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
+        }
+        if (gameObject.name == "Eye")
+        {
+            eye = gameObject.GetComponent<EyeNPC>();
         }
     }
 
@@ -83,7 +88,8 @@ public class CharacterStats : MonoBehaviour
         }
 
         // Bye Bye
-        if (health <= 0)
+        if (gameObject.name != "Eye" && health <= 0
+            || gameObject.name == "Eye" && eye.state == EyeNPC.movementState.stop && health <= 0)
         {
             maxSpeed = 0;
             if (!dying && !dead)

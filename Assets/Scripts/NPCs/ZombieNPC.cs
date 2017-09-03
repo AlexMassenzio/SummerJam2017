@@ -48,6 +48,9 @@ public class ZombieNPC : NPC
         if (css.health <= 0)
         {
             cc.enabled = false;
+            velocity = new Vector2();
+            velocityX = 0;
+            velocityY = 0;
             ani.SetBool("dead", true);
         }
     }
