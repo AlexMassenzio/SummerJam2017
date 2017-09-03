@@ -129,7 +129,6 @@ public class PhysicsObject : MonoBehaviour {
 
         // Distance that object is going to move
         float distance = move.magnitude;
-        Debug.Log(charName);
         // Only check for collision if we are trying to move 
         if (distance > minMoveDistance && rb2d != null && charName != "Bat" && charName != "Eye")
         {
@@ -177,7 +176,15 @@ public class PhysicsObject : MonoBehaviour {
         {
             if (cs.enemyName != "Eye")
             {
-                rb2d.position += move.normalized * distance;
+                if (sr.flipX || axis == 'y')
+                {
+                    rb2d.position += move.normalized * distance;
+                }
+                else if (!sr.flipX && axis == 'x')
+                {
+                    rb2d.position -= move.normalized * distance;
+                }
+                
             }
         }
         else

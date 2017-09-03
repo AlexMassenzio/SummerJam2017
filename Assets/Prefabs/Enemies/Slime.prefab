@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114872124975639424}
   - component: {fileID: 114234488731943236}
   - component: {fileID: 95151613283940310}
-  - component: {fileID: 60061157492855948}
+  - component: {fileID: 61647393856331380}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885890389584420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -111.29458, y: 18.396162, z: 0}
+  m_LocalPosition: {x: -126.43, y: 18.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -67,8 +67,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &60061157492855948
-PolygonCollider2D:
+--- !u!61 &61647393856331380
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,34 +76,22 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06, y: -1.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.55, y: 0.5}
     oldSize: {x: 4.8, y: 4.8}
     newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.35, y: -1.48}
-      - {x: 1.25, y: -1.3399999}
-      - {x: 0.91999996, y: -1.15}
-      - {x: 0.45999998, y: -1.01}
-      - {x: -0.45999998, y: -0.58}
-      - {x: -1.4499999, y: -0.58}
-      - {x: -1.7199999, y: -0.85999995}
-      - {x: -1.9699999, y: -1.49}
-      - {x: -1.9699999, y: -1.9799999}
-      - {x: -1.8, y: -2.12}
-      - {x: 1.23, y: -2.12}
-      - {x: 1.37, y: -1.9799999}
-      - {x: 1.37, y: -1.5}
+  serializedVersion: 2
+  m_Size: {x: 3.14, y: 1.6}
+  m_EdgeRadius: 0
 --- !u!95 &95151613283940310
 Animator:
   serializedVersion: 3
