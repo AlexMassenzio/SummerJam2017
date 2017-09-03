@@ -44,6 +44,10 @@ public class DetectTrigger : MonoBehaviour {
 						EventManager.TriggerEvent("harpoonGetEvent");
 					}
 					break;
+
+                case "EyeProjectile":
+                    Destroy(col.gameObject);
+                    break;
             }
         }
         else if (gameObject.tag == "Enemy" || gameObject.tag == "EyeProjectile")
