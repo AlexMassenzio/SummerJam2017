@@ -32,6 +32,7 @@ public class PlayerManager : MonoBehaviour {
     public bool hasBetterHarpoon;
     public bool hasBestHarpoon;
     public bool hit;
+    public float alphaTimer;
 
     private void Awake()
     {
@@ -110,6 +111,22 @@ public class PlayerManager : MonoBehaviour {
 		bool moving = false;
         setNewPos = false;
         changedDirection = false;
+
+        if (cs.invincibilityLeft > 0 && !hit)
+        {
+            Color tmp = sr.color;
+            alphaTimer += 0.35f;
+            tmp.a = Mathf.Sin(alphaTimer);
+            Debug.Log(Mathf.Sin(alphaTimer));
+            sr.color = tmp;
+        }
+        else
+        {
+            Color tmp = sr.color;
+            tmp.a = 1;
+            sr.color = tmp;
+            alphaTimer = 0;
+        }
 
         if (!ma.attacking && cs.hitstunLeft <= 0 && inv.useStunLeft <= 0)
         {

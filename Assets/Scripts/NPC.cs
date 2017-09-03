@@ -38,18 +38,12 @@ public class NPC : PhysicsObject {
 
         ani = gameObject.GetComponent<Animator>();
 
-        /*
-        cs.health = health;
-        cs.maxSpeed = maxSpeed;
-        cs.crouchSpeed = crouchSpeed;
-        cs.jumpTakeOffSpeed = jumpTakeOffSpeed;
-        */
 	}
 	
 	protected override void Update ()
 	{
 		base.Update();
-
+        /*
 		if (cs.hitstunLeft > 0)
         {
             ani.SetBool("hit", true);
@@ -57,7 +51,7 @@ public class NPC : PhysicsObject {
         else
         {
             ani.SetBool("hit", false);
-        }
+        }*/
 	}
 
 	/// <summary>

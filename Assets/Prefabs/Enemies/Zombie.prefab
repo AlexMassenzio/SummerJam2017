@@ -124,7 +124,7 @@ MonoBehaviour:
   dying: 0
   usingWeapon: 0
   enemyName: Zombie
-  dyingTimeMax: 0
+  dyingTimeMax: 1
   dyingTimeLeft: 0
   deadTimeMax: 0
   deadTimeLeft: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initVelocity: {x: 0, y: 0}
-  knockback: {x: 0, y: 0}
+  knockback: {x: 15, y: 15}
   damage: 1
   staminaCost: 0
   cooldownMax: 0

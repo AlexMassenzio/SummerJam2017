@@ -17,6 +17,7 @@ TagManager:
   - RightRoomBounds
   - LeftRoomBounds
   - BestHarpoonAttack
+  - EyeProjectile
   layers:
   - Default
   - TransparentFX
