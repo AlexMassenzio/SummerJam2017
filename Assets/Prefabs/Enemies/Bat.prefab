@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 95849765478277764}
   - component: {fileID: 212731817851354336}
   - component: {fileID: 61413750411888924}
-  - component: {fileID: 50941303843655786}
+  - component: {fileID: 50598886784381526}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Enemy
@@ -47,7 +47,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50941303843655786
+--- !u!50 &50598886784381526
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1

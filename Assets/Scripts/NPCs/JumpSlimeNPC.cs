@@ -10,7 +10,7 @@ public class JumpSlimeNPC : NPC
     private CircleCollider2D circ;
 
     private const int SLIME_MAX_HEALTH = 1;
-    private Animator ani;
+    private Animator anim;
     private WeaponStats bodyHitbox;
     private float jumpWaitStart;
     public float secondsToJump = 3f;
@@ -28,7 +28,7 @@ public class JumpSlimeNPC : NPC
 
         jumpWaitStart = Time.time;
 
-        ani = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
 
         bodyHitbox.knockback = new Vector2(2f, 5f);
@@ -36,7 +36,7 @@ public class JumpSlimeNPC : NPC
         bodyHitbox.hitstunDuration = 0.5f;
 
         health = SLIME_MAX_HEALTH;
-        maxSpeed = 5f;
+        maxSpeed = 2f;
 
         base.Start();
 
@@ -45,6 +45,52 @@ public class JumpSlimeNPC : NPC
 
     protected override void Update()
     {
+
+        // Basic AI that will reverse direction if running into a wall
+
+        Vector2[] origins = new Vector2[4];
+        RaycastHit2D[] hits = new RaycastHit2D[4];
+        float xBaseOffset = 1.8f;
+        float yBaseOffset = -0.5f;
+        float checkDistance = 0.1f;
+        Vector2 checkDirection = Vector2.right;
+
+        // If we're facing left
+        if (sr.flipX)
+        {
+            xBaseOffset = -xBaseOffset;
+            checkDirection = Vector2.left;
+        }
+
+        if (grounded)
+        {
+            yBaseOffset = -0.5f;
+        }
+        else
+        {
+            yBaseOffset = 1f;
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            origins[i] = new Vector2(transform.position.x + xBaseOffset, transform.position.y + yBaseOffset);
+            yBaseOffset -= 0.5f;
+            hits[i] = Physics2D.Raycast(origins[i], checkDirection, checkDistance);
+            Debug.DrawLine(origins[i], new Vector2(origins[i].x + checkDistance, origins[i].y));
+            if (hits[i].collider != null && hits[i].collider.gameObject.tag == "Wall")
+            {
+                Debug.Log("Detected wall");
+                sr.flipX = !sr.flipX;
+                cs.maxSpeed *= -1;
+                break;
+            }
+            // If none of the triggers hit anything
+            else if (i == 5)
+            {
+                Debug.Log("Not hitting anything");
+            }
+        }
+
         base.Update();
     }
 
@@ -58,22 +104,22 @@ public class JumpSlimeNPC : NPC
             if (grounded)
             {
                 velocity = new Vector2(velocity.x, Vector2.up.y * 20);
-                ani.SetBool("jump", true);
+                anim.SetBool("jump", true);
                 jumpWaitStart = Time.time;
             }
         }
         else
         {
-            ani.SetBool("jump", false);
+            anim.SetBool("jump", false);
         }
 
-        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Slime Walk"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Slime Walk"))
         {
             box.enabled = true;
             cap.enabled = false;
             circ.enabled = false;
         }
-        else if (ani.GetCurrentAnimatorStateInfo(0).IsName("Slime Jump"))
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Slime Jump"))
         {
             box.enabled = false;
             cap.enabled = true;
@@ -84,6 +130,15 @@ public class JumpSlimeNPC : NPC
             box.enabled = false;
             cap.enabled = false;
             circ.enabled = true;
+        }
+
+        if (sr.flipX)
+        {
+            cap.transform.position = new Vector2(transform.position.x - 0.3f, transform.position.y);
+        }
+        else
+        {
+            cap.transform.position = new Vector2(transform.position.x + 0.3f, transform.position.y);
         }
 
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
@@ -110,7 +165,7 @@ public class JumpSlimeNPC : NPC
             if (circ.enabled)
             {
                 Debug.Log("Landing from air");
-                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 1.2f);
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 2f);
                 setNewPos = true;
             }
             else if (cap.enabled)
@@ -127,7 +182,7 @@ public class JumpSlimeNPC : NPC
             setNewPos = false;
         }
 
-        ani.SetBool("grounded", grounded);
+        anim.SetBool("grounded", grounded);
     }
 
     protected override void Action()
@@ -144,7 +199,7 @@ public class JumpSlimeNPC : NPC
         }
         else
         {
-            velocityX = -5f;
+            velocityX = -0f;
         }
     }
 

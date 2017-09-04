@@ -18,6 +18,7 @@ TagManager:
   - LeftRoomBounds
   - BestHarpoonAttack
   - EyeProjectile
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - MackLayer
   - Background
   - Foreground
-  - WallDebug
+  - Platforms & Walls
   - 
   - 
   - 
