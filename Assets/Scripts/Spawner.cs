@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour {
 	public GameObject spawnee;
 
 	public enum SpawnMode {Timed, OutOfRange};
+    public enum Direction { left, right };
+    public Direction pointEnemies;
 	public SpawnMode mode;
 
 	public float respawnTime; //Set respawnTime to 0 for 1 spawn per time the player enters view
@@ -49,14 +51,18 @@ public class Spawner : MonoBehaviour {
 	{
 		if (respawnTime == 0)
 		{
-			Instantiate(spawnee, transform.position, transform.rotation);
-			while(true) { yield return null; } //Wait to be killed
+			GameObject newEnemy = Instantiate(spawnee, transform.position, transform.rotation);
+            newEnemy.GetComponent<CharacterStats>().startingDir = (CharacterStats.Direction)pointEnemies;
+            Debug.Log("Set enemy's starting dir to " + newEnemy.GetComponent<CharacterStats>().startingDir);
+            while (true) { yield return null; } //Wait to be killed
 		}
 		else
 		{
 			while (true)
 			{
-				Instantiate(spawnee, transform.position, transform.rotation);
+				GameObject newEnemy = Instantiate(spawnee, transform.position, transform.rotation);
+                newEnemy.GetComponent<CharacterStats>().startingDir = (CharacterStats.Direction)pointEnemies;
+                Debug.Log("Set enemy's starting dir to " + newEnemy.GetComponent<CharacterStats>().startingDir);
 				yield return new WaitForSeconds(respawnTime);
 			}
 		}

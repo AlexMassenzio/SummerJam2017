@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ZombieNPC : NPC
 {
-    public enum Direction { left, right }
-    public Direction startingDir;
     private const int SLIME_MAX_HEALTH = 1;
     private CharacterStats css;
     private WeaponStats bodyHitbox;
@@ -16,7 +14,7 @@ public class ZombieNPC : NPC
 
     protected override void Start()
     {
-        character = GameObject.FindGameObjectWithTag("Character");
+        character = GameObject.FindGameObjectWithTag("Player");
         anim = gameObject.GetComponent<Animator>();
         cc = gameObject.GetComponent<CapsuleCollider2D>();
         sre = gameObject.GetComponent<SpriteRenderer>();
@@ -33,12 +31,6 @@ public class ZombieNPC : NPC
         base.Start();
 
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
-
-        if (startingDir == Direction.right)
-        {
-            cs.maxSpeed *= -1;
-            sr.flipX = !sr.flipX;
-        }
 
     }
 
@@ -66,18 +58,11 @@ public class ZombieNPC : NPC
             origins[i] = new Vector2(transform.position.x + xBaseOffset, transform.position.y + yBaseOffset);
             yBaseOffset -= 0.5f;
             hits[i] = Physics2D.Raycast(origins[i], checkDirection, checkDistance);
-            Debug.DrawLine(origins[i], new Vector2(origins[i].x + checkDistance, origins[i].y));
             if (hits[i].collider != null && hits[i].collider.gameObject.tag == "Wall" && css.health > 0)
             {
-                Debug.Log("Detected wall");
                 sr.flipX = !sr.flipX;
                 css.maxSpeed *= -1;
                 break;
-            }
-            // If none of the triggers hit anything
-            else if (i == 5)
-            {
-                Debug.Log("Not hitting anything");
             }
         }
 

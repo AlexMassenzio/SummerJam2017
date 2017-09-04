@@ -4360,7 +4360,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000189598546384, guid: 4eef73d9761e5354a831c92fd823704d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -99.330956
+      value: -123.29
       objectReference: {fileID: 0}
     - target: {fileID: 4000189598546384, guid: 4eef73d9761e5354a831c92fd823704d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4388,6 +4388,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000189598546384, guid: 4eef73d9761e5354a831c92fd823704d, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114343359588923152, guid: 4eef73d9761e5354a831c92fd823704d,
+        type: 2}
+      propertyPath: pointEnemies
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
