@@ -56,7 +56,7 @@ PolygonCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -759,6 +759,7 @@ MonoBehaviour:
   attackTimer: 0
   attackThreshold: 0
   projectile: {fileID: 1668741587059082, guid: a33499772406a5544bd1f91810797ca3, type: 2}
+  pathDir: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
   leftVertex: {x: 0, y: 0}
   rightVertex: {x: 0, y: 0}

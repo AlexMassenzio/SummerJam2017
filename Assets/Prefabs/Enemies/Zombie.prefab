@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   maxHealth: 0
-  maxSpeed: 1
+  maxSpeed: 3
   currentSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0
