@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour {
 
     public static void PlaySound (string clip)
     {
-        switch (clip)
+        /*switch (clip)
         {
             case "mackAttackSound":
                 audioSrc.PlayOneShot(mackAttackSound);
@@ -57,7 +57,7 @@ public class SoundManager : MonoBehaviour {
             case "zombieDeathSound":
                 audioSrc.PlayOneShot(zombieDeathSound);
                 break;
-        }
+        }*/
     }
 
 }
