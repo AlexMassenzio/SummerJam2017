@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BatNPC : PhysicsObject
 {
+
+    public enum Direction { left, right }
+    public Direction startingDir;
+    private GameObject character;
     private BoxCollider2D bodyHitbox;
     private WeaponStats ws;
     private CharacterStats NPCcs;
@@ -17,6 +21,7 @@ public class BatNPC : PhysicsObject
     {
         base.Start();
 
+        character = GameObject.FindGameObjectWithTag("Character");
         ani = gameObject.GetComponent<Animator>();
         bodyHitbox = gameObject.GetComponent<BoxCollider2D>();
         initPos = transform.position;
@@ -27,6 +32,12 @@ public class BatNPC : PhysicsObject
         ws = gameObject.GetComponent<WeaponStats>();
         ws.damage = 2;
         ws.hitstunDuration = 0.3334f;
+
+        if (startingDir == Direction.right)
+        {
+            cs.maxSpeed *= -1;
+            sr.flipX = !sr.flipX;
+        }
     }
 
     protected override void Update()
@@ -42,7 +53,7 @@ public class BatNPC : PhysicsObject
             ani.SetBool("hit", false);
         }
 
-        if (NPCcs.health <= 0)
+        if (NPCcs.health <= 0 || Vector2.Distance(character.transform.position, gameObject.transform.position) > 100)
         {
             bodyHitbox.enabled = false;
             ani.SetBool("dead", true);

@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class ZombieNPC : NPC
 {
-
+    public enum Direction { left, right }
+    public Direction startingDir;
     private const int SLIME_MAX_HEALTH = 1;
     private CharacterStats css;
     private WeaponStats bodyHitbox;
     private CapsuleCollider2D cc;
     private SpriteRenderer sre;
     private Animator anim;
+    private GameObject character;
 
     protected override void Start()
     {
+        character = GameObject.FindGameObjectWithTag("Character");
         anim = gameObject.GetComponent<Animator>();
         cc = gameObject.GetComponent<CapsuleCollider2D>();
         sre = gameObject.GetComponent<SpriteRenderer>();
@@ -30,6 +33,13 @@ public class ZombieNPC : NPC
         base.Start();
 
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
+
+        if (startingDir == Direction.right)
+        {
+            cs.maxSpeed *= -1;
+            sr.flipX = !sr.flipX;
+        }
+
     }
 
     protected override void Update()
@@ -82,7 +92,7 @@ public class ZombieNPC : NPC
             anim.SetBool("hit", false);
         }
 
-        if (css.health <= 0)
+        if (css.health <= 0 || Vector2.Distance(character.transform.position, gameObject.transform.position) > 100)
         {
             cc.enabled = false;
             velocity = new Vector2();
