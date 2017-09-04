@@ -105,7 +105,9 @@ public class JumpSlimeNPC : NPC
 
         if (cs.health <= 0 || Vector2.Distance(character.transform.position, gameObject.transform.position) > 100)
         {
-            bc.enabled = false;
+            box.enabled = false;
+            cap.enabled = false;
+            circ.enabled = false;
             sr.flipX = false;
             anim.SetBool("dead", true);
         }
