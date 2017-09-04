@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BatNPC : PhysicsObject
 {
+    private GameObject character;
     private BoxCollider2D bodyHitbox;
     private WeaponStats ws;
     private CharacterStats NPCcs;
@@ -17,6 +18,7 @@ public class BatNPC : PhysicsObject
     {
         base.Start();
 
+        character = GameObject.FindGameObjectWithTag("Character");
         ani = gameObject.GetComponent<Animator>();
         bodyHitbox = gameObject.GetComponent<BoxCollider2D>();
         initPos = transform.position;
@@ -42,7 +44,7 @@ public class BatNPC : PhysicsObject
             ani.SetBool("hit", false);
         }
 
-        if (NPCcs.health <= 0)
+        if (NPCcs.health <= 0 || Vector2.Distance(character.transform.position, gameObject.transform.position) > 100)
         {
             bodyHitbox.enabled = false;
             ani.SetBool("dead", true);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpSlimeNPC : NPC
 {
-
+    private GameObject character;
     private BoxCollider2D box;
     private CapsuleCollider2D cap;
     private CircleCollider2D circ;
@@ -22,6 +22,7 @@ public class JumpSlimeNPC : NPC
     protected override void Start()
     {
 
+        character = GameObject.FindGameObjectWithTag("Character");
         box = gameObject.GetComponent<BoxCollider2D>();
         cap = gameObject.GetComponent<CapsuleCollider2D>();
         circ = gameObject.GetComponent<CircleCollider2D>();
@@ -92,6 +93,23 @@ public class JumpSlimeNPC : NPC
         }
 
         base.Update();
+
+        if (cs.hitstunLeft > 0)
+        {
+            anim.SetBool("hit", true);
+        }
+        else
+        {
+            anim.SetBool("hit", false);
+        }
+
+        if (cs.health <= 0 || Vector2.Distance(character.transform.position, gameObject.transform.position) > 100)
+        {
+            bc.enabled = false;
+            sr.flipX = false;
+            anim.SetBool("dead", true);
+        }
+
     }
 
     protected override void FixedUpdate()
