@@ -21,7 +21,8 @@ public class BatNPC : PhysicsObject
     protected override void Start()
     {
         base.Start();
-        
+        leftBound = GameObject.FindGameObjectWithTag("LeftRoomBounds");
+        rightBound = GameObject.FindGameObjectWithTag("RightRoomBounds");
         character = GameObject.FindGameObjectWithTag("Player");
         ani = gameObject.GetComponent<Animator>();
         bodyHitbox = gameObject.GetComponent<BoxCollider2D>();
