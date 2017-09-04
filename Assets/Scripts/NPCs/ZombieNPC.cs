@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ZombieNPC : NPC
 {
+    public GameObject leftBound;
+    public GameObject rightBound;
     private const int SLIME_MAX_HEALTH = 1;
     private CharacterStats css;
     private WeaponStats bodyHitbox;
@@ -14,6 +16,8 @@ public class ZombieNPC : NPC
 
     protected override void Start()
     {
+        leftBound = GameObject.FindGameObjectWithTag("LeftRoomBounds");
+        rightBound = GameObject.FindGameObjectWithTag("RightRoomBounds");
         character = GameObject.FindGameObjectWithTag("Player");
         anim = gameObject.GetComponent<Animator>();
         cc = gameObject.GetComponent<CapsuleCollider2D>();
@@ -77,8 +81,9 @@ public class ZombieNPC : NPC
             anim.SetBool("hit", false);
         }
 
-        if (css.health <= 0 || Vector2.Distance(character.transform.position, gameObject.transform.position) > 100)
+        if (css.health <= 0 || transform.position.x < leftBound.transform.position.x || transform.position.x > rightBound.transform.position.x)
         {
+            css.health = 0;
             cc.enabled = false;
             velocity = new Vector2();
             velocityX = 0;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JumpSlimeNPC : NPC
 {
+    public GameObject leftBound;
+    public GameObject rightBound;
     public enum Direction { left, right }
     public Direction startingDir;
     private GameObject character;
@@ -23,7 +25,8 @@ public class JumpSlimeNPC : NPC
 
     protected override void Start()
     {
-
+        leftBound = GameObject.FindGameObjectWithTag("LeftRoomBounds");
+        rightBound = GameObject.FindGameObjectWithTag("RightRoomBounds");
         character = GameObject.FindGameObjectWithTag("Character");
         box = gameObject.GetComponent<BoxCollider2D>();
         cap = gameObject.GetComponent<CapsuleCollider2D>();
@@ -111,8 +114,9 @@ public class JumpSlimeNPC : NPC
             anim.SetBool("hit", false);
         }
 
-        if (cs.health <= 0 || Vector2.Distance(character.transform.position, gameObject.transform.position) > 100)
+        if (cs.health <= 0 || transform.position.x < leftBound.transform.position.x || transform.position.x > rightBound.transform.position.x)
         {
+            cs.health = 0;
             box.enabled = false;
             cap.enabled = false;
             circ.enabled = false;
