@@ -21,7 +21,7 @@ public class BatNPC : PhysicsObject
     {
         base.Start();
 
-        character = GameObject.FindGameObjectWithTag("Character");
+        character = GameObject.FindGameObjectWithTag("Player");
         ani = gameObject.GetComponent<Animator>();
         bodyHitbox = gameObject.GetComponent<BoxCollider2D>();
         initPos = transform.position;
@@ -32,12 +32,6 @@ public class BatNPC : PhysicsObject
         ws = gameObject.GetComponent<WeaponStats>();
         ws.damage = 2;
         ws.hitstunDuration = 0.3334f;
-
-        if (startingDir == Direction.right)
-        {
-            cs.maxSpeed *= -1;
-            sr.flipX = !sr.flipX;
-        }
     }
 
     protected override void Update()

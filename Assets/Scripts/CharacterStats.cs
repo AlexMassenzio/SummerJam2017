@@ -53,6 +53,7 @@ public class CharacterStats : MonoBehaviour
             sr = gameObject.GetComponent<SpriteRenderer>();
             if (startingDir == Direction.right)
             {
+                Debug.Log("XXXXXXXXXXXXXX");
                 maxSpeed *= -1;
                 sr.flipX = !sr.flipX;
             }
