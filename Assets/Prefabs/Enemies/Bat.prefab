@@ -125,6 +125,7 @@ MonoBehaviour:
   grounded: 0
   velocityX: 0
   velocity: {x: 0, y: 0}
+  startingDir: 0
   oscillationFactor: 0
   oscillationTimer: 0
 --- !u!114 &114124197961977610
@@ -138,9 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a75e6ffe8b2fd24497fd9e7ee85a742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingDir: 0
   health: 4
   maxHealth: 0
-  maxSpeed: 50
+  maxSpeed: 0.15
   currentSpeed: 0
   crouchSpeed: 0
   jumpTakeOffSpeed: 0

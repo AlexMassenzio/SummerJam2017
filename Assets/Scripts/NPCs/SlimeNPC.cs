@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SlimeNPC : NPC {
 
-    
+    public GameObject leftBound;
+    public GameObject rightBound;
     private const int SLIME_MAX_HEALTH = 1;
     private WeaponStats bodyHitbox;
     private BoxCollider2D bc;
@@ -14,6 +15,8 @@ public class SlimeNPC : NPC {
 
 	protected override void Start ()
 	{
+        leftBound = GameObject.FindGameObjectWithTag("LeftRoomBounds");
+        rightBound = GameObject.FindGameObjectWithTag("RightRoomBounds");
         character = GameObject.FindGameObjectWithTag("Player");
         anim = gameObject.GetComponent<Animator>();
         sre = gameObject.GetComponent<SpriteRenderer>();
@@ -76,8 +79,9 @@ public class SlimeNPC : NPC {
             anim.SetBool("hit", false);
         }
 
-        if (cs.health <= 0 || Vector2.Distance(character.transform.position, gameObject.transform.position) > 100)
+        if (cs.health <= 0 || transform.position.x < leftBound.transform.position.x || transform.position.x > rightBound.transform.position.x)
         {
+            cs.health = 0;
             bc.enabled = false;
             sr.flipX = false;
             anim.SetBool("dead", true);
