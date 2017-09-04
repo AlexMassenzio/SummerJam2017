@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1100831741627530}
+  m_RootGameObject: {fileID: 1867450204397384}
   m_IsPrefabParent: 1
---- !u!1 &1100831741627530
+--- !u!1 &1867450204397384
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4779023834885674}
-  - component: {fileID: 212565564645667792}
-  - component: {fileID: 60514432255840466}
+  - component: {fileID: 4692345543952460}
+  - component: {fileID: 212982125671643308}
+  - component: {fileID: 60485490189736872}
   m_Layer: 0
   m_Name: KnifePickup
   m_TagString: WeaponPickup
@@ -28,25 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4779023834885674
+--- !u!4 &4692345543952460
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1100831741627530}
+  m_GameObject: {fileID: 1867450204397384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -114.79, y: 18, z: 0}
+  m_LocalPosition: {x: -124.66, y: 16.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60514432255840466
+--- !u!60 &60485490189736872
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1100831741627530}
+  m_GameObject: {fileID: 1867450204397384}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -72,12 +72,12 @@ PolygonCollider2D:
       - {x: 0.41, y: -0.089999996}
       - {x: 0.59999996, y: 0.03}
       - {x: 0.59999996, y: 0.14999999}
---- !u!212 &212565564645667792
+--- !u!212 &212982125671643308
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1100831741627530}
+  m_GameObject: {fileID: 1867450204397384}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

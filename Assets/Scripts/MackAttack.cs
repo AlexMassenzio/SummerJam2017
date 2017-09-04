@@ -74,6 +74,14 @@ public class MackAttack : MonoBehaviour {
         // GetMouseButtonDown(0) is left click, 1 is right, and 2 is middle
         if (Input.GetMouseButtonDown(0) && !attacking)
         {
+            if (!pm.hasHarpoon && !pm.hasBetterHarpoon && !pm.hasBestHarpoon)
+            {
+                SoundManager.PlaySound("mackAttackSound");
+            }
+            else if (pm.hasHarpoon)
+            {
+                SoundManager.PlaySound("harpoonSound");
+            }
             attacking = true;
             delayEnabled = true;
             attackDelayLeft = attackDelayMax;

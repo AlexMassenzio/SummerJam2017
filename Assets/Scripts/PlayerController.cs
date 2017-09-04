@@ -24,8 +24,11 @@ public class PlayerController : PhysicsObject
     private Vector2 knifeSpawnPos;
     private Vector2 anchorSpawnPos;
 
+    private float walkSoundTimer;
+
     protected override void Start()
     {
+        walkSoundTimer = 0;
         base.Start();
 
         ma = gameObject.GetComponent<MackAttack>();
@@ -57,6 +60,10 @@ public class PlayerController : PhysicsObject
 
     protected override void Update()
     {
+        if (walkSoundTimer > 0)
+        {
+            walkSoundTimer -= Time.deltaTime;
+        }
         base.Update();
 
         knifeCrouchingHeight = character.transform.position.y + 0.0f;
@@ -128,6 +135,11 @@ public class PlayerController : PhysicsObject
             if (!grounded || !ma.attacking)
             {
                 move.x = Input.GetAxisRaw("Horizontal");
+                if (grounded && move.x != 0 && walkSoundTimer <= 0)
+                {
+                    walkSoundTimer = 0.35f;
+                    SoundManager.PlaySound("mackWalkSound");
+                }
             }
 
             // Crouching
@@ -164,6 +176,7 @@ public class PlayerController : PhysicsObject
             // Jumping
             if (Input.GetButtonDown("Jump") && grounded)
             {
+                SoundManager.PlaySound("mackJumpSound");
                 velocityY = cs.jumpTakeOffSpeed;
             }
             else if (Input.GetButtonUp("Jump"))

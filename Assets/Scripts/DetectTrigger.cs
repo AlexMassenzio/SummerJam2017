@@ -5,6 +5,7 @@ using UnityEngine;
 public class DetectTrigger : MonoBehaviour {
 
 	private bool uvulaHit = false;
+    private float hitSoundTimer;
 
     private PlayerManager pm;
 
@@ -13,6 +14,15 @@ public class DetectTrigger : MonoBehaviour {
         if (gameObject.tag == "Player")
         {
             pm = gameObject.GetComponent<PlayerManager>();
+        }
+        hitSoundTimer = 0;
+    }
+
+    private void Update()
+    {
+        if (hitSoundTimer > 0)
+        {
+            hitSoundTimer -= Time.deltaTime;
         }
     }
 
@@ -28,6 +38,11 @@ public class DetectTrigger : MonoBehaviour {
             {
                 // If MackAttack passed through an enemy
                 case "Enemy":
+                    if (hitSoundTimer <= 0)
+                    {
+                        SoundManager.PlaySound("hitSound");
+                        hitSoundTimer = 1;
+                    }
                     col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
                     col.gameObject.SendMessage("Injure", ws.damage);
                     break;
@@ -108,6 +123,7 @@ public class DetectTrigger : MonoBehaviour {
         }
         else if (gameObject.tag == "Weapon")
         {
+            SoundManager.PlaySound("hitSound");
             WeaponStats ws = gameObject.GetComponent<WeaponStats>();
             switch (col.tag)
             {
@@ -118,10 +134,6 @@ public class DetectTrigger : MonoBehaviour {
                     break;
             }
 
-        }
-        else if (gameObject.tag == "NPCWallChecker")
-        {
-            Debug.Log(col.tag);
         }
     }
 

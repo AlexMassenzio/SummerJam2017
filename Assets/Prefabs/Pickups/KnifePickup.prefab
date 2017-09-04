@@ -9,44 +9,44 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1565774701589422}
+  m_RootGameObject: {fileID: 1100831741627530}
   m_IsPrefabParent: 1
---- !u!1 &1565774701589422
+--- !u!1 &1100831741627530
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4636978627136644}
-  - component: {fileID: 212040631668154538}
-  - component: {fileID: 60127093590725466}
+  - component: {fileID: 4779023834885674}
+  - component: {fileID: 212565564645667792}
+  - component: {fileID: 60514432255840466}
   m_Layer: 0
-  m_Name: HarpoonPickup
+  m_Name: KnifePickup
   m_TagString: WeaponPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4636978627136644
+--- !u!4 &4779023834885674
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1565774701589422}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -130.02225, y: 16.849716, z: -13.640625}
-  m_LocalScale: {x: 1.026536, y: 1, z: 1}
+  m_GameObject: {fileID: 1100831741627530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -114.79, y: 18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60127093590725466
+--- !u!60 &60514432255840466
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1565774701589422}
+  m_GameObject: {fileID: 1100831741627530}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -57,58 +57,27 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.6}
-    newSize: {x: 1.6, y: 1.6}
+    oldSize: {x: 1.2, y: 0.3}
+    newSize: {x: 1.2, y: 0.3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.049999997, y: -0.37}
-      - {x: 0.11, y: -0.04}
-      - {x: 0.31, y: 0.16}
-      - {x: 0.52, y: 0.34}
-      - {x: 0.71999997, y: 0.56}
-      - {x: 0.71999997, y: 0.71999997}
-      - {x: 0.17, y: 0.71999997}
-      - {x: 0.06, y: 0.61}
-      - {x: 0.08, y: 0.39999998}
-      - {x: 0.099999994, y: 0.38}
-      - {x: 0.19999999, y: 0.38}
-      - {x: 0.22, y: 0.39999998}
-      - {x: 0.22, y: 0.58}
-      - {x: 0.28, y: 0.42999998}
-      - {x: -0.11, y: 0.04}
-      - {x: -0.32999998, y: -0.04}
-      - {x: -0.56, y: -0.28}
-      - {x: -0.52, y: -0.48}
-      - {x: -0.71, y: -0.45999998}
-      - {x: -0.79999995, y: -0.57}
-      - {x: -0.79999995, y: -0.71999997}
-      - {x: -0.71999997, y: -0.79999995}
-      - {x: -0.58, y: -0.79999995}
-      - {x: -0.48, y: -0.7}
-      - {x: -0.48, y: -0.52}
-      - {x: -0.25, y: -0.52}
-    - - {x: -0.66999996, y: -0.63}
-      - {x: -0.63, y: -0.63}
-      - {x: -0.63, y: -0.66999996}
-      - {x: -0.66999996, y: -0.66999996}
-    - - {x: -0.37, y: -0.32999998}
-      - {x: -0.32999998, y: -0.32999998}
-      - {x: -0.32999998, y: -0.37}
-      - {x: -0.37, y: -0.37}
-    - - {x: -0.26999998, y: -0.22999999}
-      - {x: -0.22999999, y: -0.22999999}
-      - {x: -0.22999999, y: -0.26999998}
-      - {x: -0.26999998, y: -0.26999998}
---- !u!212 &212040631668154538
+    - - {x: -0.59999996, y: 0.14999999}
+      - {x: -0.59999996, y: 0.03}
+      - {x: -0.32999998, y: -0.14999999}
+      - {x: 0.14999999, y: -0.14999999}
+      - {x: 0.41, y: -0.089999996}
+      - {x: 0.59999996, y: 0.03}
+      - {x: 0.59999996, y: 0.14999999}
+--- !u!212 &212565564645667792
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1565774701589422}
+  m_GameObject: {fileID: 1100831741627530}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -135,11 +104,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d2c9d66caf546c4438e0b2b96580e955, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2dc5d958284e8fb4db758c9bb82ec8e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 1.2, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
