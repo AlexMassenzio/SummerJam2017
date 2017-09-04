@@ -10,11 +10,11 @@ public class ZombieNPC : NPC
     private WeaponStats bodyHitbox;
     private CapsuleCollider2D cc;
     private SpriteRenderer sre;
-    private Animator ani;
+    private Animator anim;
 
     protected override void Start()
     {
-        ani = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
         cc = gameObject.GetComponent<CapsuleCollider2D>();
         sre = gameObject.GetComponent<SpriteRenderer>();
         sre.flipX = true;
@@ -34,15 +34,52 @@ public class ZombieNPC : NPC
 
     protected override void Update()
     {
+
+        // Basic AI that will reverse direction if running into a wall
+
+        Vector2[] origins = new Vector2[6];
+        RaycastHit2D[] hits = new RaycastHit2D[6];
+        float xBaseOffset = 1.25f;
+        float yBaseOffset = 1f;
+        float checkDistance = 0.1f;
+        Vector2 checkDirection = Vector2.right;
+
+        // If we're facing left
+        if (sr.flipX)
+        {
+            xBaseOffset = -xBaseOffset;
+            checkDirection = Vector2.left;
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            origins[i] = new Vector2(transform.position.x + xBaseOffset, transform.position.y + yBaseOffset);
+            yBaseOffset -= 0.5f;
+            hits[i] = Physics2D.Raycast(origins[i], checkDirection, checkDistance);
+            Debug.DrawLine(origins[i], new Vector2(origins[i].x + checkDistance, origins[i].y));
+            if (hits[i].collider != null && hits[i].collider.gameObject.tag == "Wall")
+            {
+                Debug.Log("Detected wall");
+                sr.flipX = !sr.flipX;
+                css.maxSpeed *= -1;
+                break;
+            }
+            // If none of the triggers hit anything
+            else if (i == 5)
+            {
+                Debug.Log("Not hitting anything");
+            }
+        }
+
         base.Update();
 
         if (css.hitstunLeft > 0)
         {
-            ani.SetBool("hit", true);
+            anim.SetBool("hit", true);
         }
         else
         {
-            ani.SetBool("hit", false);
+            anim.SetBool("hit", false);
         }
 
         if (css.health <= 0)
@@ -51,7 +88,7 @@ public class ZombieNPC : NPC
             velocity = new Vector2();
             velocityX = 0;
             velocityY = 0;
-            ani.SetBool("dead", true);
+            anim.SetBool("dead", true);
         }
     }
 
@@ -73,11 +110,6 @@ public class ZombieNPC : NPC
         move = Vector2.up * deltaPosition.y;
 
         Movement(move, 'y');
-    }
-
-    protected override void Action()
-    {
-
     }
 
     protected override void ComputeVelocity()
