@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BatNPC : PhysicsObject
 {
+
+    public enum Direction { left, right }
+    public Direction startingDir;
     private GameObject character;
     private BoxCollider2D bodyHitbox;
     private WeaponStats ws;
@@ -29,6 +32,12 @@ public class BatNPC : PhysicsObject
         ws = gameObject.GetComponent<WeaponStats>();
         ws.damage = 2;
         ws.hitstunDuration = 0.3334f;
+
+        if (startingDir == Direction.right)
+        {
+            cs.maxSpeed *= -1;
+            sr.flipX = !sr.flipX;
+        }
     }
 
     protected override void Update()

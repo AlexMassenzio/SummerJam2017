@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SlimeNPC : NPC {
 
+    public enum Direction { left, right }
+    public Direction startingDir;
     private const int SLIME_MAX_HEALTH = 1;
     private WeaponStats bodyHitbox;
     private BoxCollider2D bc;
@@ -30,7 +32,13 @@ public class SlimeNPC : NPC {
 		base.Start();
 
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
-	}
+
+        if (startingDir == Direction.right)
+        {
+            cs.maxSpeed *= -1;
+            sr.flipX = !sr.flipX;
+        }
+    }
 
     protected override void Update()
     {

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ZombieNPC : NPC
 {
-
+    public enum Direction { left, right }
+    public Direction startingDir;
     private const int SLIME_MAX_HEALTH = 1;
     private CharacterStats css;
     private WeaponStats bodyHitbox;
@@ -32,6 +33,13 @@ public class ZombieNPC : NPC
         base.Start();
 
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
+
+        if (startingDir == Direction.right)
+        {
+            cs.maxSpeed *= -1;
+            sr.flipX = !sr.flipX;
+        }
+
     }
 
     protected override void Update()

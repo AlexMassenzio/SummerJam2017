@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JumpSlimeNPC : NPC
 {
+    public enum Direction { left, right }
+    public Direction startingDir;
     private GameObject character;
     private BoxCollider2D box;
     private CapsuleCollider2D cap;
@@ -42,6 +44,12 @@ public class JumpSlimeNPC : NPC
         base.Start();
 
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
+
+        if (startingDir == Direction.right)
+        {
+            cs.maxSpeed *= -1;
+            sr.flipX = !sr.flipX;
+        }
     }
 
     protected override void Update()
