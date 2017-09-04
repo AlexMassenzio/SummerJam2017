@@ -33,7 +33,7 @@ public class BatNPC : PhysicsObject
     {
         base.Update();
 
-        if (NPCcs.hitstunLeft > 0)
+        if (NPCcs.invincibilityLeft > 0)
         {
             ani.SetBool("hit", true);
         }

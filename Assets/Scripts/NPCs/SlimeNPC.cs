@@ -6,17 +6,17 @@ public class SlimeNPC : NPC {
 
     private const int SLIME_MAX_HEALTH = 1;
     private WeaponStats bodyHitbox;
-    private PolygonCollider2D pc;
+    private BoxCollider2D bc;
     private SpriteRenderer sre;
-    private Animator ani;
+    private Animator anim;
 
 	protected override void Start ()
 	{
-        ani = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
         sre = gameObject.GetComponent<SpriteRenderer>();
         sre.flipX = true;
         bodyHitbox = gameObject.GetComponent<WeaponStats>();
-        pc = gameObject.GetComponent<PolygonCollider2D>();
+        bc = gameObject.GetComponent<BoxCollider2D>();
 
         bodyHitbox.knockback = new Vector2(2f, 5f);
         bodyHitbox.damage = 5;
@@ -32,22 +32,59 @@ public class SlimeNPC : NPC {
 
     protected override void Update()
     {
+
+        // Basic AI that will reverse direction if running into a wall
+
+        Vector2[] origins = new Vector2[4];
+        RaycastHit2D[] hits = new RaycastHit2D[4];
+        float xBaseOffset = 1.7f;
+        float yBaseOffset = -0.5f;
+        float checkDistance = 0.1f;
+        Vector2 checkDirection = Vector2.right;
+
+        // If we're facing left
+        if (sr.flipX)
+        {
+            xBaseOffset = -xBaseOffset;
+            checkDirection = Vector2.left;
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            origins[i] = new Vector2(transform.position.x + xBaseOffset, transform.position.y + yBaseOffset);
+            yBaseOffset -= 0.5f;
+            hits[i] = Physics2D.Raycast(origins[i], checkDirection, checkDistance);
+            Debug.DrawLine(origins[i], new Vector2(origins[i].x + checkDistance, origins[i].y));
+            if (hits[i].collider != null && hits[i].collider.gameObject.tag == "Wall")
+            {
+                Debug.Log("Detected wall");
+                sr.flipX = !sr.flipX;
+                cs.maxSpeed *= -1;
+                break;
+            }
+            // If none of the triggers hit anything
+            else if (i == 5)
+            {
+                Debug.Log("Not hitting anything");
+            }
+        }
+
         base.Update();
 
         if (cs.hitstunLeft > 0)
         {
-            ani.SetBool("hit", true);
+            anim.SetBool("hit", true);
         }
         else
         {
-            ani.SetBool("hit", false);
+            anim.SetBool("hit", false);
         }
 
         if (cs.health <= 0)
         {
-            pc.enabled = false;
+            bc.enabled = false;
             sr.flipX = false;
-            ani.SetBool("dead", true);
+            anim.SetBool("dead", true);
         }
     }
 

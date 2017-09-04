@@ -119,6 +119,10 @@ public class DetectTrigger : MonoBehaviour {
             }
 
         }
+        else if (gameObject.tag == "NPCWallChecker")
+        {
+            Debug.Log(col.tag);
+        }
     }
 
 }
