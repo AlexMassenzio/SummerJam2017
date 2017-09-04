@@ -172,6 +172,7 @@ public class PhysicsObject : MonoBehaviour {
             }
         }
 
+        /*
         if (gameObject.tag == "Enemy")
         {
             if (cs.enemyName != "Eye")
@@ -194,6 +195,8 @@ public class PhysicsObject : MonoBehaviour {
                 rb2d.position += move.normalized * distance;
             }
         }
+        */
+        rb2d.position += move.normalized * distance;
 
     }
 }

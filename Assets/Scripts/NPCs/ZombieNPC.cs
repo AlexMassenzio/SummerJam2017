@@ -41,9 +41,9 @@ public class ZombieNPC : NPC
 
         Vector2[] origins = new Vector2[6];
         RaycastHit2D[] hits = new RaycastHit2D[6];
-        float xBaseOffset = 1.25f;
+        float xBaseOffset = 1.5f;
         float yBaseOffset = 1f;
-        float checkDistance = 0.1f;
+        float checkDistance = 0.2f;
         Vector2 checkDirection = Vector2.right;
 
         // If we're facing left
@@ -59,7 +59,7 @@ public class ZombieNPC : NPC
             yBaseOffset -= 0.5f;
             hits[i] = Physics2D.Raycast(origins[i], checkDirection, checkDistance);
             Debug.DrawLine(origins[i], new Vector2(origins[i].x + checkDistance, origins[i].y));
-            if (hits[i].collider != null && hits[i].collider.gameObject.tag == "Wall")
+            if (hits[i].collider != null && hits[i].collider.gameObject.tag == "Wall" && css.health > 0)
             {
                 Debug.Log("Detected wall");
                 sr.flipX = !sr.flipX;

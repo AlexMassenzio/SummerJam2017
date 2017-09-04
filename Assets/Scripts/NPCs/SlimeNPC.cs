@@ -124,7 +124,7 @@ public class SlimeNPC : NPC {
         }
         else
         {
-            velocityX = -5f;
+            velocityX = -cs.maxSpeed;
         }
     }
 
