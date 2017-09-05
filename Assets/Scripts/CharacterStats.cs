@@ -9,7 +9,7 @@ public class CharacterStats : MonoBehaviour
     private PlayerController pc;
     private EyeNPC eye;
     private SpriteRenderer sr;
-
+    private bool dieSoundPlayed = false;
     public int health;
 	public int maxHealth;
     public float maxSpeed;
@@ -104,6 +104,11 @@ public class CharacterStats : MonoBehaviour
         if (gameObject.name != "Eye" && health <= 0
             || gameObject.name == "Eye" && eye.state == EyeNPC.movementState.stop && health <= 0)
         {
+            if (!dieSoundPlayed)
+            {
+                SoundManager.PlaySound("dieSound");
+                dieSoundPlayed = true;
+            }
             maxSpeed = 0;
             if (!dying && !dead)
             {
