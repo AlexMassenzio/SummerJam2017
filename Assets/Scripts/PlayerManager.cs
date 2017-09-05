@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour {
 
@@ -202,6 +203,11 @@ public class PlayerManager : MonoBehaviour {
         if (cs.health <= 0)
         {
             dead = true;
+            if (SceneManager.GetActiveScene().name != "BossLevel")
+            {
+                mackInfo.GetComponent<MackWeaponInfo>().currentAttack = MackWeaponInfo.AttackLevel.mackAttack;
+                mackInfo.GetComponent<MackWeaponInfo>().currentWeapon = MackWeaponInfo.Weapon.none;
+            }
         }
 
         if (inv.useStunLeft > 0)
