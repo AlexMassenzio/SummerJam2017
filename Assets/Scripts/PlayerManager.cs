@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class PlayerManager : MonoBehaviour {
 
 	private GameObject player;
+    public GameObject mackInfo;
 
     private UnityAction harpoonListener;
 
@@ -50,6 +51,7 @@ public class PlayerManager : MonoBehaviour {
         hasHarpoon = true;
         hasBetterHarpoon = false;
         hasBestHarpoon = false;
+        mackInfo.GetComponent<MackWeaponInfo>().currentAttack = MackWeaponInfo.AttackLevel.harpoon1;
     }
 
     public void BetterHarpoonGet()
@@ -57,6 +59,7 @@ public class PlayerManager : MonoBehaviour {
         hasHarpoon = false;
         hasBetterHarpoon = true;
         hasBestHarpoon = false;
+        mackInfo.GetComponent<MackWeaponInfo>().currentAttack = MackWeaponInfo.AttackLevel.harpoon2;
     }
 
     public void BestHarpoonGet()
@@ -64,6 +67,7 @@ public class PlayerManager : MonoBehaviour {
         hasHarpoon = false;
         hasBetterHarpoon = false;
         hasBestHarpoon = true;
+        mackInfo.GetComponent<MackWeaponInfo>().currentAttack = MackWeaponInfo.AttackLevel.harpoon3;
     }
 
     // Use this for initialization
@@ -102,6 +106,20 @@ public class PlayerManager : MonoBehaviour {
         
         upHurtBox.enabled = true;
         crouchHurtBox.enabled = false;
+
+        mackInfo = GameObject.FindGameObjectWithTag("MackInfo");
+        if (mackInfo.GetComponent<MackWeaponInfo>().currentAttack == MackWeaponInfo.AttackLevel.harpoon1)
+        {
+            HarpoonGet();
+        }
+        else if (mackInfo.GetComponent<MackWeaponInfo>().currentAttack == MackWeaponInfo.AttackLevel.harpoon2)
+        {
+            BetterHarpoonGet();
+        }
+        else if (mackInfo.GetComponent<MackWeaponInfo>().currentAttack == MackWeaponInfo.AttackLevel.harpoon3)
+        {
+            BestHarpoonGet();
+        }
 
     }
 	

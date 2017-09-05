@@ -19,6 +19,7 @@ TagManager:
   - BestHarpoonAttack
   - EyeProjectile
   - Wall
+  - MackInfo
   layers:
   - Default
   - TransparentFX

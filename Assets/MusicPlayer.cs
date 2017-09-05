@@ -32,9 +32,11 @@ public class MusicPlayer : MonoBehaviour {
 
 	private void Update()
 	{
-		if(SceneManager.GetActiveScene().name == "BossLevel")
+		if(SceneManager.GetActiveScene().name == "BossLevel" && GetComponent<AudioSource>().clip != bossMusic)
 		{
 			GetComponent<AudioSource>().clip = bossMusic;
-		}
+            GetComponent<AudioSource>().Play();
+
+        }
 	}
 }

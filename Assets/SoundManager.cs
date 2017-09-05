@@ -22,6 +22,7 @@ public class SoundManager : MonoBehaviour {
 
     public static void PlaySound (string clip)
     {
+        audioSrc.volume = 0.5f;
         switch (clip)
         {
             case "mackAttackSound":
@@ -33,7 +34,7 @@ public class SoundManager : MonoBehaviour {
                 break;
 
             case "dieSound":
-                audioSrc.PlayOneShot(dieSound);
+                //audioSrc.PlayOneShot(dieSound);
                 break;
                
             case "harpoonSound":
