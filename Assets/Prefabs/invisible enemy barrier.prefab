@@ -9,44 +9,44 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1493649140277122}
+  m_RootGameObject: {fileID: 1601725844581972}
   m_IsPrefabParent: 1
---- !u!1 &1493649140277122
+--- !u!1 &1601725844581972
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4821734242482020}
-  - component: {fileID: 60443668529951476}
-  - component: {fileID: 212042847612718762}
+  - component: {fileID: 4902919715249752}
+  - component: {fileID: 212727585288327688}
+  - component: {fileID: 61761631296186764}
   m_Layer: 0
-  m_Name: BestHarpoonPickup
-  m_TagString: WeaponPickup
+  m_Name: invisible enemy barrier
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4821734242482020
+--- !u!4 &4902919715249752
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1493649140277122}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -134.69, y: 16.89, z: -13.640625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1601725844581972}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.12, y: 1.1442766, z: 0}
+  m_LocalScale: {x: 1.1053692, y: 16.9, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60443668529951476
-PolygonCollider2D:
+--- !u!61 &61761631296186764
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1493649140277122}
+  m_GameObject: {fileID: 1601725844581972}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -57,43 +57,21 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.6}
-    newSize: {x: 1.6, y: 1.6}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.31, y: 0.16}
-      - {x: 0.42, y: 0.26}
-      - {x: 0.62, y: 0.59999996}
-      - {x: 0.62, y: 0.7}
-      - {x: 0.59999996, y: 0.71999997}
-      - {x: 0.5, y: 0.71999997}
-      - {x: 0.48, y: 0.7}
-      - {x: 0.39, y: 0.64}
-      - {x: -0.11, y: 0.14}
-      - {x: -0.22, y: 0.06}
-      - {x: -0.41, y: -0.16}
-      - {x: -0.53, y: -0.29}
-      - {x: -0.62, y: -0.39999998}
-      - {x: -0.62, y: -0.63}
-      - {x: -0.53999996, y: -0.71999997}
-      - {x: -0.26999998, y: -0.71999997}
-      - {x: -0.08, y: -0.29999998}
-      - {x: 0.04, y: -0.22}
-      - {x: 0.22999999, y: 0.049999997}
-    - - {x: -0.17, y: -0.13}
-      - {x: -0.13, y: -0.13}
-      - {x: -0.13, y: -0.17}
-      - {x: -0.17, y: -0.17}
---- !u!212 &212042847612718762
+  serializedVersion: 2
+  m_Size: {x: 1.4, y: 0.64}
+  m_EdgeRadius: 0
+--- !u!212 &212727585288327688
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1493649140277122}
+  m_GameObject: {fileID: 1601725844581972}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -117,14 +95,14 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a76886d3ab409a943b8645835c3f9b66, type: 3}
+  m_SortingLayerID: 1267618937
+  m_SortingLayer: -1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: e4c28eb786d7f2f41948ff64e326c31f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
