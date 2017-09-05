@@ -130,7 +130,7 @@ public class PhysicsObject : MonoBehaviour {
         // Distance that object is going to move
         float distance = move.magnitude;
         // Only check for collision if we are trying to move 
-        if (distance > minMoveDistance && rb2d != null && charName != "Bat" && charName != "Eye")
+        if (distance > minMoveDistance && rb2d != null && charName != "Bat" && charName != "Eye" && gameObject.tag != "Weapon")
         {
             int count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
 
@@ -172,6 +172,7 @@ public class PhysicsObject : MonoBehaviour {
             }
         }
 
+        /*
         if (gameObject.tag == "Enemy")
         {
             if (cs.enemyName != "Eye")
@@ -194,6 +195,8 @@ public class PhysicsObject : MonoBehaviour {
                 rb2d.position += move.normalized * distance;
             }
         }
+        */
+        rb2d.position += move.normalized * distance;
 
     }
 }

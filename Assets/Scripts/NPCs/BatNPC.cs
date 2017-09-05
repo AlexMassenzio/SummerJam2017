@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BatNPC : PhysicsObject
 {
+    public GameObject leftBound;
+    public GameObject rightBound;
+    public enum Direction { left, right }
+    public Direction startingDir;
+    private GameObject character;
     private BoxCollider2D bodyHitbox;
     private WeaponStats ws;
     private CharacterStats NPCcs;
@@ -16,7 +21,9 @@ public class BatNPC : PhysicsObject
     protected override void Start()
     {
         base.Start();
-
+        leftBound = GameObject.FindGameObjectWithTag("LeftRoomBounds");
+        rightBound = GameObject.FindGameObjectWithTag("RightRoomBounds");
+        character = GameObject.FindGameObjectWithTag("Player");
         ani = gameObject.GetComponent<Animator>();
         bodyHitbox = gameObject.GetComponent<BoxCollider2D>();
         initPos = transform.position;
@@ -42,8 +49,9 @@ public class BatNPC : PhysicsObject
             ani.SetBool("hit", false);
         }
 
-        if (NPCcs.health <= 0)
+        if (NPCcs.health <= 0 || transform.position.x < leftBound.transform.position.x || transform.position.x > rightBound.transform.position.x)
         {
+            NPCcs.health = 0;
             bodyHitbox.enabled = false;
             ani.SetBool("dead", true);
         }
@@ -72,7 +80,7 @@ public class BatNPC : PhysicsObject
         }
         else
         {
-            velocityX = -0.15f;
+            velocityX = -cs.maxSpeed;
             posY = Mathf.Sin(oscillationTimer * oscillationFactor);
             oscillationTimer += Time.deltaTime;
         }

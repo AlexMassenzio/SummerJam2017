@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class ZombieNPC : NPC
 {
-
+    public GameObject leftBound;
+    public GameObject rightBound;
     private const int SLIME_MAX_HEALTH = 1;
     private CharacterStats css;
     private WeaponStats bodyHitbox;
     private CapsuleCollider2D cc;
     private SpriteRenderer sre;
     private Animator anim;
+    private GameObject character;
 
     protected override void Start()
     {
+        leftBound = GameObject.FindGameObjectWithTag("LeftRoomBounds");
+        rightBound = GameObject.FindGameObjectWithTag("RightRoomBounds");
+        character = GameObject.FindGameObjectWithTag("Player");
         anim = gameObject.GetComponent<Animator>();
         cc = gameObject.GetComponent<CapsuleCollider2D>();
         sre = gameObject.GetComponent<SpriteRenderer>();
@@ -30,6 +35,7 @@ public class ZombieNPC : NPC
         base.Start();
 
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
+
     }
 
     protected override void Update()
@@ -39,9 +45,9 @@ public class ZombieNPC : NPC
 
         Vector2[] origins = new Vector2[6];
         RaycastHit2D[] hits = new RaycastHit2D[6];
-        float xBaseOffset = 1.25f;
+        float xBaseOffset = 1.5f;
         float yBaseOffset = 1f;
-        float checkDistance = 0.1f;
+        float checkDistance = 0.2f;
         Vector2 checkDirection = Vector2.right;
 
         // If we're facing left
@@ -56,18 +62,11 @@ public class ZombieNPC : NPC
             origins[i] = new Vector2(transform.position.x + xBaseOffset, transform.position.y + yBaseOffset);
             yBaseOffset -= 0.5f;
             hits[i] = Physics2D.Raycast(origins[i], checkDirection, checkDistance);
-            Debug.DrawLine(origins[i], new Vector2(origins[i].x + checkDistance, origins[i].y));
-            if (hits[i].collider != null && hits[i].collider.gameObject.tag == "Wall")
+            if (hits[i].collider != null && hits[i].collider.gameObject.tag == "Wall" && css.health > 0)
             {
-                Debug.Log("Detected wall");
                 sr.flipX = !sr.flipX;
                 css.maxSpeed *= -1;
                 break;
-            }
-            // If none of the triggers hit anything
-            else if (i == 5)
-            {
-                Debug.Log("Not hitting anything");
             }
         }
 
@@ -82,8 +81,9 @@ public class ZombieNPC : NPC
             anim.SetBool("hit", false);
         }
 
-        if (css.health <= 0)
+        if (css.health <= 0 || transform.position.x < leftBound.transform.position.x || transform.position.x > rightBound.transform.position.x)
         {
+            css.health = 0;
             cc.enabled = false;
             velocity = new Vector2();
             velocityX = 0;

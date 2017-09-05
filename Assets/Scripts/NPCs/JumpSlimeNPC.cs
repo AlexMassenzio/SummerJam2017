@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class JumpSlimeNPC : NPC
 {
-
+    public GameObject leftBound;
+    public GameObject rightBound;
+    public enum Direction { left, right }
+    public Direction startingDir;
+    private GameObject character;
     private BoxCollider2D box;
     private CapsuleCollider2D cap;
     private CircleCollider2D circ;
@@ -21,7 +25,9 @@ public class JumpSlimeNPC : NPC
 
     protected override void Start()
     {
-
+        leftBound = GameObject.FindGameObjectWithTag("LeftRoomBounds");
+        rightBound = GameObject.FindGameObjectWithTag("RightRoomBounds");
+        character = GameObject.FindGameObjectWithTag("Character");
         box = gameObject.GetComponent<BoxCollider2D>();
         cap = gameObject.GetComponent<CapsuleCollider2D>();
         circ = gameObject.GetComponent<CircleCollider2D>();
@@ -41,6 +47,12 @@ public class JumpSlimeNPC : NPC
         base.Start();
 
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
+
+        if (startingDir == Direction.right)
+        {
+            cs.maxSpeed *= -1;
+            sr.flipX = !sr.flipX;
+        }
     }
 
     protected override void Update()
@@ -92,6 +104,26 @@ public class JumpSlimeNPC : NPC
         }
 
         base.Update();
+
+        if (cs.hitstunLeft > 0)
+        {
+            anim.SetBool("hit", true);
+        }
+        else
+        {
+            anim.SetBool("hit", false);
+        }
+
+        if (cs.health <= 0 || transform.position.x < leftBound.transform.position.x || transform.position.x > rightBound.transform.position.x)
+        {
+            cs.health = 0;
+            box.enabled = false;
+            cap.enabled = false;
+            circ.enabled = false;
+            sr.flipX = false;
+            anim.SetBool("dead", true);
+        }
+
     }
 
     protected override void FixedUpdate()

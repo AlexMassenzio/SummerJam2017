@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    public enum Direction { left, right }
+    public Direction startingDir;
     private PlayerController pc;
     private EyeNPC eye;
+    private SpriteRenderer sr;
 
     public int health;
 	public int maxHealth;
@@ -44,6 +47,16 @@ public class CharacterStats : MonoBehaviour
         if (gameObject.name == "Eye")
         {
             eye = gameObject.GetComponent<EyeNPC>();
+        }
+        if (gameObject.tag == "Enemy")
+        {
+            sr = gameObject.GetComponent<SpriteRenderer>();
+            if (startingDir == Direction.right)
+            {
+                Debug.Log("XXXXXXXXXXXXXX");
+                maxSpeed *= -1;
+                sr.flipX = !sr.flipX;
+            }
         }
     }
 

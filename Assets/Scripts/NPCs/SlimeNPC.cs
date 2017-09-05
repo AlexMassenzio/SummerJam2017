@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class SlimeNPC : NPC {
 
+    public GameObject leftBound;
+    public GameObject rightBound;
     private const int SLIME_MAX_HEALTH = 1;
     private WeaponStats bodyHitbox;
     private BoxCollider2D bc;
     private SpriteRenderer sre;
     private Animator anim;
+    private GameObject character;
 
 	protected override void Start ()
 	{
+        leftBound = GameObject.FindGameObjectWithTag("LeftRoomBounds");
+        rightBound = GameObject.FindGameObjectWithTag("RightRoomBounds");
+        character = GameObject.FindGameObjectWithTag("Player");
         anim = gameObject.GetComponent<Animator>();
         sre = gameObject.GetComponent<SpriteRenderer>();
         sre.flipX = true;
@@ -28,7 +34,7 @@ public class SlimeNPC : NPC {
 		base.Start();
 
         SetTarget(GameObject.FindGameObjectWithTag("Player"));
-	}
+    }
 
     protected override void Update()
     {
@@ -54,18 +60,11 @@ public class SlimeNPC : NPC {
             origins[i] = new Vector2(transform.position.x + xBaseOffset, transform.position.y + yBaseOffset);
             yBaseOffset -= 0.5f;
             hits[i] = Physics2D.Raycast(origins[i], checkDirection, checkDistance);
-            Debug.DrawLine(origins[i], new Vector2(origins[i].x + checkDistance, origins[i].y));
             if (hits[i].collider != null && hits[i].collider.gameObject.tag == "Wall")
             {
-                Debug.Log("Detected wall");
                 sr.flipX = !sr.flipX;
                 cs.maxSpeed *= -1;
                 break;
-            }
-            // If none of the triggers hit anything
-            else if (i == 5)
-            {
-                Debug.Log("Not hitting anything");
             }
         }
 
@@ -80,8 +79,9 @@ public class SlimeNPC : NPC {
             anim.SetBool("hit", false);
         }
 
-        if (cs.health <= 0)
+        if (cs.health <= 0 || transform.position.x < leftBound.transform.position.x || transform.position.x > rightBound.transform.position.x)
         {
+            cs.health = 0;
             bc.enabled = false;
             sr.flipX = false;
             anim.SetBool("dead", true);
@@ -122,7 +122,7 @@ public class SlimeNPC : NPC {
         }
         else
         {
-            velocityX = -5f;
+            velocityX = -cs.maxSpeed;
         }
     }
 
