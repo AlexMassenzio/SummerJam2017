@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EyeNPC : NPC
 {
+    public GameObject door;
     private bool dyingSoundPlayed;
     public float dieSoundTimer, dyingSoundTimer;
     public enum movementState { leftLine, leftCircle, rightLine, rightCircle, stop, funeralMarch };
@@ -166,6 +167,7 @@ public class EyeNPC : NPC
                     {
                         SoundManager.PlaySound("eyeDie2Sound");
                         dyingSoundPlayed = true;
+                        door.SetActive(true);
                     }
                     anim.SetBool("hit", false);
                     anim.SetBool("dead", true);
