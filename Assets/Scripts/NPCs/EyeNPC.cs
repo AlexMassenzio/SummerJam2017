@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EyeNPC : NPC
 {
-
+    private bool dyingSoundPlayed;
+    public float dieSoundTimer, dyingSoundTimer;
     public enum movementState { leftLine, leftCircle, rightLine, rightCircle, stop, funeralMarch };
     public enum Phase { firstPhase, secondPhase, finalPhase };
     public movementState state = movementState.leftLine;
@@ -28,6 +29,9 @@ public class EyeNPC : NPC
 
     protected override void Start()
     {
+        
+        dyingSoundPlayed = false;
+        dyingSoundTimer = 3;
         movementCounter = 0;
         projectileTimer = 0;
         startPos = transform.position;
@@ -56,7 +60,8 @@ public class EyeNPC : NPC
     protected override void Update()
     {
         base.Update();
-
+        dyingSoundTimer += Time.deltaTime;
+        dieSoundTimer -= Time.deltaTime;
         attackTimer += Time.deltaTime;
         projectileTimer += Time.deltaTime;
         movementCounter += Time.deltaTime * eyeSpeed;
@@ -151,6 +156,17 @@ public class EyeNPC : NPC
             case movementState.stop:
                 if (cs.health <= 0)
                 {
+                    if (dieSoundTimer <= 0 && dyingSoundTimer < 2)
+                    {
+                        SoundManager.PlaySound("dieSound");
+                        dieSoundTimer = 0.5f;
+                        dyingSoundTimer += Time.deltaTime;
+                    }
+                    else if (dyingSoundTimer > 2.45f && !dyingSoundPlayed)
+                    {
+                        SoundManager.PlaySound("eyeDie2Sound");
+                        dyingSoundPlayed = true;
+                    }
                     anim.SetBool("hit", false);
                     anim.SetBool("dead", true);
                 }
@@ -180,25 +196,17 @@ public class EyeNPC : NPC
         switch (currentPhase)
         {
             case Phase.firstPhase:
-                //Debug.Log("In first phase");
                 if (cs.health <= 150)
                 {
-                    //anim.SetBool("secondPhase", true);
                     currentPhase = Phase.secondPhase;
                 }
                 break;
 
             case Phase.secondPhase:
-                //Debug.Log("In second phase");
                 if (cs.health <= 75)
                 {
-                    //anim.SetBool("thirdPhase", true);
                     currentPhase = Phase.finalPhase;
                 }
-                break;
-
-            case Phase.finalPhase:
-                //Debug.Log("In third phase");
                 break;
         }
 
@@ -217,6 +225,7 @@ public class EyeNPC : NPC
             pathDir = pathDir.normalized;
             prevState = state;
             state = movementState.funeralMarch;
+            dyingSoundTimer = 0;
             anim.SetBool("hit", true);
             pc.enabled = false;
         }

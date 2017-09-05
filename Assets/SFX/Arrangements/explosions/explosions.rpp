@@ -1,0 +1,721 @@
+<REAPER_PROJECT 0.1 "5.40/x64" 1504466020
+  RIPPLE 0
+  GROUPOVERRIDE 0 0 0
+  AUTOXFADE 1
+  ENVATTACH 1
+  MIXERUIFLAGS 11 48
+  PEAKGAIN 1
+  FEEDBACK 0
+  PANLAW 1
+  PROJOFFS 0 0
+  MAXPROJLEN 0 600
+  GRID 3455 8 1 8 1 0 0 0
+  TIMEMODE 1 5 -1 30 0
+  VIDEO_CONFIG 0 0 256
+  PANMODE 3
+  CURSOR 5.1584737290641
+  ZOOM 198.12061739149752 0 0
+  VZOOMEX 6
+  USE_REC_CFG 0
+  RECMODE 1
+  SMPTESYNC 0 30 100 40 1000 300 0 0 1 0 0
+  LOOP 0
+  LOOPGRAN 0 4
+  RECORD_PATH "Audio Files" ""
+  <RECORD_CFG
+    ZXZhdxgAAA==
+  >
+  <APPLYFX_CFG
+  >
+  RENDER_FILE ""
+  RENDER_PATTERN explosions
+  RENDER_FMT 0 2 44100
+  RENDER_1X 0
+  RENDER_RANGE 1 0 0 18 1000
+  RENDER_RESAMPLE 3 0 1
+  RENDER_ADDTOPROJ 0
+  RENDER_STEMS 0
+  RENDER_DITHER 0
+  TIMELOCKMODE 1
+  TEMPOENVLOCKMODE 1
+  ITEMMIX 0
+  DEFPITCHMODE 589824
+  TAKELANE 1
+  SAMPLERATE 44100 0 0
+  <RENDER_CFG
+    ZXZhdxgAAA==
+  >
+  LOCK 1
+  <METRONOME 6 2
+    VOL 0.25 0.125
+    FREQ 800 1600 1
+    BEATLEN 4
+    SAMPLES "" ""
+    PATTERN 2863311530 2863311529
+  >
+  GLOBAL_AUTO -1
+  TEMPO 120 4 4
+  PLAYRATE 1 0 0.25 4
+  SELECTION 0 6.42033129488213
+  SELECTION2 0 6.42033129488213
+  MASTERAUTOMODE 0
+  MASTERTRACKHEIGHT 0
+  MASTERPEAKCOL 16576
+  MASTERMUTESOLO 0
+  MASTERTRACKVIEW 0 0.6667 0.5 0.5 0 0 0
+  MASTERHWOUT 0 0 1 0 0 0 0 -1
+  MASTER_NCH 2 2
+  MASTER_VOLUME 1 0 -1 -1 1
+  MASTER_FX 1
+  MASTER_SEL 0
+  <MASTERPLAYSPEEDENV
+    ACT 0
+    VIS 0 1 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 0 -1 -1
+  >
+  <TEMPOENVEX
+    ACT 1
+    VIS 1 0 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 1 -1 -1
+  >
+  <PROJBAY
+  >
+  <TRACK {8E84CCE9-D553-4634-BCB2-6E90AD867DC6}
+    NAME ""
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    ISBUS 1 1
+    BUSCOMP 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FREEMODE 0
+    SEL 0
+    REC 0 0 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {8E84CCE9-D553-4634-BCB2-6E90AD867DC6}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <VOLENV2
+      ACT 1
+      VIS 1 1 1
+      LANEHEIGHT 0 0
+      ARM 1
+      DEFSHAPE 0 -1 -1
+      PT 0 1 0
+      PT 4.74963188 1.01 0 0 1
+      PT 6.43042616 0.22 0
+    >
+  >
+  <TRACK {6C6313A0-D427-4AFF-B126-6B6F1FA28513}
+    NAME explosion1
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    ISBUS 0 0
+    BUSCOMP 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FREEMODE 0
+    SEL 1
+    REC 0 0 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {6C6313A0-D427-4AFF-B126-6B6F1FA28513}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 0.0353320118429
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {275125A2-F825-4641-B6E6-3178B2618DBA}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {9651B016-528F-428B-836D-A459B5889B0E}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 0.7066402368946
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {C4ADD9F4-AE94-4ECB-B0E6-6E0DE3D75123}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {AF10ADED-F630-41F1-88B0-27108674FC38}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 1.37290103163105
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {22BFA2F4-7631-41A3-96C6-1D604F827F09}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {9DDEF01C-72AF-42AE-877F-D290275DEC22}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 1.97859266320267
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {70F868E1-C460-4D45-8675-3EF8175AB6B0}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {739FA098-890F-4C05-93F2-0BD3C85693B4}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 2.56914200400551
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {38B1BEA3-2055-4734-B5C2-0B901C4D12F0}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {3DB43F55-6E5F-45F5-B4BB-19835180BF6B}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 3.13445419349198
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {4AD7461A-41EB-423D-83C6-C15A72A33FED}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {9263F497-A581-4FB1-947D-FA322288F64B}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 3.62910235929265
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {281FC6AA-C665-4D52-99B2-8985B6F1AB14}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {4E8E358D-8768-42C3-A549-8E28B16D1DB0}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 4.14394024614641
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {B9F45EA6-88FD-4653-81C3-BF5E2CBBBEB1}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {71C2A5BD-EDD2-4C0B-B8A8-4E8239E5CB30}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 4.6335409816838
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {1B68BE8A-378C-4CED-B047-27AC263557AD}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {10A6801F-E9F3-4695-A070-EE41D02C7EEC}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 5.09790456590483
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {A3465213-EAC6-4D1E-9730-A44164204EC2}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {BC4200B3-B31B-4C22-BE68-26DFBC8B9FEC}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 5.55217328958679
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {5DF96167-044D-4EA9-8D4C-26191AE8CEE8}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {40DA843E-68A0-419A-AA55-4139F010E5C1}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 6.00644201331306
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {665DD553-541F-4B0A-8DB9-E66C9924402D}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {F3437255-841E-47C4-B747-74CD4F5DDAAB}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+  >
+  <TRACK {48D95F76-D484-4866-8FC0-89D28D6DC896}
+    NAME explosion2
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    ISBUS 0 0
+    BUSCOMP 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FREEMODE 0
+    SEL 0
+    REC 0 0 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {48D95F76-D484-4866-8FC0-89D28D6DC896}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 0.37855726974541
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {504F7D73-9F13-418B-833F-1BD919B13A9C}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {FF71752D-037B-4242-80B3-CAF80042AF5D}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 1.04986549471505
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {AE276B14-9E59-4C60-B6C3-A19895F46D89}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {755F964C-5621-4120-969A-516EC8B9AFFF}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 1.67069941714307
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {E1C9DD23-7A99-48B2-8151-65CDBB05C07F}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {9857D448-204C-4740-BDFC-0BAE79C13AC6}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 2.281438478999
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {92ACBEFB-50B8-41A4-B7F2-7A4F27ECF61E}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {2953B3D7-E6FC-4A3D-83EE-BD5239A12383}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 2.83665580795893
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {2B6633C3-0854-4B4C-B8A4-3CE26FFFB1F1}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {0E6FDFEC-53C6-42D0-9FF7-C16FB43289AA}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 3.39187313691886
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {1B0D4D50-75D0-477D-A034-E11D503B20C7}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {A15BB889-8143-4A39-8341-4A907C629166}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 3.8915687329828
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {898DC509-E233-4660-A95C-94D42F6C9964}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {DB7D4787-D223-4761-A250-917379FFF948}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 4.38116946852019
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {1418541C-1B91-4EE6-88E1-5429834738DC}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {B0096B4A-20EC-4C1C-8F1E-6B18830BE8BF}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 4.8505804830045
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {5D2CDFDD-397A-47F9-B16A-1B5F61B129C4}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {5B2F05AE-B0D6-4AC3-A227-7A483F8E1BAC}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 5.32503892775208
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {9B5EDAA0-EFB6-4804-B300-E2EC8E78EB73}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {FC272AE1-D388-4008-BCC5-DFFC9F7B1CC4}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+    <ITEM
+      POSITION 5.78940251201857
+      SNAPOFFS 0
+      LENGTH 0.40829931972789
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.01 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {756F0345-F5FF-430B-876C-FB11C6E17666}
+      IID 1
+      NAME explosion1.wav
+      VOLPAN 1 0 1 -1
+      SOFFS 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {B560E0C0-68F7-4DAE-8530-EEB43923B93A}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion1.wav"
+      >
+    >
+  >
+  <TRACK {B2D42BCE-B508-40A8-9C83-23EAD6EA5BD1}
+    NAME ""
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    ISBUS 2 -1
+    BUSCOMP 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FREEMODE 0
+    SEL 0
+    REC 0 0 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {B2D42BCE-B508-40A8-9C83-23EAD6EA5BD1}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <ITEM
+      POSITION 3.93699560535225
+      SNAPOFFS 0
+      LENGTH 2.46399149173519
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0.206945 0 1 0 0
+      FADEOUT 1 0.01 0 1 0 0
+      MUTE 0
+      SEL 0
+      IGUID {3D4C7826-25DB-4322-BBAF-8FF7F454B7F1}
+      IID 2
+      NAME explosion2.wav
+      VOLPAN 1 0 0.309027 -1
+      SOFFS 0.13628061710835
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {FC3D267A-8ABE-4640-ABFD-99C66849DC32}
+      <SOURCE WAVE
+        FILE "C:\Users\Alex\Documents\GitHub\SummerJam2017\Assets\SFX\explosion2.wav"
+      >
+    >
+  >
+>

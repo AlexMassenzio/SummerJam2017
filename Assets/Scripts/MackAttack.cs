@@ -20,6 +20,8 @@ public class MackAttack : MonoBehaviour {
     private PlayerManager pm;
     private WeaponStats ws;
 
+    private float harpoonSoundTimer;
+
     private const float MACK_ATTACK_DELAY = 0.3f;
     private const float MACK_ATTACK_TIME = 0.5f;
     private const float HARPOON_DELAY = 0.3f;
@@ -45,6 +47,9 @@ public class MackAttack : MonoBehaviour {
 
     private void Update()
     {
+
+        harpoonSoundTimer -= Time.deltaTime;
+
         if (pm.hasHarpoon)
         {
             attackTrigger = transform.GetChild(2).GetComponent<BoxCollider2D>();
@@ -74,6 +79,22 @@ public class MackAttack : MonoBehaviour {
         // GetMouseButtonDown(0) is left click, 1 is right, and 2 is middle
         if (Input.GetMouseButtonDown(0) && !attacking)
         {
+            if (harpoonSoundTimer <= 0)
+            {
+                if (pm.hasHarpoon || pm.hasBetterHarpoon)
+                {
+                    SoundManager.PlaySound("harpoonSound");
+                }
+                else if (pm.hasBestHarpoon)
+                {
+                    SoundManager.PlaySound("bestHarpoonSound");
+                }
+                else
+                {
+                    SoundManager.PlaySound("mackAttackSound");
+                }
+                harpoonSoundTimer = 0.75f;
+            }
             attacking = true;
             delayEnabled = true;
             attackDelayLeft = attackDelayMax;
