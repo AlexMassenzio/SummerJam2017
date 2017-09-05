@@ -172,31 +172,10 @@ public class PhysicsObject : MonoBehaviour {
             }
         }
 
-        /*
-        if (gameObject.tag == "Enemy")
+        if (gameObject.name != "Eye")
         {
-            if (cs.enemyName != "Eye")
-            {
-                if (sr.flipX || axis == 'y')
-                {
-                    rb2d.position += move.normalized * distance;
-                }
-                else if (!sr.flipX && axis == 'x')
-                {
-                    rb2d.position -= move.normalized * distance;
-                }
-                
-            }
+            rb2d.position += move.normalized * distance;
         }
-        else
-        {
-            if (gameObject.tag != "EyeProjectile")
-            {
-                rb2d.position += move.normalized * distance;
-            }
-        }
-        */
-        rb2d.position += move.normalized * distance;
 
     }
 }

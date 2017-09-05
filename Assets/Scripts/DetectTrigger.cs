@@ -5,7 +5,7 @@ using UnityEngine;
 public class DetectTrigger : MonoBehaviour {
 
 	private bool uvulaHit = false;
-    private float hitSoundTimer;
+    private float hitSoundTimer, harpoonSoundTimer;
 
     private PlayerManager pm;
 
@@ -16,14 +16,13 @@ public class DetectTrigger : MonoBehaviour {
             pm = gameObject.GetComponent<PlayerManager>();
         }
         hitSoundTimer = 0;
+        harpoonSoundTimer = 0;
     }
 
     private void Update()
     {
-        if (hitSoundTimer > 0)
-        {
-            hitSoundTimer -= Time.deltaTime;
-        }
+        hitSoundTimer -= Time.deltaTime;
+        harpoonSoundTimer -= Time.deltaTime;
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -31,7 +30,7 @@ public class DetectTrigger : MonoBehaviour {
         // Object that is doing the hitting   
         if (gameObject.tag == "MackAttack" || gameObject.tag == "HarpoonAttack" || gameObject.tag == "BetterHarpoonAttack" || gameObject.tag == "BestHarpoonAttack")
         {
-            WeaponStats ws = gameObject.GetComponent<WeaponStats>();
+            WeaponStats ws = gameObject.GetComponent<WeaponStats>(); 
 
             // Check what type of object we collided with
             switch (col.tag)
@@ -72,9 +71,10 @@ public class DetectTrigger : MonoBehaviour {
             CharacterStats cs = col.gameObject.GetComponent<CharacterStats>();
             switch (col.tag)
             {
-                case "Player":
+                case "Player":                    
                     if (cs.invincibilityLeft <= 0)
                     {
+                        SoundManager.PlaySound("hitSound");
                         // Provide Mack with your damage info and tell him to injure himself
                         col.gameObject.SendMessage("Hitstun", ws.hitstunDuration);
                         Debug.Log("knockback: " + ws.knockback);
