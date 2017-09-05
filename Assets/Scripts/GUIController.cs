@@ -11,13 +11,14 @@ public class GUIController : MonoBehaviour {
 	private GameObject respawnButton;
 	private RectTransform healthBarRT, staminaBarRT;
 	private RawImage blackMask;
+    private GameObject youDied;
 
-	[SerializeField]
 	private CharacterStats cs;
 
 	float maxHealthLength, maxStaminaLength;
 
 	private UnityAction fadeToBlackListener;
+    private UnityAction youDiedListener;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +32,9 @@ public class GUIController : MonoBehaviour {
 		maxHealthLength = healthBarRT.rect.width * canvas.scaleFactor;
 		maxStaminaLength = staminaBarRT.rect.width * canvas.scaleFactor;
 
+        youDied = transform.Find("YouDied").gameObject;
+        youDied.SetActive(false);
+
 		blackMask = transform.Find("BlackMask").gameObject.GetComponent<RawImage>();
 
 		cs = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CharacterStats>();
@@ -40,16 +44,19 @@ public class GUIController : MonoBehaviour {
 	void Awake()
 	{
 		fadeToBlackListener = new UnityAction(FadeToBlack);
+        youDiedListener = new UnityAction(FadeInDeath);
 	}
 
 	void OnEnable()
 	{
 		EventManager.StartListening("FadeToBlack", fadeToBlackListener);
+        EventManager.StartListening("FadeInDeath", youDiedListener);
 	}
 
 	void OnDisable()
 	{
 		EventManager.StopListening("FadeToBlack", fadeToBlackListener);
+        EventManager.StopListening("FadeInDeath", youDiedListener);
 	}
 
 	// Update is called once per frame
@@ -68,24 +75,53 @@ public class GUIController : MonoBehaviour {
 
 	private void FadeToBlack()
 	{
-		StartCoroutine(FadeToBlackHelper());
+		StartCoroutine(FadeToBlackHelper(true));
 	}
 
-	IEnumerator FadeToBlackHelper()
-	{
-		Color placeholderColor = blackMask.color;
-		float progress = 0;
+	IEnumerator FadeToBlackHelper(bool goToNextLevel)
+    {
+        Color placeholderColor = blackMask.color;
+        float progress = 0;
 
-		while(progress < 1)
-		{
-			placeholderColor.a = LeanTween.linear(0, 1, progress);
-			blackMask.color = placeholderColor;
+        while (progress < 1)
+        {
+            placeholderColor.a = LeanTween.linear(0, 1, progress);
+            blackMask.color = placeholderColor;
 
-			progress += Time.deltaTime;
+            progress += Time.deltaTime;
 
-			yield return null;
-		}
+            yield return null;
+        }
 
-		EventManager.TriggerEvent("LoadNextLevel");
+        if (goToNextLevel)
+        {
+            EventManager.TriggerEvent("LoadNextLevel");
+        }
 	}
+
+    private void FadeInDeath() 
+    {
+        youDied.SetActive(true);
+        StartCoroutine(FadeInDeathHelper());
+    }
+
+    IEnumerator FadeInDeathHelper()
+    {
+        Image deathImage = youDied.GetComponent<Image>();
+        Color placeholderColor = deathImage.color;
+        float progress = 0;
+
+        while(progress < 1)
+        {
+            placeholderColor.a = LeanTween.linear(0, 1, progress);
+            deathImage.color = placeholderColor;
+
+            progress += Time.deltaTime;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(FadeToBlackHelper(false));
+    }
 }

@@ -52,7 +52,8 @@ public class RoomController : MonoBehaviour {
 			if(firstFrameInState)
 			{
 				Debug.Log("Entered State: Death");
-				gui.GetComponent<GUIController>().enableDeathGUI();
+                StartCoroutine(DeathSequence());
+				//DEPRECATED: gui.GetComponent<GUIController>().enableDeathGUI();
 			}
 		}
 		else if(gs == GameState.Leave)
@@ -98,5 +99,12 @@ public class RoomController : MonoBehaviour {
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
+
+    IEnumerator DeathSequence()
+    {
+        EventManager.TriggerEvent("FadeInDeath");
+        yield return new WaitForSeconds(4f);
+        Respawn();
+    }
 	#endregion
 }

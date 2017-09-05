@@ -27,6 +27,7 @@ public class MusicPlayer : MonoBehaviour {
 		}
 
 		DontDestroyOnLoad(this.gameObject);
+        transform.parent = null;
 	}
 
 	private void Update()
